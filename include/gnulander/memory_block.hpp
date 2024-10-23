@@ -15,13 +15,27 @@
 
 #pragma once
 
-#include "construct_allocator_adapter.hpp"
+#include <cstddef>
+#include <span>
+
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/sstd.hpp"
 
 namespace ger {
-namespace sstd {
-using byte_vec_alloc =
-    sstd::allocator::construct_allocator_adapter<sstd::allocator::default_init_construct,
-                                                 std::byte>;
-using byte_vec = std::vector<std::byte, byte_vec_alloc>;
-} // namespace sstd
+namespace gnu {
+
+using memory_block_fd = sstd::unique_handle<fd_handle, close_fd_handle>;
+
+/// Block of memory.
+class memory_block : private memory_block_fd {
+  public:
+    /// Create block of memory via shm_open(...).
+    [[nodiscard]] explicit memory_block();
+
+    using memory_block_fd::truncate;
+    using memory_block_fd::map;
+    using memory_block_fd::operator gnu::fd_ref;
+};
+
+} // namespace gnu
 } // namespace ger

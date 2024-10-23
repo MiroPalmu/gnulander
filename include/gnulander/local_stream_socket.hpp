@@ -32,9 +32,9 @@
 #include <tuple>
 #include <type_traits>
 
-#include "gnu_utils/fd_handle.hpp"
-#include "sstd.hpp"
-#include "type_utils.hpp"
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/sstd.hpp"
+#include "gnulander/type_utils.hpp"
 
 #if defined CMSG_FIRSTHDR && !defined __sgi
 #elif HAVE_STRUCT_MSGHDR_MSG_ACCRIGHTS

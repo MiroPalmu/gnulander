@@ -25,7 +25,7 @@
 #include <thread>
 #include <vector>
 
-#include "gnu_utils/pipe.hpp"
+#include "gnulander/pipe.hpp"
 
 auto make_mock_buff(const std::size_t size) -> std::vector<std::byte> {
     namespace rv = std::views;

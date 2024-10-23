@@ -30,9 +30,9 @@
 #include <format>
 #include <tuple>
 
-#include "gnu_utils/fd_handle.hpp"
-#include "gnu_utils/local_stream_socket.hpp"
-#include "sstd.hpp"
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/local_stream_socket.hpp"
+#include "gnulander/sstd.hpp"
 
 namespace ger {
 namespace gnu {

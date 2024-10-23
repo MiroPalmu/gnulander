@@ -20,7 +20,8 @@
 #include <cerrno>
 #include <system_error>
 
-#include "sstd.hpp"
+#include "gnulander/sstd.hpp"
+
 int main() {
     using namespace boost::ut;
     using namespace ger;

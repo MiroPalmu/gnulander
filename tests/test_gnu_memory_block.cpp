@@ -19,7 +19,7 @@
 
 #include <algorithm>
 
-#include "gnu_utils/memory_block.hpp"
+#include "gnulander/memory_block.hpp"
 
 int main() {
     using namespace boost::ut;

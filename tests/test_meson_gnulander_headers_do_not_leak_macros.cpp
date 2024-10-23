@@ -27,14 +27,14 @@
 ///         ...
 ///     )
 
-#include "gnu_utils/pipe.hpp"
+#include "gnulander/pipe.hpp"
 
 int main() {
     using namespace boost::ut;
     cfg<override> = { .tag = { "meson" } };
 
     /// Heuristic for tests that gnulander headers do not leak some of gnulib macros.
-    tag("meson") / "gnu_utils/pipe.hpp does not define write or read macros"_test = [] {
+    tag("meson") / "gnulander/pipe.hpp does not define write or read macros"_test = [] {
 #ifdef write
         expect(false);
 #else

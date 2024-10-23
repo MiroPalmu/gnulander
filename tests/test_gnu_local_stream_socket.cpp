@@ -42,9 +42,9 @@
 #include <vector>
 #include <version>
 
-#include "byte_vec.hpp"
-#include "gnu_utils/local_stream_socket.hpp"
-#include "gnu_utils/memory_block.hpp"
+#include "gnulander/byte_vec.hpp"
+#include "gnulander/local_stream_socket.hpp"
+#include "gnulander/memory_block.hpp"
 
 namespace testing {
 

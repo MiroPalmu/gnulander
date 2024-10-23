@@ -32,9 +32,9 @@
 #include <stdexcept>
 #include <string>
 
-#include "gnu_utils/fd_handle.hpp"
-#include "gnu_utils/memory_block.hpp"
-#include "sstd.hpp"
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/memory_block.hpp"
+#include "gnulander/sstd.hpp"
 
 namespace {
 

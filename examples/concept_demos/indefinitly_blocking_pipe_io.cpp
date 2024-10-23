@@ -21,7 +21,7 @@
 #include <print>
 #include <span>
 
-#include "gnu_utils/pipe.hpp"
+#include "gnulander/pipe.hpp"
 
 int main() {
     std::signal(SIGINT, [](int) { std::println("SIGINT is ignored."); });

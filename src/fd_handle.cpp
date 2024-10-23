@@ -33,8 +33,8 @@
 #include <string_view>
 #include <utility>
 
-#include "gnu_utils/fd_handle.hpp"
-#include "sstd.hpp"
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/sstd.hpp"
 
 namespace ger {
 namespace gnu {

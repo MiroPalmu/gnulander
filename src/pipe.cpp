@@ -25,8 +25,8 @@
 
 #include <tuple>
 
-#include "gnu_utils/fd_handle.hpp"
-#include "gnu_utils/pipe.hpp"
+#include "gnulander/fd_handle.hpp"
+#include "gnulander/pipe.hpp"
 
 namespace ger {
 namespace gnu {

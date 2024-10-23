@@ -30,7 +30,7 @@
 #include <stddef.h>
 #include <string_view>
 
-#include "gnu_utils/pipe.hpp"
+#include "gnulander/pipe.hpp"
 
 int main() {
     using namespace boost::ut;
