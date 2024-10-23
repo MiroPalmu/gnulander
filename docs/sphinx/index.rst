@@ -5,8 +5,6 @@ Welcome to Guilander documentation!
    :maxdepth: 1
    :caption: Contents:
 
-   scope
-   xml_to_cpp
    gnulib_usage
    developing_guidelines
 
