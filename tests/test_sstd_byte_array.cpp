@@ -22,37 +22,37 @@
 
 #include "gnulander/byte_array.hpp"
 
-static_assert(ger::sstd::total_memory_usage_is<0>);
-static_assert(ger::sstd::total_memory_usage_is<1, std::uint8_t>);
-static_assert(ger::sstd::total_memory_usage_is<4, std::uint32_t>);
-static_assert(ger::sstd::total_memory_usage_is<8, std::uint64_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<0>);
+static_assert(gnulander::sstd::total_memory_usage_is<1, std::uint8_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<4, std::uint32_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<8, std::uint64_t>);
 
-static_assert(ger::sstd::total_memory_usage_is<0>);
-static_assert(ger::sstd::total_memory_usage_is<2, std::uint8_t, std::uint8_t>);
-static_assert(ger::sstd::total_memory_usage_is<5, std::uint8_t, std::uint32_t>);
-static_assert(ger::sstd::total_memory_usage_is<9, std::uint8_t, std::uint64_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<0>);
+static_assert(gnulander::sstd::total_memory_usage_is<2, std::uint8_t, std::uint8_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<5, std::uint8_t, std::uint32_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<9, std::uint8_t, std::uint64_t>);
 
-static_assert(ger::sstd::total_memory_usage_is<3, std::uint8_t, std::uint8_t, std::uint8_t>);
-static_assert(ger::sstd::total_memory_usage_is<6, std::uint8_t, std::uint32_t, std::uint8_t>);
-static_assert(ger::sstd::total_memory_usage_is<10, std::uint8_t, std::uint64_t, std::uint8_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<3, std::uint8_t, std::uint8_t, std::uint8_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<6, std::uint8_t, std::uint32_t, std::uint8_t>);
+static_assert(gnulander::sstd::total_memory_usage_is<10, std::uint8_t, std::uint64_t, std::uint8_t>);
 
-static_assert(not ger::sstd::total_memory_usage_is<1>);
-static_assert(not ger::sstd::total_memory_usage_is<2, std::uint8_t>);
-static_assert(not ger::sstd::total_memory_usage_is<5, std::uint32_t>);
-static_assert(not ger::sstd::total_memory_usage_is<9, std::uint64_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<1>);
+static_assert(not gnulander::sstd::total_memory_usage_is<2, std::uint8_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<5, std::uint32_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<9, std::uint64_t>);
 
-static_assert(not ger::sstd::total_memory_usage_is<1>);
-static_assert(not ger::sstd::total_memory_usage_is<3, std::uint8_t, std::uint8_t>);
-static_assert(not ger::sstd::total_memory_usage_is<6, std::uint8_t, std::uint32_t>);
-static_assert(not ger::sstd::total_memory_usage_is<10, std::uint8_t, std::uint64_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<1>);
+static_assert(not gnulander::sstd::total_memory_usage_is<3, std::uint8_t, std::uint8_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<6, std::uint8_t, std::uint32_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<10, std::uint8_t, std::uint64_t>);
 
-static_assert(not ger::sstd::total_memory_usage_is<4, std::uint8_t, std::uint8_t, std::uint8_t>);
-static_assert(not ger::sstd::total_memory_usage_is<7, std::uint8_t, std::uint32_t, std::uint8_t>);
-static_assert(not ger::sstd::total_memory_usage_is<11, std::uint8_t, std::uint64_t, std::uint8_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<4, std::uint8_t, std::uint8_t, std::uint8_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<7, std::uint8_t, std::uint32_t, std::uint8_t>);
+static_assert(not gnulander::sstd::total_memory_usage_is<11, std::uint8_t, std::uint64_t, std::uint8_t>);
 
 int main() {
     using namespace boost::ut;
-    using namespace ger::sstd;
+    using namespace gnulander::sstd;
     using namespace std;
 
     "byte_array is equality_comparable"_test = [] {
@@ -78,7 +78,7 @@ int main() {
         expect(buf_empty_b == buf_empty_b);
     };
 
-    "integers in integer message byte_array constructor can alias each other"_test = [] {
+    "integnulanders in integnulander message byte_array constructor can alias each other"_test = [] {
         constexpr auto one          = uint8_t{ 1 };
         constexpr auto oneone       = static_cast<uint16_t>(one << 8 | one);
         constexpr auto oneoneoneone = static_cast<uint32_t>(oneone << 16 | oneone);

@@ -21,8 +21,7 @@
 #include "gnulander/fd_handle.hpp"
 #include "gnulander/sstd.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 using memory_block_fd = sstd::unique_handle<fd_handle, close_fd_handle>;
 
@@ -34,8 +33,7 @@ class memory_block : private memory_block_fd {
 
     using memory_block_fd::truncate;
     using memory_block_fd::map;
-    using memory_block_fd::operator gnu::fd_ref;
+    using memory_block_fd::operator gnulander::fd_ref;
 };
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

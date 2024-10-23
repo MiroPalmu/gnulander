@@ -34,8 +34,7 @@
 #include "gnulander/local_stream_socket.hpp"
 #include "gnulander/sstd.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 [[nodiscard]] auto open_local_stream_socket_pair()
     -> std::pair<local_stream_socket, local_stream_socket> {
@@ -94,5 +93,4 @@ namespace gnu {
     return { sock_to_be_connected };
 }
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

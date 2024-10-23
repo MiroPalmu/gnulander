@@ -40,32 +40,32 @@ int main() {
     cfg<override> = { .tag = { "gnu" } };
 
     tag("gnu") / "[in|out]_pipe can be constructed"_test = [] {
-        [[maybe_unused]] auto [/* in */ _, /* out */ _] = ger::gnu::open_pipe();
+        [[maybe_unused]] auto [/* in */ _, /* out */ _] = gnulander::open_pipe();
         expect(true);
     };
 
     /// Has to be in generic lambda to make requires expressions not ill-formed.
     tag("gnu") / "[in|out]_pipe is not [writable|readable]"_test = []<typename> {
         const auto in_pipe_is_writable =
-            requires(ger::gnu::in_pipe in, std::span<const std::byte> s) { in.write(s); };
+            requires(gnulander::in_pipe in, std::span<const std::byte> s) { in.write(s); };
         const auto out_pipe_is_readable =
-            requires(ger::gnu::out_pipe out, std::span<std::byte> s) { out.read(s); };
+            requires(gnulander::out_pipe out, std::span<std::byte> s) { out.read(s); };
 
         expect(not in_pipe_is_writable);
         expect(not out_pipe_is_readable);
     } | std::tuple<int>{};
 
     tag("gnu") / "[in|out]_pipe has get_PIPE_BUF"_test = [] {
-        expect(requires(ger::gnu::in_pipe in) {
+        expect(requires(gnulander::in_pipe in) {
             { in.get_PIPE_BUF() } -> std::common_with<unsigned long>;
         });
-        expect(requires(ger::gnu::out_pipe out) {
+        expect(requires(gnulander::out_pipe out) {
             { out.get_PIPE_BUF() } -> std::common_with<unsigned long>;
         });
     };
 
     tag("gnu") / "[in|out]_pipe can be [read|written] twice"_test = [] {
-        auto [in, out]          = ger::gnu::open_pipe();
+        auto [in, out]          = gnulander::open_pipe();
         const auto data_to_send = std::vector<std::byte>{ std::byte{ 7 },
                                                           std::byte{ 42 },
                                                           std::byte{ 8 },
@@ -105,7 +105,7 @@ int main() {
     };
 
     tag("gnu") / "[in|out]_pipe can be [read|written] N bytes twice, s.t. N >> PIPE_BUF"_test = [] {
-        auto [in, out] = ger::gnu::open_pipe();
+        auto [in, out] = gnulander::open_pipe();
 
         constexpr auto m{ 100uz }; // >> 1
         const auto N            = m * in.get_PIPE_BUF();

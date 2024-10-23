@@ -22,8 +22,7 @@
 
 #include "gnulander/sstd.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 // Forward declerations
 class in_pipe;
@@ -63,7 +62,7 @@ using mapped_memory = sstd::unique_handle<std::span<std::byte>, unmap>;
 /// All interfaces, that opens new file descriptions, ensures that any file descriptor opened
 /// is not stdin(0), stdout(1) nor stderr(2). This perevents accidental globbing of them when for
 /// variaty of reasons they might be closed and new file descriptors are allocated to
-/// "the smallest non-negative integer that does not yet correspond to an open file descriptor".
+/// "the smallest non-negative integnulander that does not yet correspond to an open file descriptor".
 ///
 /// For more information see gnulib manual 17.10 Handling closed standard file descriptors.
 class fd_handle {
@@ -189,5 +188,4 @@ static_assert(sizeof(fd_native_type) == sizeof(fd_ref));
 /// Simple closer function, which just calls \p x.close().
 void close_fd_handle(fd_handle& x);
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

@@ -32,20 +32,20 @@ int main() {
     cfg<override> = { .tag = { "gnu" } };
 
     tag("gnu") / "standalone fd_handle can not be constructed"_test = [] {
-        expect(not std::default_initializable<ger::gnu::fd_handle>);
+        expect(not std::default_initializable<gnulander::fd_handle>);
     };
 
     tag("gnu") / "fd_handle is movable but not copyable"_test = [] {
-        expect(std::movable<ger::gnu::fd_handle>);
-        expect(not std::copyable<ger::gnu::fd_handle>);
+        expect(std::movable<gnulander::fd_handle>);
+        expect(not std::copyable<gnulander::fd_handle>);
     };
 
     tag("gnu") / "fd_ref is movable and copyable"_test = [] {
-        expect(std::movable<ger::gnu::fd_ref>);
-        expect(std::copyable<ger::gnu::fd_ref>);
+        expect(std::movable<gnulander::fd_ref>);
+        expect(std::copyable<gnulander::fd_ref>);
     };
 
     tag("gnu") / "fd_ref can be constructed from fd_handle"_test = [] {
-        expect(requires(ger::gnu::fd_handle fd) { ger::gnu::fd_ref{ fd }; });
+        expect(requires(gnulander::fd_handle fd) { gnulander::fd_ref{ fd }; });
     };
 }

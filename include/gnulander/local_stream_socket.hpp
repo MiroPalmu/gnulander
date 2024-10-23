@@ -38,13 +38,12 @@
 
 #if defined CMSG_FIRSTHDR && !defined __sgi
 #elif HAVE_STRUCT_MSGHDR_MSG_ACCRIGHTS
-static_assert(false, "Implementation of gnulib module passfd supports this but not ger::gnu.");
+static_assert(false, "Implementation of gnulib module passfd supports this but not gnulander.");
 #else
 static_assert(false);
 #endif
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 template<typename>
 struct is_valid_local_socket_msg_ctor_arg : std::false_type {};
@@ -52,7 +51,7 @@ struct is_valid_local_socket_msg_ctor_arg : std::false_type {};
 template<std::size_t n>
 struct is_valid_local_socket_msg_ctor_arg<std::span<std::byte, n>> : std::true_type {};
 template<>
-struct is_valid_local_socket_msg_ctor_arg<gnu::fd_ref> : std::true_type {};
+struct is_valid_local_socket_msg_ctor_arg<gnulander::fd_ref> : std::true_type {};
 
 /// Message type to specify send/recv buffers and ancillary data.
 ///
@@ -101,12 +100,12 @@ class local_socket_msg {
         using buff_type = std::span<std::byte>;
         // clang-format off
         constexpr auto num_of_span_args = arg_type_list
-            ::template map<sstd::numeral_t<1>(buff_type), sstd::numeral_t<0>(gnu::fd_ref)>
+            ::template map<sstd::numeral_t<1>(buff_type), sstd::numeral_t<0>(gnulander::fd_ref)>
             ::template fold_left<sstd::numeral_t<0>, addition>
             ::value;
 
         constexpr auto num_of_fd_args = arg_type_list
-            ::template map<sstd::numeral_t<0>(buff_type), sstd::numeral_t<1>(gnu::fd_ref)>
+            ::template map<sstd::numeral_t<0>(buff_type), sstd::numeral_t<1>(gnulander::fd_ref)>
             ::template fold_left<sstd::numeral_t<0>, addition>
             ::value;
         // clang-format on
@@ -140,7 +139,7 @@ class local_socket_msg {
                 *(next_iovec++) = ::iovec{ .iov_base{ buff.data() }, .iov_len{ buff.size() } };
             },
             [&, next_fd = CMSG_DATA(static_cast<::cmsghdr*>(native_msg_.msg_control))](
-                const gnu::fd_ref fd) mutable {
+                const gnulander::fd_ref fd) mutable {
                 std::memcpy(next_fd, std::addressof(fd.fd_), sizeof(fd_native_type));
                 std::ranges::advance(next_fd, sizeof(fd_native_type));
             }
@@ -286,5 +285,4 @@ class local_stream_socket : private local_stream_socket_fd {
 [[nodiscard]] auto open_local_stream_socket_connected_to(const std::filesystem::path&)
     -> local_stream_socket;
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

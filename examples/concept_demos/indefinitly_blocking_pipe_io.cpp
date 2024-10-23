@@ -26,7 +26,7 @@
 int main() {
     std::signal(SIGINT, [](int) { std::println("SIGINT is ignored."); });
 
-    [[maybe_unused]] auto [in, out] = ger::gnu::open_pipe();
+    [[maybe_unused]] auto [in, out] = gnulander::open_pipe();
     auto some_data                  = std::array<std::byte, 5>{};
 
     std::print("Reading... ");

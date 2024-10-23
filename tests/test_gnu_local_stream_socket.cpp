@@ -87,19 +87,19 @@ int make_named_socket(const char* filename) {
 
 int main() {
     using namespace boost::ut;
-    using namespace ger;
+    using namespace gnulander;
     cfg<override> = { .tag = { "gnu" } };
 
     tag("gnu") / "local_stream_socket pair can be constructed"_test = [] {
-        [[maybe_unused]] auto [_, _] = ger::gnu::open_local_stream_socket_pair();
+        [[maybe_unused]] auto [_, _] = gnulander::open_local_stream_socket_pair();
         expect(true);
     };
 
     tag("gnu") / "local_stream_socket is writable and readable"_test = [] {
-        expect(requires(ger::gnu::local_stream_socket socket, std::span<const std::byte> s) {
+        expect(requires(gnulander::local_stream_socket socket, std::span<const std::byte> s) {
             socket.write(s);
         });
-        expect(requires(ger::gnu::local_stream_socket socket, std::span<std::byte> s) {
+        expect(requires(gnulander::local_stream_socket socket, std::span<std::byte> s) {
             socket.read(s);
         });
     };
@@ -144,7 +144,7 @@ int main() {
         expect(ping.size() == recv_buff_B.size());
         expect(pong.size() == recv_buff_A.size());
 
-        auto [A, B] = ger::gnu::open_local_stream_socket_pair();
+        auto [A, B] = gnulander::open_local_stream_socket_pair();
 
         auto ping_done       = std::latch{ 2 };
         auto read_bytes_ping = std::async(std::launch::async, [&] {
@@ -170,7 +170,7 @@ int main() {
                                           std::byte{ 'n' },
                                           std::byte{ 'g' } };
 
-        auto [A, B] = ger::gnu::open_local_stream_socket_pair();
+        auto [A, B] = gnulander::open_local_stream_socket_pair();
         auto _      = std::jthread{ [&] { B.write(ping); } };
 
         auto recv_buff = sstd::byte_vec{};
@@ -240,7 +240,7 @@ int main() {
             if (-1 == ::close(server_socket)) { sstd::throw_generic_system_error(); }
         });
 
-        auto client_socket    = gnu::open_local_stream_socket_connected_to(testing_socket_name);
+        auto client_socket    = gnulander::open_local_stream_socket_connected_to(testing_socket_name);
         auto recv_buff        = std::vector<std::byte>(msg.size());
         const auto recv_bytes = client_socket.read(recv_buff);
         expect(msg.size() == recv_bytes);
@@ -263,24 +263,24 @@ int main() {
             const auto random_path = std::filesystem::path{ "/foo/bar/no/socket" };
             expect(not std::filesystem::is_socket(random_path));
             expect(throws<std::system_error>(
-                [&] { std::ignore = gnu::open_local_stream_socket_connected_to(random_path); }));
+                [&] { std::ignore = gnulander::open_local_stream_socket_connected_to(random_path); }));
         };
 
     tag("gnu")
         / "local_stream_socket can [send|recev] one byte local_socket_message<1, 0>"_test = [] {
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         auto _ = std::jthread{ [&] {
             auto recv_buff = std::array{ std::byte{ 10 } };
 
-            auto msg = ger::gnu::local_socket_msg<1, 0>{ std::span{ recv_buff } };
+            auto msg = gnulander::local_socket_msg<1, 0>{ std::span{ recv_buff } };
             std::ignore = beta.recv(msg);
             if (recv_buff[0] == std::byte{ 42 }) { recv_buff[0] = std::byte{ 24 }; }
             std::ignore = beta.send(msg);
         } };
 
         auto recv_buff = std::array{ std::byte{ 42 } };
-        auto msg       = ger::gnu::local_socket_msg<1, 0>{ std::span{ recv_buff } };
+        auto msg       = gnulander::local_socket_msg<1, 0>{ std::span{ recv_buff } };
 
         const auto send_num = alpha.send(msg);
         const auto recv_num = alpha.recv(msg);
@@ -300,7 +300,7 @@ int main() {
     tag("gnu") / "local_stream_socket can send|recev a local_socket_message<1, 1>"_test = [] {
         // Scenario setup:
 
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         // Alpha sends filedescriptor to beta.
         // If beta receives it, bit-shift every byte by one.
@@ -314,7 +314,7 @@ int main() {
         auto some_byte = std::array{ std::byte{ 42 } };
 
         constexpr auto mem_size = 10uz;
-        auto mem                = gnu::memory_block{};
+        auto mem                = gnulander::memory_block{};
         mem.truncate(mem_size);
         const auto mapped_mem = mem.map(mem_size);
         std::ranges::fill(mapped_mem, std::byte{ 10 });
@@ -324,7 +324,7 @@ int main() {
         auto _ = std::jthread{ [&] {
             auto recv_buff = std::array<std::byte, 1>{};
 
-            auto msg = gnu::local_socket_msg<1, 1>{ std::span{ recv_buff } };
+            auto msg = gnulander::local_socket_msg<1, 1>{ std::span{ recv_buff } };
             std::ignore = beta.recv(msg);
 
             if (recv_buff[0] != std::byte{ 42 }) {
@@ -346,7 +346,7 @@ int main() {
 
         // Actual tests:
 
-        auto msg = gnu::local_socket_msg<1, 1>{ gnu::fd_ref{ mem }, std::span{ some_byte } };
+        auto msg = gnulander::local_socket_msg<1, 1>{ gnulander::fd_ref{ mem }, std::span{ some_byte } };
 
         expect(alpha.send(msg) == 1);
         expect(fatal(state.get() == shift_done));
@@ -358,7 +358,7 @@ int main() {
     tag("gnu") / "local_stream_socket can send|recev a local_socket_message<1, 2>"_test = [] {
         // Scenario setup:
 
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         // Alpha will send a one byte and two file descriptors to beta.
         // The one byte is assumed to be received, but one can not assume the amount
@@ -383,12 +383,12 @@ int main() {
 
         constexpr auto mem_size = 10uz;
 
-        auto mem_A = gnu::memory_block{};
+        auto mem_A = gnulander::memory_block{};
         mem_A.truncate(mem_size);
         const auto mapped_mem_A = mem_A.map(mem_size);
         std::ranges::fill(mapped_mem_A, std::byte{ 10 });
 
-        auto mem_B = gnu::memory_block{};
+        auto mem_B = gnulander::memory_block{};
         mem_B.truncate(mem_size);
         const auto mapped_mem_B = mem_B.map(mem_size);
         std::ranges::fill(mapped_mem_B, std::byte{ 20 });
@@ -397,7 +397,7 @@ int main() {
 
         auto _ = std::jthread{ [&] {
             std::byte recv_buff[1];
-            auto msg = gnu::local_socket_msg<1, 2>{ std::span{ recv_buff } };
+            auto msg = gnulander::local_socket_msg<1, 2>{ std::span{ recv_buff } };
 
             std::ignore = beta.recv(msg);
 
@@ -442,9 +442,9 @@ int main() {
 
         // Actual tests:
 
-        auto msg = gnu::local_socket_msg<1, 2>{ std::span{ some_byte },
-                                                gnu::fd_ref{ mem_A },
-                                                gnu::fd_ref{ mem_B } };
+        auto msg = gnulander::local_socket_msg<1, 2>{ std::span{ some_byte },
+                                                gnulander::fd_ref{ mem_A },
+                                                gnulander::fd_ref{ mem_B } };
         expect(alpha.send(msg) == 1);
 
         const auto what_scenario = state.get();
@@ -469,7 +469,7 @@ int main() {
     tag("gnu") / "local_socket_msg<n, 0> for n > 1 can be received by *<1, 0>"_test = [] {
         // Scenario setup:
 
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         constexpr auto wrong_data_indicator = 1000000uz;
         /// If beta receives wrong data, it will add wrong_data_indicator to amount of recd data.
@@ -500,7 +500,7 @@ int main() {
 
         auto _ = std::jthread{ [&] {
             auto recv_buff = std::vector<std::byte>(total_data_size);
-            auto msg = gnu::local_socket_msg<1, 0>{ std::span{ recv_buff } };
+            auto msg = gnulander::local_socket_msg<1, 0>{ std::span{ recv_buff } };
 
             const auto recd_bytes = beta.recv(msg);
             const auto recd_ok =
@@ -510,7 +510,7 @@ int main() {
 
         // Actual tests:
 
-        auto msg = gnu::local_socket_msg<4>{ std::span{ data_A },
+        auto msg = gnulander::local_socket_msg<4>{ std::span{ data_A },
                                              std::span{ data_B },
                                              std::span{ data_C },
                                              std::span{ data_D } };
@@ -530,7 +530,7 @@ int main() {
         / "local_socket_message can receive less file descriptors than it expects"_test = [] {
         // Scenario setup:
 
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         // Alpha will send a one byte and two file descriptors to beta,
         // which expect to receive 4 file descriptors.
@@ -564,12 +564,12 @@ int main() {
 
         constexpr auto mem_size = 10uz;
 
-        auto mem_A = gnu::memory_block{};
+        auto mem_A = gnulander::memory_block{};
         mem_A.truncate(mem_size);
         const auto mapped_mem_A = mem_A.map(mem_size);
         std::ranges::fill(mapped_mem_A, std::byte{ 10 });
 
-        auto mem_B = gnu::memory_block{};
+        auto mem_B = gnulander::memory_block{};
         mem_B.truncate(mem_size);
         const auto mapped_mem_B = mem_B.map(mem_size);
         std::ranges::fill(mapped_mem_B, std::byte{ 20 });
@@ -578,7 +578,7 @@ int main() {
 
         auto _ = std::jthread{ [&] {
             std::byte recv_buff[1];
-            auto msg = gnu::local_socket_msg<1, 4>{ std::span{ recv_buff } };
+            auto msg = gnulander::local_socket_msg<1, 4>{ std::span{ recv_buff } };
 
             std::ignore = beta.recv(msg);
 
@@ -629,9 +629,9 @@ int main() {
 
         // Actual tests:
 
-        auto msg = gnu::local_socket_msg<1, 2>{ std::span{ some_byte },
-                                                gnu::fd_ref{ mem_A },
-                                                gnu::fd_ref{ mem_B } };
+        auto msg = gnulander::local_socket_msg<1, 2>{ std::span{ some_byte },
+                                                gnulander::fd_ref{ mem_A },
+                                                gnulander::fd_ref{ mem_B } };
         expect(alpha.send(msg) == 1);
 
         const auto what_scenario = state.get();
@@ -657,7 +657,7 @@ int main() {
     tag("gnu") / "local_socket_msg::get_fd_handles throws when some fd is truncated"_test = [] {
         // Scenario setup:
 
-        auto [alpha, beta] = ger::gnu::open_local_stream_socket_pair();
+        auto [alpha, beta] = gnulander::open_local_stream_socket_pair();
 
         // Beta will send a one byte and two file descriptors to alpha,
         // which expect to receive only one file descriptor.
@@ -672,26 +672,26 @@ int main() {
         auto _                  = std::jthread{ [&] {
             std::byte some_byte[1]{ std::byte{ 'z' } };
 
-            auto mem_A          = gnu::memory_block{};
+            auto mem_A          = gnulander::memory_block{};
             mem_A.truncate(mem_size);
             const auto mapped_mem_A = mem_A.map(mem_size);
             std::ranges::fill(mapped_mem_A, std::byte{ 10 });
 
-            auto mem_B          = gnu::memory_block{};
+            auto mem_B          = gnulander::memory_block{};
             mem_B.truncate(mem_size);
             const auto mapped_mem_B = mem_B.map(mem_size);
             std::ranges::fill(mapped_mem_B, std::byte{ 20 });
 
-            auto msg            = gnu::local_socket_msg<1, 2>{ std::span{ some_byte },
-                                                               gnu::fd_ref{ mem_A },
-                                                               gnu::fd_ref{ mem_B } };
+            auto msg            = gnulander::local_socket_msg<1, 2>{ std::span{ some_byte },
+                                                               gnulander::fd_ref{ mem_A },
+                                                               gnulander::fd_ref{ mem_B } };
             std::ignore         = beta.send(msg);
         } };
 
         // Actual tests:
 
         std::byte recv_buff[1];
-        auto msg = gnu::local_socket_msg<1, 1>{ std::span{ recv_buff } };
+        auto msg = gnulander::local_socket_msg<1, 1>{ std::span{ recv_buff } };
 
         std::ignore = alpha.recv(msg);
         expect(throws<std::domain_error>([&] { std::ignore = msg.get_fd_handles(); }));

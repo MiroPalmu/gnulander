@@ -24,7 +24,7 @@
 
 int main() {
     using namespace boost::ut;
-    using namespace ger;
+    using namespace gnulander;
     cfg<override> = { .tag = { "sstd" } };
 
     tag("sstd") / "thrown generic system error matches errno"_test = [] {

@@ -20,8 +20,7 @@
 #include "gnulander/fd_handle.hpp"
 #include "gnulander/sstd.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 class in_pipe;
 class out_pipe;
@@ -50,5 +49,4 @@ class out_pipe : private pipe_fd {
 
 [[nodiscard]] auto open_pipe() -> std::tuple<in_pipe, out_pipe>;
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

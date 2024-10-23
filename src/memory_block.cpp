@@ -54,7 +54,7 @@ namespace {
     return name;
 }
 
-[[nodiscard]] auto open_anon_shm_fd() -> ger::gnu::fd_native_type {
+[[nodiscard]] auto open_anon_shm_fd() -> gnulander::fd_native_type {
     constexpr auto max_tries = 10;
     for (const auto _ : std::ranges::views::iota(0, max_tries)) {
         const auto name_candidate = random_shm_name();
@@ -67,15 +67,15 @@ namespace {
                 // shm memory already exits with the same name -> try again.
                 continue;
             }
-            ger::sstd::throw_generic_system_error();
+            gnulander::sstd::throw_generic_system_error();
         }
         fd = fd_safer_flag(fd, O_CLOEXEC);
         if (fd == -1) {
-            ger::sstd::throw_generic_system_error();
+            gnulander::sstd::throw_generic_system_error();
         } else {
             // Make successfully created shm_fd anonimous.
             if (-1 == shm_unlink(name_candidate.c_str())) {
-                ger::sstd::throw_generic_system_error();
+                gnulander::sstd::throw_generic_system_error();
             }
             return fd;
         }
@@ -87,4 +87,4 @@ namespace {
 }
 } // namespace
 
-[[nodiscard]] ger::gnu::memory_block::memory_block() : memory_block_fd{ open_anon_shm_fd() } {}
+[[nodiscard]] gnulander::memory_block::memory_block() : memory_block_fd{ open_anon_shm_fd() } {}

@@ -37,11 +37,11 @@ struct ctor_arg_counter {
 
 // Deifine CAA := construct_allocator_adapte
 template<typename ConstructImpl, typename T>
-using CAA = ger::sstd::allocator::construct_allocator_adapter<ConstructImpl, T>;
+using CAA = gnulander::sstd::allocator::construct_allocator_adapter<ConstructImpl, T>;
 
 int main() {
     using namespace boost::ut;
-    using namespace ger;
+    using namespace gnulander;
     cfg<override> = { .tag = { "sstd" } };
 
     tag("sstd") / "CAA satisfies allocator_adapter concept"_test = [] {

@@ -28,8 +28,7 @@
 #include "gnulander/fd_handle.hpp"
 #include "gnulander/pipe.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 [[nodiscard]] auto open_pipe() -> std::tuple<in_pipe, out_pipe> {
     std::array<fd_native_type, 2> raw_pipe_fd;
@@ -42,5 +41,4 @@ namespace gnu {
     std::unreachable();
 }
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

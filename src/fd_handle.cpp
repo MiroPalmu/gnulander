@@ -36,8 +36,7 @@
 #include "gnulander/fd_handle.hpp"
 #include "gnulander/sstd.hpp"
 
-namespace ger {
-namespace gnu {
+namespace gnulander {
 
 [[nodiscard]] fd_handle::fd_handle(const fd_native_type fd) : fd_{ fd } {}
 [[nodiscard]] fd_handle::fd_handle(fd_handle&&) = default;
@@ -130,5 +129,4 @@ void unmap(const std::span<std::byte> mem) {
     return mapped_memory(std::span<std::byte>(static_cast<std::byte*>(mapped), length));
 }
 
-} // namespace gnu
-} // namespace ger
+} // namespace gnulander

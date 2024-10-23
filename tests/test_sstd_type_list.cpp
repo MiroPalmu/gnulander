@@ -24,11 +24,11 @@
 
 // short hand
 template<typename... T>
-using L = ger::sstd::type_list<T...>;
+using L = gnulander::sstd::type_list<T...>;
 
 int main() {
     using namespace boost::ut;
-    using namespace ger;
+    using namespace gnulander;
     cfg<override> = { .tag = { "sstd" } };
 
     // type_list::map<...>:
