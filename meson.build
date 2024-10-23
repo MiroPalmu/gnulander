@@ -17,6 +17,7 @@ project(
     'guilander',
     'cpp',
     version: '0.1.0',
+    meson_version: '>= 1.4.0',
     default_options : ['warning_level=3', 'werror=true', 'optimization=3', 'cpp_std=c++26']
 )
 
