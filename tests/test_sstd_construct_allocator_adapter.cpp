@@ -138,27 +138,27 @@ int main() {
         expect(b == std::byte{ 2 });
 
         // Should default-initialize std::byte at &b which does nothing.
+        // However this can not be tested as it would be UB (see below).
         A_traits::construct(alloc, &b);
 
         // Possible UB depending on CWG1997 [1], as by above b now references the new object
         // and CWG1997 is not resolved as of 2024-05-06.
         // [1] https://cplusplus.github.io/CWG/issues/1997.html
-        expect(b == std::byte{ 2 });
+        // expect(b == std::byte{ 2 });
 
-        // To make sure there is not lingering UB after CWG1997 is resolved,
-        // make this test fail after check_interval has passed after date of_checking_CHW1997.
-        using namespace std::chrono_literals;
-        using namespace std::chrono;
-        constexpr auto check_interval = months{ 4 };
-        constexpr auto date_of_checking_CWH1997 =
-            year_month_day(2024y, std::chrono::May, 6d); // Update me.
-        const auto date_of_next_CWH1997_check = date_of_checking_CWH1997 + check_interval;
-        const auto date_now                   = year_month_day{ floor<days>(system_clock::now()) };
-        const auto CHW1997_should_be_checked  = date_now > date_of_next_CWH1997_check;
-        expect(not CHW1997_should_be_checked)
-            << std::format("Date of next check of CWG1997 is {} and today is {}!",
-                           date_of_next_CWH1997_check,
-                           date_now);
+        // Upadate (2024-10-23):
+        // Above is most defenetly (or will be) UB due to CWG2721 [2],
+        // which proposed reslotuin states:
+        //
+        // ```
+        // When evaluating a new-expression,
+        // storage is considered reused after it is returned from the allocation function,
+        // but before the evaluation of the new-initializer
+        // ```
+        //
+        // So lifetime of the std::byte{ 2 } in b should end after the init construct.
+        //
+        // [2] https://cplusplus.github.io/CWG/issues/2721.html
     };
 
     tag("sstd") / "by default std::vector::resize zeroes out std::byte (value-init)"_test = [] {
