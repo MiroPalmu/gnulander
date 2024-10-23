@@ -17,7 +17,7 @@
 
 /// Required to make gnulib not define macros for libc functions.
 ///
-/// For more information see guilander sphinx docs: Usage of Gnulib.
+/// For more information see gnulander sphinx docs: Usage of Gnulib.
 #define GNULIB_NAMESPACE gnulib
 #include "full-read.h"
 #include "full-write.h"

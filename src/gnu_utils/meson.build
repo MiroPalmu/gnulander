@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
-guilander_source_files += files('pipe.cpp')
-guilander_source_files += files('fd_handle.cpp')
-guilander_source_files += files('local_stream_socket.cpp')
-guilander_source_files += files('memory_block.cpp')
+gnulander_source_files += files('pipe.cpp')
+gnulander_source_files += files('fd_handle.cpp')
+gnulander_source_files += files('local_stream_socket.cpp')
+gnulander_source_files += files('memory_block.cpp')

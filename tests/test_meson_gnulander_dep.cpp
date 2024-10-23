@@ -23,7 +23,7 @@
 ///     executable(
 ///         "...",
 ///         files(<__FILE__>),
-///         dependencies: [<boost_ut_dep>, <guilander_dep>],
+///         dependencies: [<boost_ut_dep>, <gnulander_dep>],
 ///         ...
 ///     )
 
@@ -36,7 +36,7 @@ int main() {
     using namespace boost::ut;
     cfg<override> = { .tag = { "meson" } };
 
-    tag("meson") / "depending on guilander_dep makes gnulib config.h to be found"_test = [] {
+    tag("meson") / "depending on gnulander_dep makes gnulib config.h to be found"_test = [] {
         using namespace std::literals;
 #ifdef PACKAGE
         expect(PACKAGE == "gnulib-modules-to-meson"sv);
@@ -45,7 +45,7 @@ int main() {
 #endif
     };
 
-    tag("meson") / "depending on guilander_dep makes gnulib headers to be found"_test = [] {
+    tag("meson") / "depending on gnulander_dep makes gnulib headers to be found"_test = [] {
 #if __has_include("full-read.h")
         expect(true);
 #else

@@ -14,7 +14,7 @@
 # along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 project(
-    'guilander',
+    'gnulander',
     'cpp',
     version: '0.1.0',
     meson_version: '>= 1.4.0',
@@ -28,30 +28,30 @@ endif
 gnulib_proj = subproject('gnulib')
 gnulib_dep = gnulib_proj.get_variable('gnulib_dep')
 
-guilander_dependencies = [
+gnulander_dependencies = [
     gnulib_dep,
 ]
 
-guilander_source_files = []
+gnulander_source_files = []
 
 # Subdirectors
 subdir('docs')
 subdir('src')
 
-guilander_lib = static_library(
-    'guilander',
-    guilander_source_files,
+gnulander_lib = static_library(
+    'gnulander',
+    gnulander_source_files,
     include_directories : include_directories('include'),
-    dependencies : guilander_dependencies,
+    dependencies : gnulander_dependencies,
 )
 
-guilander_dep = declare_dependency(
+gnulander_dep = declare_dependency(
     include_directories : include_directories('include'),
     dependencies : gnulib_dep,
-    link_with : guilander_lib,
+    link_with : gnulander_lib,
 )
 
-# Tests has to come after guiladner_lib as they use it as meson dependency.
+# Tests has to come after gnulander_lib as they use it as meson dependency.
 subdir('tests')
 subdir('examples')
 

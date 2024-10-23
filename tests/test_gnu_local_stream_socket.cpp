@@ -211,7 +211,7 @@ int main() {
         //     - close testing_socket fd
         //     - recursivly delete the testing dir contents and the directory itself
 
-        auto testing_dir          = temp_dir + std::string{ "/guilander_test_dir-XXXXXX" };
+        auto testing_dir          = temp_dir + std::string{ "/gnulander_test_dir-XXXXXX" };
         const auto mkdtemp_failed = (nullptr == mkdtemp(testing_dir.data()));
 
         if (mkdtemp_failed) {

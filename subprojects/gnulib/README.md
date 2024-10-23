@@ -1,4 +1,4 @@
-Guilander wants to use some modules from gnulib,
+Gnulander wants to use some modules from gnulib,
 however gnulib assumes that projects that use it are build with gnu build system.
 
 This subdirectory is for setting mock gnu build system for building libgnu.a,
@@ -11,7 +11,7 @@ files to source tree. Only to build tree.
 # Initial import process
 
 At commit 4f3f6b3 build(gnulib): add subdir and configure.ac (hash potentially going to change),
-following command was executed in guilander/gnulib:
+following command was executed in gnulander/gnulib:
 
 ```bash
 $ /path/to/gnulib/gnulib-tool --aux-dir=build-aux --import full-read full-write

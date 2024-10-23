@@ -23,7 +23,7 @@
 ///     executable(
 ///         "...",
 ///         files(<__FILE__>),
-///         dependencies: [<boost_ut_dep>, <guilander_dep>],
+///         dependencies: [<boost_ut_dep>, <gnulander_dep>],
 ///         ...
 ///     )
 
@@ -33,7 +33,7 @@ int main() {
     using namespace boost::ut;
     cfg<override> = { .tag = { "meson" } };
 
-    /// Heuristic for tests that guilander headers do not leak some of gnulib macros.
+    /// Heuristic for tests that gnulander headers do not leak some of gnulib macros.
     tag("meson") / "gnu_utils/pipe.hpp does not define write or read macros"_test = [] {
 #ifdef write
         expect(false);

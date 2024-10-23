@@ -17,13 +17,13 @@ subproject('ut')
 
 test_dependencies = []
 test_dependencies += dependency('ut')
-test_dependencies += guilander_dep
+test_dependencies += gnulander_dep
 
 # List of tests that can run in parallel
 unit_tests = [
     'test_unit_test',
-    'test_meson_guilander_dep',
-    'test_meson_guilander_headers_do_not_leak_macros',
+    'test_meson_gnulander_dep',
+    'test_meson_gnulander_headers_do_not_leak_macros',
     'test_gnu_pipe',
     'test_gnu_fd_handle',
     'test_gnu_memory_block',
