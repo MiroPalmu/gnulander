@@ -52,7 +52,7 @@ void fd_handle::write(const std::span<const std::byte> what_to_write) {
     const auto number_of_bytes_written =
         ::full_write(fd_, what_to_write.data(), what_to_write.size());
 
-    if (number_of_bytes_written < what_to_write.size()) {
+    if (number_of_bytes_written < std::ssize(what_to_write)) {
         sstd::throw_partial_system_io_error(number_of_bytes_written, what_to_write.size());
     }
 }
@@ -61,7 +61,7 @@ auto fd_handle::read(const std::span<std::byte> where_to_read) -> std::size_t {
     const auto number_of_bytes_read = ::full_read(fd_, where_to_read.data(), where_to_read.size());
 
     const auto at_EOF{ errno != 0 };
-    if (number_of_bytes_read < where_to_read.size() and not at_EOF) {
+    if (number_of_bytes_read < std::ssize(where_to_read) and not at_EOF) {
         sstd::throw_partial_system_io_error(number_of_bytes_read, where_to_read.size());
     }
 
