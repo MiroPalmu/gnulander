@@ -86,6 +86,8 @@ Used Gnulib modules
       - no subtitue module available
     * - munmap
       - no subtitue module available
+    * - (gnulib only)
+      - pipe-filter-ii
 
 For more information on :code:`*-safer` modules, see
 Gnulib manual 17.10 Handling closed standard file descriptors.
