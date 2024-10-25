@@ -4,6 +4,12 @@
 #define _GL_CONFIG_H_INCLUDED 1
 
 
+/* Define if access does not correctly handle trailing slashes. */
+#undef ACCESS_TRAILING_SLASH_BUG
+
+/* Define if no multithread safety and no multithreading is desired. */
+#undef AVOID_ANY_THREADS
+
 /* Define to the number of bits in type 'ptrdiff_t'. */
 #undef BITSIZEOF_PTRDIFF_T
 
@@ -22,20 +28,131 @@
 /* Define to 1 if using 'alloca.c'. */
 #undef C_ALLOCA
 
+/* the name of the file descriptor member of DIR */
+#undef DIR_FD_MEMBER_NAME
+
+#ifdef DIR_FD_MEMBER_NAME
+# define DIR_TO_FD(Dir_p) ((Dir_p)->DIR_FD_MEMBER_NAME)
+#else
+# define DIR_TO_FD(Dir_p) -1
+#endif
+
+
+/* Define to 1 if // is a file system root distinct from /. */
+#undef DOUBLE_SLASH_IS_DISTINCT_ROOT
+
+/* Define if struct dirent has a member d_ino that actually works. */
+#undef D_INO_IN_DIRENT
+
 /* Define this to 1 if F_DUPFD behavior does not match POSIX */
 #undef FCNTL_DUPFD_BUGGY
+
+/* Define to 1 if realpath() can malloc memory, always gives an absolute path,
+   and handles a trailing slash correctly. */
+#undef FUNC_REALPATH_NEARLY_WORKS
+
+/* Define to 1 if realpath() can malloc memory, always gives an absolute path,
+   and handles leading slashes and a trailing slash correctly. */
+#undef FUNC_REALPATH_WORKS
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module canonicalize shall be considered present. */
+#undef GNULIB_CANONICALIZE
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module close shall be considered present. */
+#undef GNULIB_CLOSE
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module connect shall be considered present. */
+#undef GNULIB_CONNECT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module fdopendir shall be considered present. */
+#undef GNULIB_FDOPENDIR
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module fd-safer-flag shall be considered present. */
 #undef GNULIB_FD_SAFER_FLAG
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module fscanf shall be considered present. */
+#undef GNULIB_FSCANF
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module fstat shall be considered present. */
+#undef GNULIB_FSTAT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module fstatat shall be considered present. */
+#undef GNULIB_FSTATAT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module getcwd shall be considered present. */
+#undef GNULIB_GETCWD
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module lock shall be considered present. */
+#undef GNULIB_LOCK
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module lstat shall be considered present. */
+#undef GNULIB_LSTAT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module msvc-nothrow shall be considered present. */
 #undef GNULIB_MSVC_NOTHROW
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module openat shall be considered present. */
+#undef GNULIB_OPENAT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module pipe2-safer shall be considered present. */
 #undef GNULIB_PIPE2_SAFER
+
+/* Define to 1 if printf and friends should be labeled with attribute
+   "__gnu_printf__" instead of "__printf__" */
+#undef GNULIB_PRINTF_ATTRIBUTE_FLAVOR_GNU
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module reallocarray shall be considered present. */
+#undef GNULIB_REALLOCARRAY
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module scanf shall be considered present. */
+#undef GNULIB_SCANF
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module socket shall be considered present. */
+#undef GNULIB_SOCKET
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module stat shall be considered present. */
+#undef GNULIB_STAT
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module strerror shall be considered present. */
+#undef GNULIB_STRERROR
+
+/* Define to 1 when the gnulib module access should be tested. */
+#undef GNULIB_TEST_ACCESS
+
+/* Define to 1 when the gnulib module calloc-gnu should be tested. */
+#undef GNULIB_TEST_CALLOC_GNU
+
+/* Define to 1 when the gnulib module calloc-posix should be tested. */
+#undef GNULIB_TEST_CALLOC_POSIX
+
+/* Define to 1 when the gnulib module canonicalize should be tested. */
+#undef GNULIB_TEST_CANONICALIZE
+
+/* Define to 1 when the gnulib module canonicalize_file_name should be tested.
+   */
+#undef GNULIB_TEST_CANONICALIZE_FILE_NAME
+
+/* Define to 1 when the gnulib module chdir should be tested. */
+#undef GNULIB_TEST_CHDIR
 
 /* Define to 1 when the gnulib module cloexec should be tested. */
 #undef GNULIB_TEST_CLOEXEC
@@ -43,23 +160,101 @@
 /* Define to 1 when the gnulib module close should be tested. */
 #undef GNULIB_TEST_CLOSE
 
+/* Define to 1 when the gnulib module closedir should be tested. */
+#undef GNULIB_TEST_CLOSEDIR
+
 /* Define to 1 when the gnulib module connect should be tested. */
 #undef GNULIB_TEST_CONNECT
+
+/* Define to 1 when the gnulib module dirfd should be tested. */
+#undef GNULIB_TEST_DIRFD
+
+/* Define to 1 when the gnulib module dup should be tested. */
+#undef GNULIB_TEST_DUP
 
 /* Define to 1 when the gnulib module dup2 should be tested. */
 #undef GNULIB_TEST_DUP2
 
+/* Define to 1 when the gnulib module environ should be tested. */
+#undef GNULIB_TEST_ENVIRON
+
+/* Define to 1 when the gnulib module fchdir should be tested. */
+#undef GNULIB_TEST_FCHDIR
+
 /* Define to 1 when the gnulib module fcntl should be tested. */
 #undef GNULIB_TEST_FCNTL
+
+/* Define to 1 when the gnulib module fdopendir should be tested. */
+#undef GNULIB_TEST_FDOPENDIR
+
+/* Define to 1 when the gnulib module fgetc should be tested. */
+#undef GNULIB_TEST_FGETC
+
+/* Define to 1 when the gnulib module fgets should be tested. */
+#undef GNULIB_TEST_FGETS
+
+/* Define to 1 when the gnulib module fprintf should be tested. */
+#undef GNULIB_TEST_FPRINTF
+
+/* Define to 1 when the gnulib module fputc should be tested. */
+#undef GNULIB_TEST_FPUTC
+
+/* Define to 1 when the gnulib module fputs should be tested. */
+#undef GNULIB_TEST_FPUTS
+
+/* Define to 1 when the gnulib module fread should be tested. */
+#undef GNULIB_TEST_FREAD
+
+/* Define to 1 when the gnulib module free-posix should be tested. */
+#undef GNULIB_TEST_FREE_POSIX
+
+/* Define to 1 when the gnulib module fscanf should be tested. */
+#undef GNULIB_TEST_FSCANF
 
 /* Define to 1 when the gnulib module fstat should be tested. */
 #undef GNULIB_TEST_FSTAT
 
+/* Define to 1 when the gnulib module fstatat should be tested. */
+#undef GNULIB_TEST_FSTATAT
+
 /* Define to 1 when the gnulib module ftruncate should be tested. */
 #undef GNULIB_TEST_FTRUNCATE
 
+/* Define to 1 when the gnulib module fwrite should be tested. */
+#undef GNULIB_TEST_FWRITE
+
+/* Define to 1 when the gnulib module getc should be tested. */
+#undef GNULIB_TEST_GETC
+
+/* Define to 1 when the gnulib module getchar should be tested. */
+#undef GNULIB_TEST_GETCHAR
+
+/* Define to 1 when the gnulib module getcwd should be tested. */
+#undef GNULIB_TEST_GETCWD
+
 /* Define to 1 when the gnulib module getdtablesize should be tested. */
 #undef GNULIB_TEST_GETDTABLESIZE
+
+/* Define to 1 when the gnulib module getprogname should be tested. */
+#undef GNULIB_TEST_GETPROGNAME
+
+/* Define to 1 when the gnulib module lstat should be tested. */
+#undef GNULIB_TEST_LSTAT
+
+/* Define to 1 when the gnulib module malloc-gnu should be tested. */
+#undef GNULIB_TEST_MALLOC_GNU
+
+/* Define to 1 when the gnulib module malloc-posix should be tested. */
+#undef GNULIB_TEST_MALLOC_POSIX
+
+/* Define to 1 when the gnulib module memchr should be tested. */
+#undef GNULIB_TEST_MEMCHR
+
+/* Define to 1 when the gnulib module mempcpy should be tested. */
+#undef GNULIB_TEST_MEMPCPY
+
+/* Define to 1 when the gnulib module memrchr should be tested. */
+#undef GNULIB_TEST_MEMRCHR
 
 /* Define to 1 when the gnulib module mkfifo should be tested. */
 #undef GNULIB_TEST_MKFIFO
@@ -67,17 +262,118 @@
 /* Define to 1 when the gnulib module open should be tested. */
 #undef GNULIB_TEST_OPEN
 
+/* Define to 1 when the gnulib module openat should be tested. */
+#undef GNULIB_TEST_OPENAT
+
+/* Define to 1 when the gnulib module opendir should be tested. */
+#undef GNULIB_TEST_OPENDIR
+
 /* Define to 1 when the gnulib module pipe should be tested. */
 #undef GNULIB_TEST_PIPE
 
 /* Define to 1 when the gnulib module pipe2 should be tested. */
 #undef GNULIB_TEST_PIPE2
 
+/* Define to 1 when the gnulib module posix_spawn should be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN
+
+/* Define to 1 when the gnulib module posix_spawnattr_destroy should be
+   tested. */
+#undef GNULIB_TEST_POSIX_SPAWNATTR_DESTROY
+
+/* Define to 1 when the gnulib module posix_spawnattr_init should be tested.
+   */
+#undef GNULIB_TEST_POSIX_SPAWNATTR_INIT
+
+/* Define to 1 when the gnulib module posix_spawnattr_setflags should be
+   tested. */
+#undef GNULIB_TEST_POSIX_SPAWNATTR_SETFLAGS
+
+/* Define to 1 when the gnulib module posix_spawnattr_setpgroup should be
+   tested. */
+#undef GNULIB_TEST_POSIX_SPAWNATTR_SETPGROUP
+
+/* Define to 1 when the gnulib module posix_spawnattr_setsigmask should be
+   tested. */
+#undef GNULIB_TEST_POSIX_SPAWNATTR_SETSIGMASK
+
+/* Define to 1 when the gnulib module posix_spawnp should be tested. */
+#undef GNULIB_TEST_POSIX_SPAWNP
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_addchdir should
+   be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_ADDCHDIR
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_addclose should
+   be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_ADDCLOSE
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_adddup2 should
+   be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_ADDDUP2
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_addopen should
+   be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_ADDOPEN
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_destroy should
+   be tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_DESTROY
+
+/* Define to 1 when the gnulib module posix_spawn_file_actions_init should be
+   tested. */
+#undef GNULIB_TEST_POSIX_SPAWN_FILE_ACTIONS_INIT
+
+/* Define to 1 when the gnulib module printf should be tested. */
+#undef GNULIB_TEST_PRINTF
+
+/* Define to 1 when the gnulib module pthread-once should be tested. */
+#undef GNULIB_TEST_PTHREAD_ONCE
+
+/* Define to 1 when the gnulib module putc should be tested. */
+#undef GNULIB_TEST_PUTC
+
+/* Define to 1 when the gnulib module putchar should be tested. */
+#undef GNULIB_TEST_PUTCHAR
+
+/* Define to 1 when the gnulib module puts should be tested. */
+#undef GNULIB_TEST_PUTS
+
 /* Define to 1 when the gnulib module raise should be tested. */
 #undef GNULIB_TEST_RAISE
 
+/* Define to 1 when the gnulib module rawmemchr should be tested. */
+#undef GNULIB_TEST_RAWMEMCHR
+
 /* Define to 1 when the gnulib module read should be tested. */
 #undef GNULIB_TEST_READ
+
+/* Define to 1 when the gnulib module readdir should be tested. */
+#undef GNULIB_TEST_READDIR
+
+/* Define to 1 when the gnulib module readlink should be tested. */
+#undef GNULIB_TEST_READLINK
+
+/* Define to 1 when the gnulib module reallocarray should be tested. */
+#undef GNULIB_TEST_REALLOCARRAY
+
+/* Define to 1 when the gnulib module realloc-gnu should be tested. */
+#undef GNULIB_TEST_REALLOC_GNU
+
+/* Define to 1 when the gnulib module realloc-posix should be tested. */
+#undef GNULIB_TEST_REALLOC_POSIX
+
+/* Define to 1 when the gnulib module rewinddir should be tested. */
+#undef GNULIB_TEST_REWINDDIR
+
+/* Define to 1 when the gnulib module scanf should be tested. */
+#undef GNULIB_TEST_SCANF
+
+/* Define to 1 when the gnulib module sigaction should be tested. */
+#undef GNULIB_TEST_SIGACTION
+
+/* Define to 1 when the gnulib module sigprocmask should be tested. */
+#undef GNULIB_TEST_SIGPROCMASK
 
 /* Define to 1 when the gnulib module socket should be tested. */
 #undef GNULIB_TEST_SOCKET
@@ -85,8 +381,37 @@
 /* Define to 1 when the gnulib module stat should be tested. */
 #undef GNULIB_TEST_STAT
 
+/* Define to 1 when the gnulib module stpcpy should be tested. */
+#undef GNULIB_TEST_STPCPY
+
+/* Define to 1 when the gnulib module strchrnul should be tested. */
+#undef GNULIB_TEST_STRCHRNUL
+
+/* Define to 1 when the gnulib module strdup should be tested. */
+#undef GNULIB_TEST_STRDUP
+
+/* Define to 1 when the gnulib module strerror should be tested. */
+#undef GNULIB_TEST_STRERROR
+
+/* Define to 1 when the gnulib module vfprintf should be tested. */
+#undef GNULIB_TEST_VFPRINTF
+
+/* Define to 1 when the gnulib module vprintf should be tested. */
+#undef GNULIB_TEST_VPRINTF
+
+/* Define to 1 when the gnulib module waitpid should be tested. */
+#undef GNULIB_TEST_WAITPID
+
 /* Define to 1 when the gnulib module write should be tested. */
 #undef GNULIB_TEST_WRITE
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module xalloc shall be considered present. */
+#undef GNULIB_XALLOC
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module xalloc-die shall be considered present. */
+#undef GNULIB_XALLOC_DIE
 
 /* Define to 1 if you have 'alloca' after including <alloca.h>, a header that
    may be supplied by this distribution. */
@@ -94,6 +419,21 @@
 
 /* Define to 1 if <alloca.h> works. */
 #undef HAVE_ALLOCA_H
+
+/* Define to 1 if you have the <bp-sym.h> header file. */
+#undef HAVE_BP_SYM_H
+
+/* Define to 1 if you have the 'canonicalize_file_name' function. */
+#undef HAVE_CANONICALIZE_FILE_NAME
+
+/* Define to 1 if you have the 'closedir' function. */
+#undef HAVE_CLOSEDIR
+
+/* Define to 1 if you have the 'confstr' function. */
+#undef HAVE_CONFSTR
+
+/* Define to 1 if you have the <crtdefs.h> header file. */
+#undef HAVE_CRTDEFS_H
 
 /* Define to 1 if the alignas and alignof keywords work. */
 #undef HAVE_C_ALIGNASOF
@@ -104,25 +444,153 @@
 /* Define to 1 if the static_assert keyword works. */
 #undef HAVE_C_STATIC_ASSERT
 
+/* Define to 1 if C supports variable-length arrays. */
+#undef HAVE_C_VARARRAYS
+
+/* Define to 1 if you have the declaration of 'alarm', and to 0 if you don't.
+   */
+#undef HAVE_DECL_ALARM
+
+/* Define to 1 if you have the declaration of 'dirfd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_DIRFD
+
+/* Define to 1 if you have the declaration of 'ecvt', and to 0 if you don't.
+   */
+#undef HAVE_DECL_ECVT
+
 /* Define to 1 if you have the declaration of 'execvpe', and to 0 if you
    don't. */
 #undef HAVE_DECL_EXECVPE
+
+/* Define to 1 if you have the declaration of 'fchdir', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FCHDIR
+
+/* Define to 1 if you have the declaration of 'fcloseall', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FCLOSEALL
+
+/* Define to 1 if you have the declaration of 'fcvt', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FCVT
+
+/* Define to 1 if you have the declaration of 'fdopendir', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FDOPENDIR
+
+/* Define to 1 if you have the declaration of 'gcvt', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GCVT
+
+/* Define to 1 if you have the declaration of 'getcwd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETCWD
 
 /* Define to 1 if you have the declaration of 'getdtablesize', and to 0 if you
    don't. */
 #undef HAVE_DECL_GETDTABLESIZE
 
+/* Define to 1 if you have the declaration of 'getw', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETW
+
+/* Define to 1 if you have the declaration of 'memrchr', and to 0 if you
+   don't. */
+#undef HAVE_DECL_MEMRCHR
+
+/* Define to 1 if you have the declaration of 'posix_spawn', and to 0 if you
+   don't. */
+#undef HAVE_DECL_POSIX_SPAWN
+
+/* Define to 1 if you have the declaration of 'program_invocation_name', and
+   to 0 if you don't. */
+#undef HAVE_DECL_PROGRAM_INVOCATION_NAME
+
+/* Define to 1 if you have the declaration of 'program_invocation_short_name',
+   and to 0 if you don't. */
+#undef HAVE_DECL_PROGRAM_INVOCATION_SHORT_NAME
+
+/* Define to 1 if you have the declaration of 'putw', and to 0 if you don't.
+   */
+#undef HAVE_DECL_PUTW
+
+/* Define to 1 if you have the declaration of 'strdup', and to 0 if you don't.
+   */
+#undef HAVE_DECL_STRDUP
+
+/* Define to 1 if you have the declaration of 'strerror_r', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRERROR_R
+
+/* Define to 1 if you have the declaration of 'wcsdup', and to 0 if you don't.
+   */
+#undef HAVE_DECL_WCSDUP
+
+/* Define to 1 if you have the declaration of '__argv', and to 0 if you don't.
+   */
+#undef HAVE_DECL___ARGV
+
+/* Define to 1 if you have the <dirent.h> header file. */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the 'dirfd' function. */
+#undef HAVE_DIRFD
+
+/* Define if you have the declaration of environ. */
+#undef HAVE_ENVIRON_DECL
+
+/* Define to 1 if you have the `error' function. */
+#undef HAVE_ERROR
+
+/* Define to 1 if you have the <error.h> header file. */
+#undef HAVE_ERROR_H
+
+/* Define to 1 if you have the `faccessat' function. */
+#undef HAVE_FACCESSAT
+
+/* Define to 1 if you have the 'fchdir' function. */
+#undef HAVE_FCHDIR
+
 /* Define to 1 if you have the 'fcntl' function. */
 #undef HAVE_FCNTL
+
+/* Define to 1 if you have the 'fdopendir' function. */
+#undef HAVE_FDOPENDIR
+
+/* Define to 1 if you have the <features.h> header file. */
+#undef HAVE_FEATURES_H
+
+/* Define if the 'free' function is guaranteed to preserve errno. */
+#undef HAVE_FREE_POSIX
+
+/* Define to 1 if you have the 'fstatat' function. */
+#undef HAVE_FSTATAT
 
 /* Define to 1 if you have the `ftruncate' function. */
 #undef HAVE_FTRUNCATE
 
+/* Define to 1 if getcwd works, but with shorter paths than is generally
+   tested with the replacement. */
+#undef HAVE_GETCWD_SHORTER
+
 /* Define to 1 if you have the 'getdtablesize' function. */
 #undef HAVE_GETDTABLESIZE
 
+/* Define to 1 if you have the 'getexecname' function. */
+#undef HAVE_GETEXECNAME
+
+/* Define to 1 if you have the `getprogname' function. */
+#undef HAVE_GETPROGNAME
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
+
+/* Define if you have <langinfo.h> and nl_langinfo(CODESET). */
+#undef HAVE_LANGINFO_CODESET
+
+/* Define to 1 if you have the <libcx/spawn2.h> header file. */
+#undef HAVE_LIBCX_SPAWN2_H
 
 /* Define to 1 if you have the <limits.h> header file. */
 #undef HAVE_LIMITS_H
@@ -133,15 +601,54 @@
 /* Define to 1 if you have the 'lstat' function. */
 #undef HAVE_LSTAT
 
+/* Define if malloc, realloc, and calloc set errno on allocation failure. */
+#undef HAVE_MALLOC_POSIX
+
+/* Define to 1 if mmap()'s MAP_ANONYMOUS flag is available after including
+   config.h and <sys/mman.h>. */
+#undef HAVE_MAP_ANONYMOUS
+
+/* Define to 1 if you have the `mempcpy' function. */
+#undef HAVE_MEMPCPY
+
+/* Define to 1 if you have the 'memrchr' function. */
+#undef HAVE_MEMRCHR
+
+/* Define to 1 if getcwd minimally works, that is, its result can be trusted
+   when it succeeds. */
+#undef HAVE_MINIMALLY_WORKING_GETCWD
+
 /* Define to 1 if you have the <minix/config.h> header file. */
 #undef HAVE_MINIX_CONFIG_H
+
+/* Define to 1 if <limits.h> defines the MIN and MAX macros. */
+#undef HAVE_MINMAX_IN_LIMITS_H
+
+/* Define to 1 if <sys/param.h> defines the MIN and MAX macros. */
+#undef HAVE_MINMAX_IN_SYS_PARAM_H
 
 /* Define to 1 if you have a 'mkfifo' function. */
 #undef HAVE_MKFIFO
 
+/* Define to 1 if you have the 'mprotect' function. */
+#undef HAVE_MPROTECT
+
 /* Define to 1 on MSVC platforms that have the "invalid parameter handler"
    concept. */
 #undef HAVE_MSVC_INVALID_PARAMETER_HANDLER
+
+/* Define to 1 if you have the 'openat' function. */
+#undef HAVE_OPENAT
+
+/* Define to 1 if you have the 'opendir' function. */
+#undef HAVE_OPENDIR
+
+/* Define to 1 if getcwd works, except it sometimes fails when it shouldn't,
+   setting errno to ERANGE, ENAMETOOLONG, or ENOENT. */
+#undef HAVE_PARTLY_WORKING_GETCWD
+
+/* Define to 1 if you have the <paths.h> header file. */
+#undef HAVE_PATHS_H
 
 /* Define to 1 if you have the 'pipe' function. */
 #undef HAVE_PIPE
@@ -149,17 +656,86 @@
 /* Define to 1 if you have the `pipe2' function. */
 #undef HAVE_PIPE2
 
+/* Define to 1 if you have the `posix_spawn' function. */
+#undef HAVE_POSIX_SPAWN
+
+/* Define to 1 if the system has the type 'posix_spawnattr_t'. */
+#undef HAVE_POSIX_SPAWNATTR_T
+
+/* Define to 1 if you have the 'posix_spawn_file_actions_addchdir' function.
+   */
+#undef HAVE_POSIX_SPAWN_FILE_ACTIONS_ADDCHDIR
+
+/* Define to 1 if you have the `posix_spawn_file_actions_addchdir_np'
+   function. */
+#undef HAVE_POSIX_SPAWN_FILE_ACTIONS_ADDCHDIR_NP
+
+/* Define to 1 if the system has the type 'posix_spawn_file_actions_t'. */
+#undef HAVE_POSIX_SPAWN_FILE_ACTIONS_T
+
+/* Define if you have the <pthread.h> header and the POSIX threads API. */
+#undef HAVE_PTHREAD_API
+
+/* Define to 1 if you have the <pthread.h> header file. */
+#undef HAVE_PTHREAD_H
+
+/* Define if the <pthread.h> defines PTHREAD_MUTEX_RECURSIVE. */
+#undef HAVE_PTHREAD_MUTEX_RECURSIVE
+
+/* Define if the POSIX multithreading library has read/write locks. */
+#undef HAVE_PTHREAD_RWLOCK
+
+/* Define if the 'pthread_rwlock_rdlock' function prefers a writer to a
+   reader. */
+#undef HAVE_PTHREAD_RWLOCK_RDLOCK_PREFER_WRITER
+
+/* Define to 1 if the system has the type 'pthread_spinlock_t'. */
+#undef HAVE_PTHREAD_SPINLOCK_T
+
+/* Define to 1 if the system has the type 'pthread_t'. */
+#undef HAVE_PTHREAD_T
+
 /* Define to 1 if you have the 'raise' function. */
 #undef HAVE_RAISE
+
+/* Define to 1 if you have the 'rawmemchr' function. */
+#undef HAVE_RAWMEMCHR
+
+/* Define to 1 if you have the 'readdir' function. */
+#undef HAVE_READDIR
+
+/* Define to 1 if you have the 'readlink' function. */
+#undef HAVE_READLINK
+
+/* Define to 1 if you have the `reallocarray' function. */
+#undef HAVE_REALLOCARRAY
+
+/* Define to 1 if you have the 'realpath' function. */
+#undef HAVE_REALPATH
 
 /* Define to 1 if you have the 'recvmsg' function. */
 #undef HAVE_RECVMSG
 
+/* Define to 1 if you have the 'rewinddir' function. */
+#undef HAVE_REWINDDIR
+
 /* Define to 1 if the system has the type 'sa_family_t'. */
 #undef HAVE_SA_FAMILY_T
 
+/* Define to 1 if you have the <sched.h> header file. */
+#undef HAVE_SCHED_H
+
+/* Define to 1 if you have the 'sched_setparam' function. */
+#undef HAVE_SCHED_SETPARAM
+
+/* Define to 1 if you have the 'sched_setscheduler' function. */
+#undef HAVE_SCHED_SETSCHEDULER
+
 /* Define to 1 if you have the <sdkddkver.h> header file. */
 #undef HAVE_SDKDDKVER_H
+
+/* Define to 1 if you have the 'select' function. */
+#undef HAVE_SELECT
 
 /* Define to 1 if you have the 'sendmsg' function. */
 #undef HAVE_SENDMSG
@@ -167,8 +743,26 @@
 /* Define to 1 if you have the 'setdtablesize' function. */
 #undef HAVE_SETDTABLESIZE
 
+/* Define to 1 if you have the 'setegid' function. */
+#undef HAVE_SETEGID
+
+/* Define to 1 if you have the 'seteuid' function. */
+#undef HAVE_SETEUID
+
 /* Define to 1 if you have the 'shutdown' function. */
 #undef HAVE_SHUTDOWN
+
+/* Define to 1 if you have the 'sigaction' function. */
+#undef HAVE_SIGACTION
+
+/* Define to 1 if you have the 'sigaltstack' function. */
+#undef HAVE_SIGALTSTACK
+
+/* Define to 1 if the system has the type 'siginfo_t'. */
+#undef HAVE_SIGINFO_T
+
+/* Define to 1 if you have the 'siginterrupt' function. */
+#undef HAVE_SIGINTERRUPT
 
 /* Define to 1 if 'sig_atomic_t' is a signed integer type. */
 #undef HAVE_SIGNED_SIG_ATOMIC_T
@@ -181,6 +775,12 @@
 
 /* Define to 1 if the system has the type 'sigset_t'. */
 #undef HAVE_SIGSET_T
+
+/* Define to 1 if the system has the type 'sig_atomic_t'. */
+#undef HAVE_SIG_ATOMIC_T
+
+/* Define to 1 if you have the <spawn.h> header file. */
+#undef HAVE_SPAWN_H
 
 /* Define to 1 if you have the <stdbool.h> header file. */
 #undef HAVE_STDBOOL_H
@@ -197,6 +797,15 @@
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
 
+/* Define to 1 if you have the `stpcpy' function. */
+#undef HAVE_STPCPY
+
+/* Define to 1 if you have the `strchrnul' function. */
+#undef HAVE_STRCHRNUL
+
+/* Define if you have 'strerror_r'. */
+#undef HAVE_STRERROR_R
+
 /* Define to 1 if you have the <strings.h> header file. */
 #undef HAVE_STRINGS_H
 
@@ -205,6 +814,9 @@
 
 /* Define to 1 if 'msg_accrights' is a member of 'struct msghdr'. */
 #undef HAVE_STRUCT_MSGHDR_MSG_ACCRIGHTS
+
+/* Define to 1 if 'sa_sigaction' is a member of 'struct sigaction'. */
+#undef HAVE_STRUCT_SIGACTION_SA_SIGACTION
 
 /* Define to 1 if the system has the type 'struct sockaddr_storage'. */
 #undef HAVE_STRUCT_SOCKADDR_STORAGE
@@ -242,8 +854,17 @@
 /* Define to 1 if you have the <sys/inttypes.h> header file. */
 #undef HAVE_SYS_INTTYPES_H
 
+/* Define to 1 if you have the <sys/mman.h> header file. */
+#undef HAVE_SYS_MMAN_H
+
 /* Define to 1 if you have the <sys/param.h> header file. */
 #undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/select.h> header file. */
+#undef HAVE_SYS_SELECT_H
+
+/* Define to 1 if you have the <sys/single_threaded.h> header file. */
+#undef HAVE_SYS_SINGLE_THREADED_H
 
 /* Define to 1 if you have the <sys/socket.h> header file. */
 #undef HAVE_SYS_SOCKET_H
@@ -260,20 +881,46 @@
 /* Define to 1 if you have the <sys/uio.h> header file. */
 #undef HAVE_SYS_UIO_H
 
+/* Define to 1 if you have the <sys/wait.h> header file. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the `thrd_create' function. */
+#undef HAVE_THRD_CREATE
+
+/* Define to 1 if you have the <threads.h> header file. */
+#undef HAVE_THREADS_H
+
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
 /* Define to 1 if the system has the type 'unsigned long long int'. */
 #undef HAVE_UNSIGNED_LONG_LONG_INT
 
+/* Define if you have a global __progname variable */
+#undef HAVE_VAR___PROGNAME
+
+/* Define to 1 if you have the 'vfork' function. */
+#undef HAVE_VFORK
+
+/* Define to 1 if you have the 'waitid' function. */
+#undef HAVE_WAITID
+
 /* Define to 1 if you have the <wchar.h> header file. */
 #undef HAVE_WCHAR_H
+
+/* Define to 1 if the compiler and linker support weak declarations of
+   symbols. */
+#undef HAVE_WEAK_SYMBOLS
 
 /* Define to 1 if you have the <winsock2.h> header file. */
 #undef HAVE_WINSOCK2_H
 
 /* Define if you have the 'wint_t' type. */
 #undef HAVE_WINT_T
+
+/* Define to 1 if fstatat (..., 0) works. For example, it does not work in AIX
+   7.1. */
+#undef HAVE_WORKING_FSTATAT_ZERO_FLAG
 
 /* Define to 1 if O_NOATIME works. */
 #undef HAVE_WORKING_O_NOATIME
@@ -289,6 +936,16 @@
 
 /* Define to 1 if you have the '_set_invalid_parameter_handler' function. */
 #undef HAVE__SET_INVALID_PARAMETER_HANDLER
+
+/* Define to 1 if the compiler supports __builtin_expect,
+   and to 2 if <builtins.h> does.  */
+#undef HAVE___BUILTIN_EXPECT
+#ifndef HAVE___BUILTIN_EXPECT
+# define __builtin_expect(e, c) (e)
+#elif HAVE___BUILTIN_EXPECT == 2
+# include <builtins.h>
+#endif
+    
 
 /* Define to 1 if ctype.h defines __header_inline. */
 #undef HAVE___HEADER_INLINE
@@ -400,11 +1057,33 @@
 # define _GL_INLINE_HEADER_END
 #endif
 
+/* Define to 1 if the compiler supports the keyword '__inline'. */
+#undef HAVE___INLINE
+
+/* Define to 1 if 'lstat' dereferences a symlink specified with a trailing
+   slash. */
+#undef LSTAT_FOLLOWS_SLASHED_SYMLINK
+
 /* If malloc(0) is != NULL, define this to 1. Otherwise define this to 0. */
 #undef MALLOC_0_IS_NONNULL
 
+/* Define to a substitute value for mmap()'s MAP_ANONYMOUS flag. */
+#undef MAP_ANONYMOUS
+
+/* Use GNU style printf and scanf.  */
+#ifndef __USE_MINGW_ANSI_STDIO
+# undef __USE_MINGW_ANSI_STDIO
+#endif
+
+
 /* Define to 1 if mkfifo does not reject trailing slash */
 #undef MKFIFO_TRAILING_SLASH_BUG
+
+/* Define to 1 on musl libc. */
+#undef MUSL_LIBC
+
+/* Define to 1 if realloc should abort upon undefined behaviour. */
+#undef NEED_SANITIZED_REALLOC
 
 /* Define to 1 if open() fails to recognize a trailing slash. */
 #undef OPEN_TRAILING_SLASH_BUG
@@ -434,13 +1113,49 @@
    type mode_t. */
 #undef PROMOTED_MODE_T
 
+/* Define if the pthread_in_use() detection is hard. */
+#undef PTHREAD_IN_USE_DETECTION_HARD
+
 /* Define to l, ll, u, ul, ull, etc., as suitable for constants of type
    'ptrdiff_t'. */
 #undef PTRDIFF_T_SUFFIX
 
+/* Define to 1 if readlink fails to recognize a trailing slash. */
+#undef READLINK_TRAILING_SLASH_BUG
+
+/* Define to 1 if readlink sets errno instead of truncating a too-long link.
+   */
+#undef READLINK_TRUNCATE_BUG
+
+/* Define to 1 if gnulib's fchdir() replacement is used. */
+#undef REPLACE_FCHDIR
+
 /* Define to 1 if stat needs help when passed a file name with a trailing
    slash */
 #undef REPLACE_FUNC_STAT_FILE
+
+/* Define to 1 if open() should work around the inability to open a directory.
+   */
+#undef REPLACE_OPEN_DIRECTORY
+
+/* Define if gnulib uses its own posix_spawn and posix_spawnp functions. */
+#undef REPLACE_POSIX_SPAWN
+
+/* Define to 1 if strerror(0) does not return a message implying success. */
+#undef REPLACE_STRERROR_0
+
+/* File name of the Bourne shell.  */
+#if (defined _WIN32 && !defined __CYGWIN__) || defined __CYGWIN__ || defined __ANDROID__
+/* Omit the directory part because
+   - For native Windows programs in a Cygwin environment, the Cygwin mounts
+     are not visible.
+   - For 32-bit Cygwin programs in a 64-bit Cygwin environment, the Cygwin
+     mounts are not visible.
+   - On Android, /bin/sh does not exist. It's /system/bin/sh instead.  */
+# define BOURNE_SHELL "sh"
+#else
+# define BOURNE_SHELL "/bin/sh"
+#endif
 
 /* Define to l, ll, u, ul, ull, etc., as suitable for constants of type
    'sig_atomic_t'. */
@@ -466,9 +1181,19 @@
    backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
+/* Define to 1 if strerror_r returns char *. */
+#undef STRERROR_R_CHAR_P
+
 /* Define to 1 if the type of the st_atim member of a struct stat is struct
    timespec. */
 #undef TYPEOF_STRUCT_STAT_ST_ATIM_IS_STRUCT_TIMESPEC
+
+/* Define if the combination of the ISO C and POSIX multithreading APIs can be
+   used. */
+#undef USE_ISOC_AND_POSIX_THREADS
+
+/* Define if the ISO C multithreading library can be used. */
+#undef USE_ISOC_THREADS
 
 /* Define to enable the declarations of ISO C 23 Annex K types and functions.  */
 #if !(defined __STDC_WANT_LIB_EXT1__ && __STDC_WANT_LIB_EXT1__)
@@ -476,6 +1201,17 @@
 #define __STDC_WANT_LIB_EXT1__ 1
 #endif
 
+
+/* Define if the POSIX multithreading library can be used. */
+#undef USE_POSIX_THREADS
+
+/* Define if references to the POSIX multithreading library are satisfied by
+   libc. */
+#undef USE_POSIX_THREADS_FROM_LIBC
+
+/* Define if references to the POSIX multithreading library should be made
+   weak. */
+#undef USE_POSIX_THREADS_WEAK
 
 /* Enable extensions on AIX, Interix, z/OS.  */
 #ifndef _ALL_SOURCE
@@ -569,6 +1305,9 @@
 #endif
 
 
+/* Define if the native Windows multithreading API can be used. */
+#undef USE_WINDOWS_THREADS
+
 /* Version number of package */
 #undef VERSION
 
@@ -586,10 +1325,22 @@
 /* Number of bits in a file offset, on hosts where this is settable. */
 #undef _FILE_OFFSET_BITS
 
-/* True if the compiler says it groks GNU C version MAJOR.MINOR.  */
-#if defined __GNUC__ && defined __GNUC_MINOR__
+/* True if the compiler says it groks GNU C version MAJOR.MINOR.
+    Except that
+      - clang groks GNU C 4.2, even on Windows, where it does not define
+        __GNUC__.
+      - The OpenMandriva-modified clang compiler pretends that it groks
+        GNU C version 13.1, but it doesn't: It does not support
+        __attribute__ ((__malloc__ (f, i))), nor does it support
+        __attribute__ ((__warning__ (message))) on a function redeclaration.
+      - Users can make clang lie as well, through the -fgnuc-version option.  */
+#if defined __GNUC__ && defined __GNUC_MINOR__ && !defined __clang__
 # define _GL_GNUC_PREREQ(major, minor) \
     ((major) < __GNUC__ + ((minor) <= __GNUC_MINOR__))
+#elif defined __clang__
+  /* clang really only groks GNU C 4.2.  */
+# define _GL_GNUC_PREREQ(major, minor) \
+    ((major) < 4 + ((minor) <= 2))
 #else
 # define _GL_GNUC_PREREQ(major, minor) 0
 #endif
@@ -601,7 +1352,7 @@
 /* Define to 1 on platforms where this makes off_t a 64-bit type. */
 #undef _LARGE_FILES
 
-/* Define in order to get some macros on AIX systems. */
+/* Define so that AIX headers are more compatible with GNU/Linux. */
 #undef _LINUX_SOURCE_COMPAT
 
 /* The _Noreturn keyword of C11.  */
@@ -658,6 +1409,10 @@
 
 /* Define to 1 if the system <stdint.h> predates C++11. */
 #undef __STDC_LIMIT_MACROS
+
+/* Define to 1 if C does not support variable-length arrays, and if the
+   compiler does not already define this. */
+#undef __STDC_NO_VLA__
 
 /* The _GL_ASYNC_SAFE marker should be attached to functions that are
    signal handlers (for signals other than SIGABRT, SIGPIPE) or can be
@@ -743,6 +1498,23 @@
 # define _GL_HAVE___HAS_C_ATTRIBUTE 0
 #endif
 
+/* Attributes in bracket syntax [[...]] vs. attributes in __attribute__((...))
+   syntax, in function declarations.  There are two problems here.
+   (Last tested with gcc/g++ 14 and clang/clang++ 18.)
+
+   1) We want that the _GL_ATTRIBUTE_* can be cumulated on the same declaration
+      in any order.
+      =========================== foo.c = foo.cc ===========================
+      __attribute__ ((__deprecated__)) [[__nodiscard__]] int bar1 (int);
+      [[__nodiscard__]] __attribute__ ((__deprecated__)) int bar2 (int);
+      ======================================================================
+      This gives a syntax error
+        - in C mode with gcc
+          <https://gcc.gnu.org/bugzilla/show_bug.cgi?id=108796>, and
+        - in C++ mode with clang++ version < 16, and
+        - in C++ mode, inside extern "C" {}, still in newer clang++ versions
+          <https://github.com/llvm/llvm-project/issues/101990>.
+ */
 /* Define if, in a function declaration, the attributes in bracket syntax
    [[...]] must come before the attributes in __attribute__((...)) syntax.
    If this is defined, it is best to avoid the bracket syntax, so that the
@@ -757,6 +1529,176 @@
 #  define _GL_BRACKET_BEFORE_ATTRIBUTE 1
 # endif
 #endif
+/*
+   2) We want that the _GL_ATTRIBUTE_* can be placed in a declaration
+        - without 'extern', in C as well as in C++,
+        - with 'extern', in C,
+        - with 'extern "C"', in C++
+      in the same position.  That is, we don't want to be forced to use a
+      macro which arranges for the attribute to come before 'extern' in
+      one case and after 'extern' in the other case, because such a macro
+      would make the source code of .h files pretty ugly.
+      =========================== foo.c = foo.cc ===========================
+      #ifdef __cplusplus
+      # define CC "C"
+      #else
+      # define CC
+      #endif
+
+      #define ND   [[__nodiscard__]]
+      #define WUR  __attribute__((__warn_unused_result__))
+
+      #ifdef __cplusplus
+      extern "C" {
+      #endif
+                                        // gcc   clang  g++   clang++
+
+      ND int foo (int);
+      int ND foo (int);                 // warn  error  warn  error
+      int foo ND (int);
+      int foo (int) ND;                 // warn  error  warn  error
+
+      WUR int foo (int);
+      int WUR foo (int);
+      int fo1 WUR (int);                // error error  error error
+      int foo (int) WUR;
+
+      #ifdef __cplusplus
+      }
+      #endif
+
+                                        // gcc   clang  g++   clang++
+
+      ND extern CC int foo (int);       //              error error
+      extern CC ND int foo (int);       // error error
+      extern CC int ND foo (int);       // warn  error  warn  error
+      extern CC int foo ND (int);
+      extern CC int foo (int) ND;       // warn  error  warn  error
+
+      WUR extern CC int foo (int);      //              warn
+      extern CC WUR int foo (int);
+      extern CC int WUR foo (int);
+      extern CC int foo WUR (int);      // error error  error error
+      extern CC int foo (int) WUR;
+
+      ND EXTERN_C_FUNC int foo (int);   //              error error
+      EXTERN_C_FUNC ND int foo (int);
+      EXTERN_C_FUNC int ND foo (int);   // warn  error  warn  error
+      EXTERN_C_FUNC int foo ND (int);
+      EXTERN_C_FUNC int foo (int) ND;   // warn  error  warn  error
+
+      WUR EXTERN_C_FUNC int foo (int);  //              warn
+      EXTERN_C_FUNC WUR int foo (int);
+      EXTERN_C_FUNC int WUR foo (int);
+      EXTERN_C_FUNC int fo2 WUR (int);  // error error  error error
+      EXTERN_C_FUNC int foo (int) WUR;
+      ======================================================================
+      So, if we insist on using the 'extern' keyword ('extern CC' idiom):
+        * If _GL_ATTRIBUTE_* expands to bracket syntax [[...]]
+          in both C and C++, there is one available position:
+            - between the function name and the parameter list.
+        * If _GL_ATTRIBUTE_* expands to __attribute__((...)) syntax
+          in both C and C++, there are several available positions:
+            - before the return type,
+            - between return type and function name,
+            - at the end of the declaration.
+        * If _GL_ATTRIBUTE_* expands to bracket syntax [[...]] in C and to
+          __attribute__((...)) syntax in C++, there is no available position:
+          it would need to come before 'extern' in C but after 'extern "C"'
+          in C++.
+        * If _GL_ATTRIBUTE_* expands to __attribute__((...)) syntax in C and
+          to bracket syntax [[...]] in C++, there is one available position:
+            - before the return type.
+      Whereas, if we use the 'EXTERN_C_FUNC' idiom, which conditionally
+      omits the 'extern' keyword:
+        * If _GL_ATTRIBUTE_* expands to bracket syntax [[...]]
+          in both C and C++, there are two available positions:
+            - before the return type,
+            - between the function name and the parameter list.
+        * If _GL_ATTRIBUTE_* expands to __attribute__((...)) syntax
+          in both C and C++, there are several available positions:
+            - before the return type,
+            - between return type and function name,
+            - at the end of the declaration.
+        * If _GL_ATTRIBUTE_* expands to bracket syntax [[...]] in C and to
+          __attribute__((...)) syntax in C++, there is one available position:
+            - before the return type.
+        * If _GL_ATTRIBUTE_* expands to __attribute__((...)) syntax in C and
+          to bracket syntax [[...]] in C++, there is one available position:
+            - before the return type.
+      The best choice is therefore to use the 'EXTERN_C_FUNC' idiom and
+      put the attributes before the return type. This works regardless
+      to what the _GL_ATTRIBUTE_* macros expand.
+ */
+
+/* Attributes in bracket syntax [[...]] vs. attributes in __attribute__((...))
+   syntax, in static/inline function definitions.
+
+   There are similar constraints as for function declarations.  However, here,
+   we cannot omit the storage-class specifier.  Therefore, the following rule
+   applies:
+     * The macros
+         _GL_ATTRIBUTE_CONST
+         _GL_ATTRIBUTE_DEPRECATED
+         _GL_ATTRIBUTE_MAYBE_UNUSED
+         _GL_ATTRIBUTE_NODISCARD
+         _GL_ATTRIBUTE_PURE
+         _GL_ATTRIBUTE_REPRODUCIBLE
+         _GL_ATTRIBUTE_UNSEQUENCED
+       which may expand to bracket syntax [[...]], must come first, before the
+       storage-class specifier.
+     * Other _GL_ATTRIBUTE_* macros, that expand to __attribute__((...)) syntax,
+       are better placed between the storage-class specifier and the return
+       type.
+ */
+
+/* Attributes in bracket syntax [[...]] vs. attributes in __attribute__((...))
+   syntax, in variable declarations.
+
+   At which position can they be placed?
+   (Last tested with gcc/g++ 14 and clang/clang++ 18.)
+
+      =========================== foo.c = foo.cc ===========================
+      #ifdef __cplusplus
+      # define CC "C"
+      #else
+      # define CC
+      #endif
+
+      #define BD   [[__deprecated__]]
+      #define AD   __attribute__ ((__deprecated__))
+
+                              // gcc   clang  g++    clang++
+
+      BD extern CC int var;   //              error  error
+      extern CC BD int var;   // error error
+      extern CC int BD var;   // warn  error  warn   error
+      extern CC int var BD;
+
+      AD extern CC int var;   //              warn
+      extern CC AD int var;
+      extern CC int AD var;
+      extern CC int var AD;
+
+      BD extern CC int z[];   //              error  error
+      extern CC BD int z[];   // error error
+      extern CC int BD z[];   // warn  error  warn   error
+      extern CC int z1 BD [];
+      extern CC int z[] BD;   // warn  error         error
+
+      AD extern CC int z[];   //              warn
+      extern CC AD int z[];
+      extern CC int AD z[];
+      extern CC int z2 AD []; // error error  error  error
+      extern CC int z[] AD;
+      ======================================================================
+
+   * For non-array variables, the only good position is after the variable name,
+     that is, at the end of the declaration.
+   * For array variables, you will need to distinguish C and C++:
+       - In C, before the 'extern' keyword.
+       - In C++, between the 'extern "C"' and the variable's type.
+ */
 
 /* _GL_ATTRIBUTE_ALLOC_SIZE ((N)) declares that the Nth argument of the function
    is the size of the returned memory block.
@@ -1097,7 +2039,7 @@
    other attributes.  */
 #ifndef _GL_ATTRIBUTE_NOTHROW
 # if defined __cplusplus
-#  if _GL_GNUC_PREREQ (2, 8) || __clang_major >= 4
+#  if _GL_GNUC_PREREQ (2, 8) || __clang_major__ >= 4
 #   if __cplusplus >= 201103L
 #    define _GL_ATTRIBUTE_NOTHROW noexcept (true)
 #   else
@@ -1252,6 +2194,35 @@
 # endif
 #endif
 
+/* The following attributes enable detection of multithread-safety problems
+   and resource leaks at compile-time, by clang ≥ 15, when the warning option
+   -Wthread-safety is enabled.  For usage, see
+   <https://clang.llvm.org/docs/ThreadSafetyAnalysis.html>.  */
+#ifndef _GL_ATTRIBUTE_CAPABILITY_TYPE
+# if __clang_major__ >= 15
+#  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept) \
+     __attribute__ ((__capability__ (concept)))
+#else
+#  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept)
+# endif
+#endif
+#ifndef _GL_ATTRIBUTE_ACQUIRE_CAPABILITY
+# if __clang_major__ >= 15
+#  define _GL_ATTRIBUTE_ACQUIRE_CAPABILITY(resource) \
+     __attribute__ ((__acquire_capability__ (resource)))
+# else
+#  define _GL_ATTRIBUTE_ACQUIRE_CAPABILITY(resource)
+# endif
+#endif
+#ifndef _GL_ATTRIBUTE_RELEASE_CAPABILITY
+# if __clang_major__ >= 15
+#  define _GL_ATTRIBUTE_RELEASE_CAPABILITY(resource) \
+     __attribute__ ((__release_capability__ (resource)))
+# else
+#  define _GL_ATTRIBUTE_RELEASE_CAPABILITY(resource)
+# endif
+#endif
+
 
 /* In C++, there is the concept of "language linkage", that encompasses
     name mangling and function calling conventions.
@@ -1264,6 +2235,9 @@
 # define _GL_END_C_LINKAGE
 #endif
 
+
+/* Define as 'access' if you don't have the eaccess() function. */
+#undef eaccess
 
 /* Define as 'int' if <sys/types.h> doesn't define. */
 #undef gid_t
@@ -1323,6 +2297,10 @@
 # define _Restrict
 # define __restrict__
 #endif
+
+/* Define as an integer type suitable for memory locations that can be
+   accessed atomically even in the presence of asynchronous signals. */
+#undef sig_atomic_t
 
 /* Define as 'unsigned int' if <stddef.h> doesn't define. */
 #undef size_t
