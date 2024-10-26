@@ -54,6 +54,7 @@
 #  mkfifo \
 #  open \
 #  passfd \
+#  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
 #  socket
@@ -329,24 +330,24 @@ am__libgnu_a_SOURCES_DIST = access.c openat-priv.h openat-proc.c \
 	glthread/lock.c lstat.c malloca.c memchr.c mempcpy.c memrchr.c \
 	minmax.h mkfifo.c msvc-inval.c msvc-nothrow.c glthread/once.h \
 	glthread/once.c open.c openat.c openat-die.c opendir.c \
-	passfd.c pipe-filter-ii.c pipe-filter-aux.c pipe.c pipe2.c \
-	pipe2-safer.c spawn.c spawni.c spawn_faction_addchdir.c \
-	spawn_faction_addclose.c spawn_faction_adddup2.c \
-	spawn_faction_addopen.c spawn_faction_destroy.c \
-	spawn_faction_init.c spawnattr_destroy.c spawnattr_init.c \
-	spawnattr_setflags.c spawnattr_setpgroup.c \
-	spawnattr_setsigmask.c spawnp.c pthread-once.c raise.c \
-	rawmemchr.c read.c readdir.c readlink.c reallocarray.c \
-	rewinddir.c safe-read.c safe-write.c same-inode.h same-inode.c \
-	save-cwd.c sigaction.c sig-handler.c sigprocmask.c socket.c \
-	sockets.h sockets.c spawn-pipe.h spawn-pipe.c os2-spawn.c \
-	stat.c stat-time.c stdio-read.c stdio-write.c stpcpy.c \
-	strchrnul.c strdup.c strerror.c strerror-override.c \
-	sys_socket.c glthread/threadlib.c unistd.c dup-safer.c \
-	fd-safer.c pipe-safer.c wait-process.h wait-process.c \
-	waitpid.c windows-mutex.c windows-once.c windows-recmutex.c \
-	windows-rwlock.c windows-path.c windows-spawn.c write.c \
-	xmalloc.c xalloc-die.c
+	passfd.c pipe-filter-gi.c pipe-filter-aux.c pipe-filter-ii.c \
+	pipe.c pipe2.c pipe2-safer.c spawn.c spawni.c \
+	spawn_faction_addchdir.c spawn_faction_addclose.c \
+	spawn_faction_adddup2.c spawn_faction_addopen.c \
+	spawn_faction_destroy.c spawn_faction_init.c \
+	spawnattr_destroy.c spawnattr_init.c spawnattr_setflags.c \
+	spawnattr_setpgroup.c spawnattr_setsigmask.c spawnp.c \
+	pthread-once.c raise.c rawmemchr.c read.c readdir.c readlink.c \
+	reallocarray.c rewinddir.c safe-read.c safe-write.c \
+	same-inode.h same-inode.c save-cwd.c sigaction.c sig-handler.c \
+	sigprocmask.c socket.c sockets.h sockets.c spawn-pipe.h \
+	spawn-pipe.c os2-spawn.c stat.c stat-time.c stdio-read.c \
+	stdio-write.c stpcpy.c strchrnul.c strdup.c strerror.c \
+	strerror-override.c sys_socket.c glthread/threadlib.c unistd.c \
+	dup-safer.c fd-safer.c pipe-safer.c wait-process.h \
+	wait-process.c waitpid.c windows-mutex.c windows-once.c \
+	windows-recmutex.c windows-rwlock.c windows-path.c \
+	windows-spawn.c write.c xmalloc.c xalloc-die.c
 @GL_COND_OBJ_ACCESS_TRUE@am__objects_1 = libgnu_a-access.$(OBJEXT)
 @GL_COND_OBJ_CHDIR_LONG_TRUE@am__objects_2 =  \
 @GL_COND_OBJ_CHDIR_LONG_TRUE@	libgnu_a-chdir-long.$(OBJEXT)
@@ -468,6 +469,8 @@ am_libgnu_a_OBJECTS = $(am__objects_1) libgnu_a-openat-proc.$(OBJEXT) \
 	glthread/libgnu_a-once.$(OBJEXT) $(am__objects_28) \
 	$(am__objects_29) libgnu_a-openat-die.$(OBJEXT) \
 	$(am__objects_30) libgnu_a-passfd.$(OBJEXT) \
+	libgnu_a-pipe-filter-gi.$(OBJEXT) \
+	libgnu_a-pipe-filter-aux.$(OBJEXT) \
 	libgnu_a-pipe-filter-ii.$(OBJEXT) \
 	libgnu_a-pipe-filter-aux.$(OBJEXT) $(am__objects_31) \
 	libgnu_a-pipe2.$(OBJEXT) libgnu_a-pipe2-safer.$(OBJEXT) \
@@ -562,6 +565,7 @@ am__depfiles_remade = ./$(DEPDIR)/libgnu_a-access.Po \
 	./$(DEPDIR)/libgnu_a-os2-spawn.Po \
 	./$(DEPDIR)/libgnu_a-passfd.Po \
 	./$(DEPDIR)/libgnu_a-pipe-filter-aux.Po \
+	./$(DEPDIR)/libgnu_a-pipe-filter-gi.Po \
 	./$(DEPDIR)/libgnu_a-pipe-filter-ii.Po \
 	./$(DEPDIR)/libgnu_a-pipe-safer.Po \
 	./$(DEPDIR)/libgnu_a-pipe.Po \
@@ -2007,22 +2011,23 @@ EXTRA_DIST = alloca.in.h assert.in.h verify.h assure.h attribute.h \
 	inttypes.in.h cdefs.h libc-config.h limits.in.h malloc.c \
 	malloc.c malloca.h memchr.valgrind msvc-inval.h msvc-nothrow.h \
 	openat.h dirent-private.h passfd.h pathmax.h pipe-filter-aux.h \
-	pipe-filter.h spawn_int.h spawn_int.h spawn_int.h spawn_int.h \
-	spawn_int.h spawn_int.h pthread.in.h rawmemchr.valgrind \
-	dirent-private.h realloc.c realloc.c dirent-private.h \
-	safe-read.h sys-limits.h safe-read.c safe-write.h sys-limits.h \
-	save-cwd.h sched.in.h sig-handler.h signal.in.h _Noreturn.h \
-	arg-nonnull.h c++defs.h warn-on-use.h w32sock.h w32sock.h \
-	spawn.in.h os2-spawn.h stat-w32.c stat-w32.h stat-time.h \
-	intprops-internal.h stdckdint.in.h stddef.in.h stdint.in.h \
-	stdio.in.h stdlib.in.h strchrnul.valgrind strerror-override.h \
-	string.in.h sys_select.in.h sys_socket.in.h sys_stat.in.h \
-	sys_time.in.h sys_types.in.h sys_uio.in.h sys_wait.in.h \
-	thread-optim.h time.in.h unistd.in.h unistd--.h unistd-safer.h \
-	verify.h wchar.in.h windows-initguard.h windows-mutex.h \
-	windows-once.h windows-initguard.h windows-recmutex.h \
-	windows-initguard.h windows-rwlock.h windows-path.h \
-	windows-spawn.h xalloc.h xalloc.h xalloc-oversized.h
+	pipe-filter.h pipe-filter-aux.h pipe-filter.h spawn_int.h \
+	spawn_int.h spawn_int.h spawn_int.h spawn_int.h spawn_int.h \
+	pthread.in.h rawmemchr.valgrind dirent-private.h realloc.c \
+	realloc.c dirent-private.h safe-read.h sys-limits.h \
+	safe-read.c safe-write.h sys-limits.h save-cwd.h sched.in.h \
+	sig-handler.h signal.in.h _Noreturn.h arg-nonnull.h c++defs.h \
+	warn-on-use.h w32sock.h w32sock.h spawn.in.h os2-spawn.h \
+	stat-w32.c stat-w32.h stat-time.h intprops-internal.h \
+	stdckdint.in.h stddef.in.h stdint.in.h stdio.in.h stdlib.in.h \
+	strchrnul.valgrind strerror-override.h string.in.h \
+	sys_select.in.h sys_socket.in.h sys_stat.in.h sys_time.in.h \
+	sys_types.in.h sys_uio.in.h sys_wait.in.h thread-optim.h \
+	time.in.h unistd.in.h unistd--.h unistd-safer.h verify.h \
+	wchar.in.h windows-initguard.h windows-mutex.h windows-once.h \
+	windows-initguard.h windows-recmutex.h windows-initguard.h \
+	windows-rwlock.h windows-path.h windows-spawn.h xalloc.h \
+	xalloc.h xalloc-oversized.h
 BUILT_SOURCES = $(ALLOCA_H) $(ASSERT_H) dirent.h $(ERRNO_H) error.h \
 	fcntl.h malloc/scratch_buffer.gl.h inttypes.h $(LIMITS_H) \
 	pthread.h sched.h signal.h spawn.h $(STDCKDINT_H) $(STDDEF_H) \
@@ -2072,26 +2077,27 @@ libgnu_a_SOURCES = $(am__append_1) openat-priv.h openat-proc.c \
 	$(am__append_23) $(am__append_24) minmax.h $(am__append_25) \
 	$(am__append_26) $(am__append_27) glthread/once.h \
 	glthread/once.c $(am__append_28) $(am__append_29) openat-die.c \
-	$(am__append_30) passfd.c pipe-filter-ii.c pipe-filter-aux.c \
-	$(am__append_31) pipe2.c pipe2-safer.c $(am__append_32) \
-	$(am__append_33) $(am__append_34) $(am__append_35) \
-	$(am__append_36) $(am__append_37) $(am__append_38) \
-	$(am__append_39) $(am__append_40) $(am__append_41) \
-	$(am__append_42) $(am__append_43) $(am__append_44) \
-	$(am__append_45) $(am__append_46) $(am__append_47) \
-	$(am__append_48) $(am__append_49) $(am__append_50) \
-	$(am__append_51) $(am__append_52) $(am__append_53) safe-read.c \
-	safe-write.c same-inode.h same-inode.c save-cwd.c \
-	$(am__append_54) sig-handler.c $(am__append_55) \
-	$(am__append_56) sockets.h sockets.c spawn-pipe.h spawn-pipe.c \
-	$(am__append_57) $(am__append_58) stat-time.c $(am__append_59) \
-	$(am__append_60) $(am__append_61) $(am__append_62) \
-	$(am__append_63) $(am__append_64) $(am__append_65) \
-	sys_socket.c glthread/threadlib.c unistd.c dup-safer.c \
-	fd-safer.c pipe-safer.c wait-process.h wait-process.c \
-	$(am__append_66) $(am__append_67) $(am__append_68) \
-	$(am__append_69) $(am__append_70) $(am__append_71) \
-	$(am__append_72) $(am__append_73) xmalloc.c xalloc-die.c
+	$(am__append_30) passfd.c pipe-filter-gi.c pipe-filter-aux.c \
+	pipe-filter-ii.c pipe-filter-aux.c $(am__append_31) pipe2.c \
+	pipe2-safer.c $(am__append_32) $(am__append_33) \
+	$(am__append_34) $(am__append_35) $(am__append_36) \
+	$(am__append_37) $(am__append_38) $(am__append_39) \
+	$(am__append_40) $(am__append_41) $(am__append_42) \
+	$(am__append_43) $(am__append_44) $(am__append_45) \
+	$(am__append_46) $(am__append_47) $(am__append_48) \
+	$(am__append_49) $(am__append_50) $(am__append_51) \
+	$(am__append_52) $(am__append_53) safe-read.c safe-write.c \
+	same-inode.h same-inode.c save-cwd.c $(am__append_54) \
+	sig-handler.c $(am__append_55) $(am__append_56) sockets.h \
+	sockets.c spawn-pipe.h spawn-pipe.c $(am__append_57) \
+	$(am__append_58) stat-time.c $(am__append_59) $(am__append_60) \
+	$(am__append_61) $(am__append_62) $(am__append_63) \
+	$(am__append_64) $(am__append_65) sys_socket.c \
+	glthread/threadlib.c unistd.c dup-safer.c fd-safer.c \
+	pipe-safer.c wait-process.h wait-process.c $(am__append_66) \
+	$(am__append_67) $(am__append_68) $(am__append_69) \
+	$(am__append_70) $(am__append_71) $(am__append_72) \
+	$(am__append_73) xmalloc.c xalloc-die.c
 libgnu_a_CFLAGS = $(AM_CFLAGS) $(GL_CFLAG_GNULIB_WARNINGS)
 libgnu_a_LIBADD = $(gl_LIBOBJS)
 libgnu_a_DEPENDENCIES = $(gl_LIBOBJS)
@@ -2284,6 +2290,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-os2-spawn.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-passfd.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-pipe-filter-aux.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-pipe-filter-gi.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-pipe-filter-ii.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-pipe-safer.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-pipe.Po@am__quote@ # am--include-marker
@@ -3200,19 +3207,19 @@ libgnu_a-passfd.obj: passfd.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-passfd.obj `if test -f 'passfd.c'; then $(CYGPATH_W) 'passfd.c'; else $(CYGPATH_W) '$(srcdir)/passfd.c'; fi`
 
-libgnu_a-pipe-filter-ii.o: pipe-filter-ii.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-ii.o -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo -c -o libgnu_a-pipe-filter-ii.o `test -f 'pipe-filter-ii.c' || echo '$(srcdir)/'`pipe-filter-ii.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo $(DEPDIR)/libgnu_a-pipe-filter-ii.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-ii.c' object='libgnu_a-pipe-filter-ii.o' libtool=no @AMDEPBACKSLASH@
+libgnu_a-pipe-filter-gi.o: pipe-filter-gi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-gi.o -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-gi.Tpo -c -o libgnu_a-pipe-filter-gi.o `test -f 'pipe-filter-gi.c' || echo '$(srcdir)/'`pipe-filter-gi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-gi.Tpo $(DEPDIR)/libgnu_a-pipe-filter-gi.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-gi.c' object='libgnu_a-pipe-filter-gi.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-ii.o `test -f 'pipe-filter-ii.c' || echo '$(srcdir)/'`pipe-filter-ii.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-gi.o `test -f 'pipe-filter-gi.c' || echo '$(srcdir)/'`pipe-filter-gi.c
 
-libgnu_a-pipe-filter-ii.obj: pipe-filter-ii.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-ii.obj -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo -c -o libgnu_a-pipe-filter-ii.obj `if test -f 'pipe-filter-ii.c'; then $(CYGPATH_W) 'pipe-filter-ii.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-ii.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo $(DEPDIR)/libgnu_a-pipe-filter-ii.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-ii.c' object='libgnu_a-pipe-filter-ii.obj' libtool=no @AMDEPBACKSLASH@
+libgnu_a-pipe-filter-gi.obj: pipe-filter-gi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-gi.obj -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-gi.Tpo -c -o libgnu_a-pipe-filter-gi.obj `if test -f 'pipe-filter-gi.c'; then $(CYGPATH_W) 'pipe-filter-gi.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-gi.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-gi.Tpo $(DEPDIR)/libgnu_a-pipe-filter-gi.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-gi.c' object='libgnu_a-pipe-filter-gi.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-ii.obj `if test -f 'pipe-filter-ii.c'; then $(CYGPATH_W) 'pipe-filter-ii.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-ii.c'; fi`
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-gi.obj `if test -f 'pipe-filter-gi.c'; then $(CYGPATH_W) 'pipe-filter-gi.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-gi.c'; fi`
 
 libgnu_a-pipe-filter-aux.o: pipe-filter-aux.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-aux.o -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-aux.Tpo -c -o libgnu_a-pipe-filter-aux.o `test -f 'pipe-filter-aux.c' || echo '$(srcdir)/'`pipe-filter-aux.c
@@ -3227,6 +3234,20 @@ libgnu_a-pipe-filter-aux.obj: pipe-filter-aux.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-aux.c' object='libgnu_a-pipe-filter-aux.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-aux.obj `if test -f 'pipe-filter-aux.c'; then $(CYGPATH_W) 'pipe-filter-aux.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-aux.c'; fi`
+
+libgnu_a-pipe-filter-ii.o: pipe-filter-ii.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-ii.o -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo -c -o libgnu_a-pipe-filter-ii.o `test -f 'pipe-filter-ii.c' || echo '$(srcdir)/'`pipe-filter-ii.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo $(DEPDIR)/libgnu_a-pipe-filter-ii.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-ii.c' object='libgnu_a-pipe-filter-ii.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-ii.o `test -f 'pipe-filter-ii.c' || echo '$(srcdir)/'`pipe-filter-ii.c
+
+libgnu_a-pipe-filter-ii.obj: pipe-filter-ii.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe-filter-ii.obj -MD -MP -MF $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo -c -o libgnu_a-pipe-filter-ii.obj `if test -f 'pipe-filter-ii.c'; then $(CYGPATH_W) 'pipe-filter-ii.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-ii.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-pipe-filter-ii.Tpo $(DEPDIR)/libgnu_a-pipe-filter-ii.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='pipe-filter-ii.c' object='libgnu_a-pipe-filter-ii.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-pipe-filter-ii.obj `if test -f 'pipe-filter-ii.c'; then $(CYGPATH_W) 'pipe-filter-ii.c'; else $(CYGPATH_W) '$(srcdir)/pipe-filter-ii.c'; fi`
 
 libgnu_a-pipe.o: pipe.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-pipe.o -MD -MP -MF $(DEPDIR)/libgnu_a-pipe.Tpo -c -o libgnu_a-pipe.o `test -f 'pipe.c' || echo '$(srcdir)/'`pipe.c
@@ -4460,6 +4481,7 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/libgnu_a-os2-spawn.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-passfd.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-aux.Po
+	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-gi.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-ii.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-safer.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe.Po
@@ -4633,6 +4655,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/libgnu_a-os2-spawn.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-passfd.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-aux.Po
+	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-gi.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-filter-ii.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe-safer.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-pipe.Po
