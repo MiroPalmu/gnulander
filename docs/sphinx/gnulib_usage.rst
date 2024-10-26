@@ -87,7 +87,9 @@ Used Gnulib modules
     * - munmap
       - no subtitue module available
     * - (gnulib only)
-      - pipe-filter-ii
+      - pipe-filter-gi
+    * - (gnulib onll)
+      - pipe-filter-ii (might not be needed but imported just in case)
 
 For more information on :code:`*-safer` modules, see
 Gnulib manual 17.10 Handling closed standard file descriptors.
