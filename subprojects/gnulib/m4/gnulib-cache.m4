@@ -45,6 +45,7 @@
 #  mkfifo \
 #  open \
 #  passfd \
+#  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
 #  socket
@@ -60,6 +61,7 @@ gl_MODULES([
   mkfifo
   open
   passfd
+  pipe-filter-gi
   pipe-filter-ii
   pipe2-safer
   socket

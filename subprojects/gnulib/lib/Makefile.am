@@ -40,6 +40,7 @@
 #  mkfifo \
 #  open \
 #  passfd \
+#  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
 #  socket
@@ -936,6 +937,14 @@ EXTRA_DIST += passfd.h
 EXTRA_DIST += pathmax.h
 
 ## end   gnulib module pathmax
+
+## begin gnulib module pipe-filter-gi
+
+libgnu_a_SOURCES += pipe-filter-gi.c pipe-filter-aux.c
+
+EXTRA_DIST += pipe-filter-aux.h pipe-filter.h
+
+## end   gnulib module pipe-filter-gi
 
 ## begin gnulib module pipe-filter-ii
 

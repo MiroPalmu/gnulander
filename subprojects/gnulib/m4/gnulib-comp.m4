@@ -140,6 +140,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module opendir:
   # Code from module passfd:
   # Code from module pathmax:
+  # Code from module pipe-filter-gi:
   # Code from module pipe-filter-ii:
   # Code from module pipe-posix:
   # Code from module pipe2:
@@ -504,6 +505,7 @@ AC_DEFUN([gl_INIT],
   gl_DIRENT_MODULE_INDICATOR([opendir])
   gl_PASSFD
   gl_PATHMAX
+  AC_CHECK_FUNCS_ONCE([select])
   AC_CHECK_FUNCS_ONCE([select])
   gl_FUNC_PIPE
   gl_CONDITIONAL([GL_COND_OBJ_PIPE], [test $HAVE_PIPE = 0])
@@ -1129,6 +1131,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/pathmax.h
   lib/pipe-filter-aux.c
   lib/pipe-filter-aux.h
+  lib/pipe-filter-gi.c
   lib/pipe-filter-ii.c
   lib/pipe-filter.h
   lib/pipe-safer.c
