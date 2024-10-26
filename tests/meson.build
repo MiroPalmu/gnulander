@@ -13,6 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
+find_program('grep', required : true)
 subproject('ut')
 
 test_dependencies = []
@@ -26,6 +27,7 @@ unit_tests = [
     'test_meson_gnulander_headers_do_not_leak_macros',
     'test_gnu_pipe',
     'test_gnu_fd_handle',
+    'test_gnu_subprocess',
     'test_gnu_memory_block',
     'test_gnu_local_stream_socket',
     'test_sstd_math',
