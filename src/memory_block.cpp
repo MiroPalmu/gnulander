@@ -15,10 +15,6 @@
 
 #include <config.h>
 
-/// Required to make gnulib not define macros for libc functions.
-///
-/// For more information see gnulander sphinx docs: Usage of Gnulib.
-#define GNULIB_NAMESPACE gnulib
 #include "unistd-safer.h"
 #include <fcntl.h>
 #include <sys/mman.h>

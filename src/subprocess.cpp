@@ -14,10 +14,7 @@
 // along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <config.h>
-// Required to make gnulib not define macros for libc functions.
-//
-// For more information see gnulander sphinx docs: Usage of Gnulib.
-#define GNULIB_NAMESPACE gnulib
+
 #include "pipe-filter.h"
 
 #include <algorithm>

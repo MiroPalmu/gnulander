@@ -15,10 +15,6 @@
 
 #include <config.h>
 
-// Required to make gnulib not define macros for libc functions.
-//
-// For more information see gnulander sphinx docs: Usage of Gnulib.
-#define GNULIB_NAMESPACE gnulib
 // For O_CLOEXEC macro and fd_safer_flag.
 #include "unistd-safer.h"
 #include <fcntl.h>
@@ -36,8 +32,8 @@
 
 namespace gnulander {
 
-[[nodiscard]] auto open_local_stream_socket_pair()
-    -> std::pair<local_stream_socket, local_stream_socket> {
+[[nodiscard]] auto
+    open_local_stream_socket_pair() -> std::pair<local_stream_socket, local_stream_socket> {
     std::array<fd_native_type, 2> raw_fds;
 
     if (-1 == socketpair(PF_LOCAL, SOCK_STREAM, 0, raw_fds.data())) {
@@ -56,7 +52,7 @@ namespace gnulander {
 
 [[nodiscard]] auto open_local_stream_socket_connected_to(const std::filesystem::path& server_path)
     -> local_stream_socket {
-    // Test that server_path is not too long before calling gnulib::socket(...).
+    // Test that server_path is not too long before calling ::socket(...).
     const auto server_path_str = server_path.native();
     if (server_path_str.size() >= 107) {
         throw std::runtime_error{ std::format(
@@ -65,7 +61,7 @@ namespace gnulander {
     }
 
     // server_path is not too long so we can proceed.
-    auto sock_to_be_connected = gnulib::socket(AF_LOCAL, SOCK_STREAM, 0);
+    auto sock_to_be_connected = ::socket(AF_LOCAL, SOCK_STREAM, 0);
     if (-1 == sock_to_be_connected) { sstd::throw_generic_system_error(); }
 
     // Prevent std{in,out,err} globbing and set O_CLOEXEC.
@@ -78,14 +74,14 @@ namespace gnulander {
         return addres;
     }();
 
-    const auto connect_call = gnulib::connect(sock_to_be_connected,
-                                              reinterpret_cast<::sockaddr*>(&socket_addres),
-                                              sizeof(socket_addres));
+    const auto connect_call = ::connect(sock_to_be_connected,
+                                        reinterpret_cast<::sockaddr*>(&socket_addres),
+                                        sizeof(socket_addres));
     if (-1 == connect_call) {
         // Opened socket which failed to connect has to be cleaned up.
         // But store errno before closing it as the close can also fail.
         const auto stored_errno = errno;
-        if (-1 == gnulib::close(sock_to_be_connected)) { sstd::throw_generic_system_error(); }
+        if (-1 == ::close(sock_to_be_connected)) { sstd::throw_generic_system_error(); }
         errno = stored_errno;
         sstd::throw_generic_system_error();
     }

@@ -15,10 +15,6 @@
 
 #include <config.h>
 
-/// Required to make gnulib not define macros for libc functions.
-///
-/// For more information see gnulander sphinx docs: Usage of Gnulib.
-#define GNULIB_NAMESPACE gnulib
 #include "full-read.h"
 #include "full-write.h"
 #include "safe-read.h"
@@ -77,7 +73,7 @@ auto fd_handle::read_some(const std::span<std::byte> where_to_read) -> std::size
 
 void fd_handle::close() {
     // Each case is assumed to exit this function.
-    switch (gnulib::close(fd_)) {
+    switch (::close(fd_)) {
         case 0: return;
         case -1: sstd::throw_generic_system_error();
     }
@@ -114,7 +110,7 @@ void fd_handle::truncate(const std::size_t size) {
     if (not std::in_range<off_t>(size)) {
         throw std::runtime_error{ std::format("Requested size {} does not fit into off_t.", size) };
     }
-    if (-1 == gnulib::ftruncate(fd_, size)) { sstd::throw_generic_system_error(); }
+    if (-1 == ::ftruncate(fd_, size)) { sstd::throw_generic_system_error(); }
 }
 
 void unmap(const std::span<std::byte> mem) {

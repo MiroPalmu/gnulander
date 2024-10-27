@@ -26,6 +26,14 @@ If :code:`GNULIB_NAMESPACE` is defined to be :code:`X` before including replacem
 then insted of the above macro technique, :code:`rpl_foo` will be defined as :code:`X::foo`
 (Gnulib manual: 6.5 A C++ namespace for gnulib).
 
+.. note::
+
+    Namespace mechanism is not used.
+    There is some gnulib mechanism for giving waringns
+    if :code:`foo` while :code.`GNULIB_NAMESPACE` is defined.
+    However it seems that it is buggy
+    and will break compilation if optimizations are turned off.
+
 Safer modules
 -------------
 
