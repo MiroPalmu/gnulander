@@ -28,10 +28,6 @@ endif
 gnulib_proj = subproject('gnulib')
 gnulib_dep = gnulib_proj.get_variable('gnulib_dep')
 
-gnulander_dependencies = [
-    gnulib_dep,
-]
-
 gnulander_source_files = []
 
 # Subdirectors
@@ -42,7 +38,9 @@ gnulander_lib = static_library(
     'gnulander',
     gnulander_source_files,
     include_directories : include_directories('include'),
-    dependencies : gnulander_dependencies,
+    dependencies : [
+        gnulib_dep,
+    ],
 )
 
 gnulander_dep = declare_dependency(
