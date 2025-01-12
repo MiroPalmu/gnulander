@@ -22,7 +22,17 @@
 
 #include <algorithm>
 #include <cstddef>
+
+/// Suppress warning from using ::pthread_once and not gnulib::pthread_once.
+#if defined(__GNUC__)
+#    pragma GCC diagnostic push
+#    pragma GCC diagnostic ignored "-Wattribute-warning"
+#endif
 #include <filesystem>
+#if defined(__GNUC__)
+#    pragma GCC diagnostic pop
+#endif
+
 #include <print>
 #include <ranges>
 #include <stdexcept>
