@@ -90,6 +90,8 @@ Used Gnulib modules
       - pipe-filter-gi
     * - (gnulib onll)
       - pipe-filter-ii (might not be needed but imported just in case)
+    * - sys_un-h
+      - `https://lists.gnu.org/archive/html/bug-gnulib/2025-01/msg00081.html`_
 
 For more information on :code:`*-safer` modules, see
 Gnulib manual 17.10 Handling closed standard file descriptors.
