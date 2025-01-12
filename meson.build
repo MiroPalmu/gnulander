@@ -65,7 +65,7 @@ if not meson.is_subproject()
             command: [
                 files('.generate_compile_commands_json_with_headers.sh'),
                 meson.project_build_root(),
-                meson.source_root(),
+                meson.project_source_root(),
             ],
             install: false,
             build_always_stale: true,
