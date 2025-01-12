@@ -1,6 +1,6 @@
 ## DO NOT EDIT! GENERATED AUTOMATICALLY!
 ## Process this file with automake to produce Makefile.in.
-# Copyright (C) 2002-2024 Free Software Foundation, Inc.
+# Copyright (C) 2002-2025 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +43,8 @@
 #  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
-#  socket
+#  socket \
+#  sys_un-h
 
 AUTOMAKE_OPTIONS = 1.14 gnits subdir-objects
 
@@ -263,7 +264,7 @@ EXTRA_DIST += w32sock.h
 
 ## end   gnulib module connect
 
-## begin gnulib module dirent
+## begin gnulib module dirent-h
 
 BUILT_SOURCES += dirent.h
 
@@ -310,7 +311,7 @@ MOSTLYCLEANFILES += dirent.h dirent.h-t
 
 EXTRA_DIST += dirent.in.h
 
-## end   gnulib module dirent
+## end   gnulib module dirent-h
 
 ## begin gnulib module dirfd
 
@@ -338,7 +339,7 @@ endif
 
 ## end   gnulib module dup2
 
-## begin gnulib module errno
+## begin gnulib module errno-h
 
 BUILT_SOURCES += $(ERRNO_H)
 
@@ -368,7 +369,7 @@ MOSTLYCLEANFILES += errno.h errno.h-t
 
 EXTRA_DIST += errno.in.h
 
-## end   gnulib module errno
+## end   gnulib module errno-h
 
 ## begin gnulib module error
 
@@ -702,7 +703,7 @@ EXTRA_DIST += intprops-internal.h intprops.h
 
 ## end   gnulib module intprops
 
-## begin gnulib module inttypes-incomplete
+## begin gnulib module inttypes-h-incomplete
 
 BUILT_SOURCES += inttypes.h
 
@@ -743,7 +744,7 @@ MOSTLYCLEANFILES += inttypes.h inttypes.h-t
 
 EXTRA_DIST += inttypes.in.h
 
-## end   gnulib module inttypes-incomplete
+## end   gnulib module inttypes-h-incomplete
 
 ## begin gnulib module libc-config
 
@@ -1299,21 +1300,11 @@ endif
 
 ## end   gnulib module readlink
 
-## begin gnulib module realloc-gnu
-
-
-EXTRA_DIST += realloc.c
-
-EXTRA_libgnu_a_SOURCES += realloc.c
-
-## end   gnulib module realloc-gnu
-
 ## begin gnulib module realloc-posix
 
-
-EXTRA_DIST += realloc.c
-
-EXTRA_libgnu_a_SOURCES += realloc.c
+if GL_COND_OBJ_REALLOC_POSIX
+libgnu_a_SOURCES += realloc.c
+endif
 
 ## end   gnulib module realloc-posix
 
@@ -1367,7 +1358,7 @@ EXTRA_DIST += save-cwd.h
 
 ## end   gnulib module save-cwd
 
-## begin gnulib module sched
+## begin gnulib module sched-h
 
 BUILT_SOURCES += sched.h
 
@@ -1394,7 +1385,7 @@ MOSTLYCLEANFILES += sched.h sched.h-t
 
 EXTRA_DIST += sched.in.h
 
-## end   gnulib module sched
+## end   gnulib module sched-h
 
 ## begin gnulib module sigaction
 
@@ -1524,7 +1515,7 @@ EXTRA_DIST += w32sock.h
 
 ## end   gnulib module sockets
 
-## begin gnulib module spawn
+## begin gnulib module spawn-h
 
 BUILT_SOURCES += spawn.h
 
@@ -1581,7 +1572,7 @@ MOSTLYCLEANFILES += spawn.h spawn.h-t
 
 EXTRA_DIST += spawn.in.h
 
-## end   gnulib module spawn
+## end   gnulib module spawn-h
 
 ## begin gnulib module spawn-pipe
 
@@ -1614,7 +1605,7 @@ EXTRA_DIST += stat-time.h
 
 ## end   gnulib module stat-time
 
-## begin gnulib module stdckdint
+## begin gnulib module stdckdint-h
 
 BUILT_SOURCES += $(STDCKDINT_H)
 
@@ -1633,9 +1624,9 @@ MOSTLYCLEANFILES += stdckdint.h stdckdint.h-t
 
 EXTRA_DIST += intprops-internal.h stdckdint.in.h
 
-## end   gnulib module stdckdint
+## end   gnulib module stdckdint-h
 
-## begin gnulib module stddef
+## begin gnulib module stddef-h
 
 BUILT_SOURCES += $(STDDEF_H)
 
@@ -1663,9 +1654,9 @@ MOSTLYCLEANFILES += stddef.h stddef.h-t
 
 EXTRA_DIST += stddef.in.h
 
-## end   gnulib module stddef
+## end   gnulib module stddef-h
 
-## begin gnulib module stdint
+## begin gnulib module stdint-h
 
 BUILT_SOURCES += $(STDINT_H)
 
@@ -1711,9 +1702,9 @@ MOSTLYCLEANFILES += stdint.h stdint.h-t
 
 EXTRA_DIST += stdint.in.h
 
-## end   gnulib module stdint
+## end   gnulib module stdint-h
 
-## begin gnulib module stdio
+## begin gnulib module stdio-h
 
 BUILT_SOURCES += stdio.h
 
@@ -1872,14 +1863,13 @@ endif
 
 EXTRA_DIST += stdio.in.h
 
-## end   gnulib module stdio
+## end   gnulib module stdio-h
 
-## begin gnulib module stdlib
+## begin gnulib module stdlib-h
 
 BUILT_SOURCES += stdlib.h
+libgnu_a_SOURCES += stdlib.c
 
-# We need the following in order to create <stdlib.h> when the system
-# doesn't have one that works with the given compiler.
 stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
   $(_NORETURN_H) $(ARG_NONNULL_H) $(WARN_ON_USE_H)
 	$(gl_V_at)$(SED_HEADER_STDOUT) \
@@ -1918,7 +1908,6 @@ stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
 	      -e 's/@''GNULIB_RAND''@/$(GL_GNULIB_RAND)/g' \
 	      -e 's/@''GNULIB_RANDOM''@/$(GL_GNULIB_RANDOM)/g' \
 	      -e 's/@''GNULIB_RANDOM_R''@/$(GL_GNULIB_RANDOM_R)/g' \
-	      -e 's/@''GNULIB_REALLOC_GNU''@/$(GL_GNULIB_REALLOC_GNU)/g' \
 	      -e 's/@''GNULIB_REALLOC_POSIX''@/$(GL_GNULIB_REALLOC_POSIX)/g' \
 	      -e 's/@''GNULIB_REALLOCARRAY''@/$(GL_GNULIB_REALLOCARRAY)/g' \
 	      -e 's/@''GNULIB_REALPATH''@/$(GL_GNULIB_REALPATH)/g' \
@@ -2020,7 +2009,6 @@ stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
 	      -e 's|@''REPLACE_RAND''@|$(REPLACE_RAND)|g' \
 	      -e 's|@''REPLACE_RANDOM''@|$(REPLACE_RANDOM)|g' \
 	      -e 's|@''REPLACE_RANDOM_R''@|$(REPLACE_RANDOM_R)|g' \
-	      -e 's|@''REPLACE_REALLOC_FOR_REALLOC_GNU''@|$(REPLACE_REALLOC_FOR_REALLOC_GNU)|g' \
 	      -e 's|@''REPLACE_REALLOC_FOR_REALLOC_POSIX''@|$(REPLACE_REALLOC_FOR_REALLOC_POSIX)|g' \
 	      -e 's|@''REPLACE_REALLOCARRAY''@|$(REPLACE_REALLOCARRAY)|g' \
 	      -e 's|@''REPLACE_REALPATH''@|$(REPLACE_REALPATH)|g' \
@@ -2047,7 +2035,7 @@ MOSTLYCLEANFILES += stdlib.h stdlib.h-t1 stdlib.h-t2 stdlib.h-t3
 
 EXTRA_DIST += stdlib.in.h
 
-## end   gnulib module stdlib
+## end   gnulib module stdlib-h
 
 ## begin gnulib module stpcpy
 
@@ -2093,7 +2081,7 @@ EXTRA_DIST += strerror-override.h
 
 ## end   gnulib module strerror-override
 
-## begin gnulib module string
+## begin gnulib module string-h
 
 BUILT_SOURCES += string.h
 
@@ -2123,6 +2111,8 @@ string.h: string.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H
 	      -e 's/@''GNULIB_MBSSPN''@/$(GL_GNULIB_MBSSPN)/g' \
 	      -e 's/@''GNULIB_MBSSEP''@/$(GL_GNULIB_MBSSEP)/g' \
 	      -e 's/@''GNULIB_MBSTOK_R''@/$(GL_GNULIB_MBSTOK_R)/g' \
+	      -e 's/@''GNULIB_MBS_ENDSWITH''@/$(GL_GNULIB_MBS_ENDSWITH)/g' \
+	      -e 's/@''GNULIB_MBS_STARTSWITH''@/$(GL_GNULIB_MBS_STARTSWITH)/g' \
 	      -e 's/@''GNULIB_MEMCHR''@/$(GL_GNULIB_MEMCHR)/g' \
 	      -e 's/@''GNULIB_MEMMEM''@/$(GL_GNULIB_MEMMEM)/g' \
 	      -e 's/@''GNULIB_MEMPCPY''@/$(GL_GNULIB_MEMPCPY)/g' \
@@ -2141,6 +2131,8 @@ string.h: string.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H
 	      -e 's/@''GNULIB_STRSTR''@/$(GL_GNULIB_STRSTR)/g' \
 	      -e 's/@''GNULIB_STRCASESTR''@/$(GL_GNULIB_STRCASESTR)/g' \
 	      -e 's/@''GNULIB_STRTOK_R''@/$(GL_GNULIB_STRTOK_R)/g' \
+	      -e 's/@''GNULIB_STR_ENDSWITH''@/$(GL_GNULIB_STR_ENDSWITH)/g' \
+	      -e 's/@''GNULIB_STR_STARTSWITH''@/$(GL_GNULIB_STR_STARTSWITH)/g' \
 	      -e 's/@''GNULIB_STRERROR''@/$(GL_GNULIB_STRERROR)/g' \
 	      -e 's/@''GNULIB_STRERROR_R''@/$(GL_GNULIB_STRERROR_R)/g' \
 	      -e 's/@''GNULIB_STRERRORNAME_NP''@/$(GL_GNULIB_STRERRORNAME_NP)/g' \
@@ -2210,9 +2202,9 @@ MOSTLYCLEANFILES += string.h string.h-t1 string.h-t2
 
 EXTRA_DIST += string.in.h
 
-## end   gnulib module string
+## end   gnulib module string-h
 
-## begin gnulib module sys_select
+## begin gnulib module sys_select-h
 
 BUILT_SOURCES += sys/select.h
 
@@ -2242,9 +2234,9 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_select.in.h
 
-## end   gnulib module sys_select
+## end   gnulib module sys_select-h
 
-## begin gnulib module sys_socket
+## begin gnulib module sys_socket-h
 
 BUILT_SOURCES += sys/socket.h
 libgnu_a_SOURCES += sys_socket.c
@@ -2292,9 +2284,9 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_socket.in.h
 
-## end   gnulib module sys_socket
+## end   gnulib module sys_socket-h
 
-## begin gnulib module sys_stat
+## begin gnulib module sys_stat-h
 
 BUILT_SOURCES += sys/stat.h
 
@@ -2365,9 +2357,9 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_stat.in.h
 
-## end   gnulib module sys_stat
+## end   gnulib module sys_stat-h
 
-## begin gnulib module sys_time
+## begin gnulib module sys_time-h
 
 BUILT_SOURCES += sys/time.h
 
@@ -2398,9 +2390,9 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_time.in.h
 
-## end   gnulib module sys_time
+## end   gnulib module sys_time-h
 
-## begin gnulib module sys_types
+## begin gnulib module sys_types-h
 
 BUILT_SOURCES += sys/types.h
 
@@ -2424,9 +2416,9 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_types.in.h
 
-## end   gnulib module sys_types
+## end   gnulib module sys_types-h
 
-## begin gnulib module sys_uio
+## begin gnulib module sys_uio-h
 
 BUILT_SOURCES += sys/uio.h
 
@@ -2448,9 +2440,41 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_uio.in.h
 
-## end   gnulib module sys_uio
+## end   gnulib module sys_uio-h
 
-## begin gnulib module sys_wait
+## begin gnulib module sys_un-h
+
+BUILT_SOURCES += $(SYS_UN_H)
+
+# We need the following in order to create <sys/un.h> when the system
+# doesn't have one.
+if GL_GENERATE_SYS_UN_H
+sys/un.h: sys_un.in.h $(top_builddir)/config.status
+	$(gl_V_at)$(SED_HEADER_STDOUT) \
+	      -e 's|@''GUARD_PREFIX''@|GL|g' \
+	      -e 's|@''INCLUDE_NEXT''@|$(INCLUDE_NEXT)|g' \
+	      -e 's|@''PRAGMA_SYSTEM_HEADER''@|@PRAGMA_SYSTEM_HEADER@|g' \
+	      -e 's|@''PRAGMA_COLUMNS''@|@PRAGMA_COLUMNS@|g' \
+	      -e 's|@''NEXT_SYS_UN_H''@|$(NEXT_SYS_UN_H)|g' \
+	      -e 's|@''HAVE_SYS_UN_H''@|$(HAVE_SYS_UN_H)|g' \
+	      -e 's|@''HAVE_WINSOCK2_H''@|$(HAVE_WINSOCK2_H)|g' \
+	      -e 's|@''HAVE_AFUNIX_H''@|$(HAVE_AFUNIX_H)|g' \
+	      -e 's|@''HAVE_SA_FAMILY_T''@|$(HAVE_SA_FAMILY_T)|g' \
+	      -e 's|@''HAVE_SA_FAMILY_T_IN_SYS_UN_H''@|$(HAVE_SA_FAMILY_T_IN_SYS_UN_H)|g' \
+	      $(srcdir)/sys_un.in.h > $@-t
+	$(AM_V_at)mv $@-t $@
+else
+sys/un.h: $(top_builddir)/config.status
+	rm -f $@
+endif
+MOSTLYCLEANFILES += sys/un.h sys/un.h-t
+MOSTLYCLEANDIRS += sys
+
+EXTRA_DIST += sys_un.in.h
+
+## end   gnulib module sys_un-h
+
+## begin gnulib module sys_wait-h
 
 BUILT_SOURCES += sys/wait.h
 
@@ -2474,7 +2498,7 @@ MOSTLYCLEANDIRS += sys
 
 EXTRA_DIST += sys_wait.in.h
 
-## end   gnulib module sys_wait
+## end   gnulib module sys_wait-h
 
 ## begin gnulib module thread-optim
 
@@ -2555,7 +2579,7 @@ EXTRA_DIST += time.in.h
 
 ## end   gnulib module time-h
 
-## begin gnulib module unistd
+## begin gnulib module unistd-h
 
 BUILT_SOURCES += unistd.h
 libgnu_a_SOURCES += unistd.c
@@ -2772,7 +2796,7 @@ MOSTLYCLEANFILES += unistd.h unistd.h-t1 unistd.h-t2 unistd.h-t3 unistd.h-t4
 
 EXTRA_DIST += unistd.in.h
 
-## end   gnulib module unistd
+## end   gnulib module unistd-h
 
 ## begin gnulib module unistd-safer
 
@@ -2803,7 +2827,7 @@ endif
 
 ## end   gnulib module waitpid
 
-## begin gnulib module wchar
+## begin gnulib module wchar-h
 
 BUILT_SOURCES += wchar.h
 
@@ -2928,6 +2952,7 @@ wchar.h: wchar.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H) 
 	      -e 's|@''REPLACE_WCSWIDTH''@|$(REPLACE_WCSWIDTH)|g' \
 	      -e 's|@''REPLACE_WCSFTIME''@|$(REPLACE_WCSFTIME)|g' \
 	      -e 's|@''REPLACE_WCSCMP''@|$(REPLACE_WCSCMP)|g' \
+	      -e 's|@''REPLACE_WCSNCAT''@|$(REPLACE_WCSNCAT)|g' \
 	      -e 's|@''REPLACE_WCSNCMP''@|$(REPLACE_WCSNCMP)|g' \
 	      -e 's|@''REPLACE_WCSSTR''@|$(REPLACE_WCSSTR)|g' \
 	      -e 's|@''REPLACE_WCSTOK''@|$(REPLACE_WCSTOK)|g' \
@@ -2943,7 +2968,7 @@ MOSTLYCLEANFILES += wchar.h wchar.h-t1 wchar.h-t2 wchar.h-t3
 
 EXTRA_DIST += wchar.in.h
 
-## end   gnulib module wchar
+## end   gnulib module wchar-h
 
 ## begin gnulib module windows-mutex
 

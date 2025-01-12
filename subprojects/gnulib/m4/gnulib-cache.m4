@@ -1,4 +1,4 @@
-# Copyright (C) 2002-2024 Free Software Foundation, Inc.
+# Copyright (C) 2002-2025 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,8 @@
 #  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
-#  socket
+#  socket \
+#  sys_un-h
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
@@ -65,6 +66,7 @@ gl_MODULES([
   pipe-filter-ii
   pipe2-safer
   socket
+  sys_un-h
 ])
 gl_AVOID([])
 gl_SOURCE_BASE([lib])

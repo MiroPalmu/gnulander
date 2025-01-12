@@ -1,5 +1,5 @@
 /* Waiting for a subprocess to finish.
-   Copyright (C) 2001-2003, 2005-2024 Free Software Foundation, Inc.
+   Copyright (C) 2001-2003, 2005-2025 Free Software Foundation, Inc.
    Written by Bruno Haible <haible@clisp.cons.org>, 2001.
 
    This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@
 #include "xalloc.h"
 #include "gettext.h"
 
-#define _(str) gettext (str)
+#define _(msgid) dgettext ("gnulib", msgid)
 
 #define SIZEOF(a) (sizeof(a) / sizeof(a[0]))
 

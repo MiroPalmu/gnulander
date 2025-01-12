@@ -1,5 +1,5 @@
 # DO NOT EDIT! GENERATED AUTOMATICALLY!
-# Copyright (C) 2002-2024 Free Software Foundation, Inc.
+# Copyright (C) 2002-2025 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,6 +53,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module basename-lgpl:
   # Code from module binary-io:
   # Code from module bitrotate:
+  # Code from module bool:
   # Code from module builtin-expect:
   # Code from module c99:
   # Code from module calloc-gnu:
@@ -66,13 +67,13 @@ AC_DEFUN([gl_EARLY],
   # Code from module concat-filename:
   # Code from module connect:
   # Code from module d-ino:
-  # Code from module dirent:
+  # Code from module dirent-h:
   # Code from module dirfd:
   # Code from module double-slash-root:
   # Code from module dup:
   # Code from module dup2:
   # Code from module environ:
-  # Code from module errno:
+  # Code from module errno-h:
   # Code from module error:
   # Code from module error-h:
   # Code from module exitfail:
@@ -106,6 +107,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module getprogname:
   # Code from module gettext-h:
   # Code from module glibc-internal/scratch_buffer:
+  # Code from module gnulib-i18n:
   # Code from module hash:
   # Code from module hash-pjw:
   # Code from module hash-triple-simple:
@@ -113,7 +115,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module idx:
   # Code from module include_next:
   # Code from module intprops:
-  # Code from module inttypes-incomplete:
+  # Code from module inttypes-h-incomplete:
   # Code from module largefile:
   AC_REQUIRE([AC_SYS_LARGEFILE])
   # Code from module libc-config:
@@ -167,7 +169,6 @@ AC_DEFUN([gl_EARLY],
   # Code from module read:
   # Code from module readdir:
   # Code from module readlink:
-  # Code from module realloc-gnu:
   # Code from module realloc-posix:
   # Code from module reallocarray:
   # Code from module rewinddir:
@@ -175,7 +176,7 @@ AC_DEFUN([gl_EARLY],
   # Code from module safe-write:
   # Code from module same-inode:
   # Code from module save-cwd:
-  # Code from module sched:
+  # Code from module sched-h:
   # Code from module sh-filename:
   # Code from module sigaction:
   # Code from module signal-h:
@@ -188,44 +189,44 @@ AC_DEFUN([gl_EARLY],
   # Code from module socketlib:
   # Code from module sockets:
   # Code from module socklen:
-  # Code from module spawn:
+  # Code from module spawn-h:
   # Code from module spawn-pipe:
   # Code from module ssize_t:
   # Code from module stat:
   # Code from module stat-time:
   # Code from module std-gnu11:
-  # Code from module stdbool:
-  # Code from module stdckdint:
-  # Code from module stddef:
-  # Code from module stdint:
-  # Code from module stdio:
+  # Code from module stdckdint-h:
+  # Code from module stddef-h:
+  # Code from module stdint-h:
+  # Code from module stdio-h:
   gl_STDIO_H_EARLY
-  # Code from module stdlib:
+  # Code from module stdlib-h:
   # Code from module stpcpy:
   # Code from module strchrnul:
   # Code from module strdup-posix:
   # Code from module strerror:
   # Code from module strerror-override:
-  # Code from module string:
-  # Code from module sys_select:
-  # Code from module sys_socket:
-  # Code from module sys_stat:
-  # Code from module sys_time:
-  # Code from module sys_types:
+  # Code from module string-h:
+  # Code from module sys_select-h:
+  # Code from module sys_socket-h:
+  # Code from module sys_stat-h:
+  # Code from module sys_time-h:
+  # Code from module sys_types-h:
   AC_REQUIRE([AC_USE_SYSTEM_EXTENSIONS])
-  # Code from module sys_uio:
-  # Code from module sys_wait:
+  # Code from module sys_uio-h:
+  # Code from module sys_un-h:
+  # Code from module sys_wait-h:
   # Code from module thread-optim:
   # Code from module threadlib:
   gl_THREADLIB_EARLY
   # Code from module time-h:
-  # Code from module unistd:
+  # Code from module unistd-h:
   # Code from module unistd-safer:
   # Code from module vararrays:
   # Code from module verify:
   # Code from module wait-process:
   # Code from module waitpid:
-  # Code from module wchar:
+  # Code from module wchar-h:
   # Code from module windows-mutex:
   # Code from module windows-once:
   # Code from module windows-recmutex:
@@ -267,6 +268,7 @@ AC_DEFUN([gl_INIT],
   gl_CONDITIONAL_HEADER([assert.h])
   AC_PROG_MKDIR_P
   AC_REQUIRE([AC_CANONICAL_HOST])
+  gl_C_BOOL
   gl___BUILTIN_EXPECT
   gl_FUNC_CALLOC_GNU
   if test $REPLACE_CALLOC_FOR_CALLOC_GNU = 1; then
@@ -424,6 +426,7 @@ AC_DEFUN([gl_INIT],
   AC_SUBST([LIBINTL])
   AC_SUBST([LTLIBINTL])
   AC_PROG_MKDIR_P
+  GNULIB_I18N
   gl_INTTYPES_INCOMPLETE
   gl_INTTYPES_H_REQUIRE_DEFAULTS
   AC_PROG_MKDIR_P
@@ -608,15 +611,10 @@ AC_DEFUN([gl_INIT],
     gl_PREREQ_READLINK
   ])
   gl_UNISTD_MODULE_INDICATOR([readlink])
-  gl_FUNC_REALLOC_GNU
-  if test $REPLACE_REALLOC_FOR_REALLOC_GNU = 1; then
-    AC_LIBOBJ([realloc])
-  fi
-  gl_STDLIB_MODULE_INDICATOR([realloc-gnu])
   gl_FUNC_REALLOC_POSIX
-  if test $REPLACE_REALLOC_FOR_REALLOC_POSIX = 1; then
-    AC_LIBOBJ([realloc])
-  fi
+  gl_FUNC_REALLOC_0_NONNULL
+  gl_CONDITIONAL([GL_COND_OBJ_REALLOC_POSIX],
+                 [test $REPLACE_REALLOC_FOR_REALLOC_POSIX != 0])
   gl_STDLIB_MODULE_INDICATOR([realloc-posix])
   gl_FUNC_REALLOCARRAY
   gl_CONDITIONAL([GL_COND_OBJ_REALLOCARRAY],
@@ -690,7 +688,6 @@ AC_DEFUN([gl_INIT],
   gl_MODULE_INDICATOR([stat])
   gl_STAT_TIME
   gl_STAT_BIRTHTIME
-  gl_C_BOOL
   AC_CHECK_HEADERS_ONCE([stdckdint.h])
   if test $ac_cv_header_stdckdint_h = yes; then
     GL_GENERATE_STDCKDINT_H=false
@@ -791,6 +788,9 @@ AC_DEFUN([gl_INIT],
   gl_SYS_UIO_H
   gl_SYS_UIO_H_REQUIRE_DEFAULTS
   AC_PROG_MKDIR_P
+  gl_SYS_UN_H
+  gl_CONDITIONAL_HEADER([sys/un.h])
+  AC_PROG_MKDIR_P
   gl_SYS_WAIT_H
   gl_SYS_WAIT_H_REQUIRE_DEFAULTS
   AC_PROG_MKDIR_P
@@ -803,6 +803,7 @@ AC_DEFUN([gl_INIT],
   gl_UNISTD_H_REQUIRE_DEFAULTS
   AC_PROG_MKDIR_P
   gl_UNISTD_SAFER
+  gl_MODULE_INDICATOR([unistd-safer])
   AC_C_VARARRAYS
   gl_WAIT_PROCESS
   gl_FUNC_WAITPID
@@ -1196,6 +1197,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/stdio-read.c
   lib/stdio-write.c
   lib/stdio.in.h
+  lib/stdlib.c
   lib/stdlib.in.h
   lib/stpcpy.c
   lib/strchrnul.c
@@ -1213,6 +1215,7 @@ AC_DEFUN([gl_FILE_LIST], [
   lib/sys_time.in.h
   lib/sys_types.in.h
   lib/sys_uio.in.h
+  lib/sys_un.in.h
   lib/sys_wait.in.h
   lib/thread-optim.h
   lib/time.in.h
@@ -1251,6 +1254,7 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/access.m4
   m4/alloca.m4
   m4/assert_h.m4
+  m4/build-to-host.m4
   m4/builtin-expect.m4
   m4/c-bool.m4
   m4/calloc.m4
@@ -1266,7 +1270,6 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/dup.m4
   m4/dup2.m4
   m4/eaccess.m4
-  m4/eealloc.m4
   m4/environ.m4
   m4/errno_h.m4
   m4/error.m4
@@ -1292,6 +1295,7 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/getdtablesize.m4
   m4/getprogname.m4
   m4/gnulib-common.m4
+  m4/gnulib-i18n.m4
   m4/include_next.m4
   m4/inttypes.m4
   m4/largefile.m4
@@ -1376,6 +1380,7 @@ AC_DEFUN([gl_FILE_LIST], [
   m4/sys_time_h.m4
   m4/sys_types_h.m4
   m4/sys_uio_h.m4
+  m4/sys_un_h.m4
   m4/sys_wait_h.m4
   m4/threadlib.m4
   m4/time_h.m4

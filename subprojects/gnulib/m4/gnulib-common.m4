@@ -1,6 +1,6 @@
 # gnulib-common.m4
-# serial 105
-dnl Copyright (C) 2007-2024 Free Software Foundation, Inc.
+# serial 106
+dnl Copyright (C) 2007-2025 Free Software Foundation, Inc.
 dnl This file is free software; the Free Software Foundation
 dnl gives unlimited permission to copy and/or distribute it,
 dnl with or without modifications, as long as this notice is preserved.
@@ -852,7 +852,7 @@ AC_DEFUN([gl_COMMON_BODY], [
 # if __clang_major__ >= 15
 #  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept) \
      __attribute__ ((__capability__ (concept)))
-#else
+# else
 #  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept)
 # endif
 #endif
