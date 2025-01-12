@@ -20,7 +20,8 @@ You have another version of autoconf.  It may work, but is not guaranteed to.
 If you have problems, you may need to regenerate the build system entirely.
 To do so, use the procedure documented by the package, typically 'autoreconf'.])])
 
-# po.m4 serial 32 (gettext-0.21.1)
+# po.m4
+# serial 33 (gettext-0.23)
 dnl Copyright (C) 1995-2014, 2016, 2018-2022, 2024 Free Software Foundation,
 dnl Inc.
 dnl This file is free software; the Free Software Foundation
@@ -38,7 +39,7 @@ dnl They are *not* in the public domain.
 
 dnl Authors:
 dnl   Ulrich Drepper <drepper@cygnus.com>, 1995-2000.
-dnl   Bruno Haible <haible@clisp.cons.org>, 2000-2003.
+dnl   Bruno Haible <bruno@clisp.org>, 2000-2024.
 
 AC_PREREQ([2.60])
 
@@ -53,7 +54,7 @@ AC_DEFUN([AM_PO_SUBDIRS],
 
   dnl Release version of the gettext macros. This is used to ensure that
   dnl the gettext macros and po/Makefile.in.in are in sync.
-  AC_SUBST([GETTEXT_MACRO_VERSION], [0.20])
+  AC_SUBST([GETTEXT_MACRO_VERSION], [0.22])
 
   dnl Perform the following tests also if --disable-nls has been given,
   dnl because they are needed for "make dist" to work.
@@ -1804,6 +1805,7 @@ m4_include([m4/absolute-header.m4])
 m4_include([m4/access.m4])
 m4_include([m4/alloca.m4])
 m4_include([m4/assert_h.m4])
+m4_include([m4/build-to-host.m4])
 m4_include([m4/builtin-expect.m4])
 m4_include([m4/c-bool.m4])
 m4_include([m4/calloc.m4])
@@ -1819,7 +1821,6 @@ m4_include([m4/double-slash-root.m4])
 m4_include([m4/dup.m4])
 m4_include([m4/dup2.m4])
 m4_include([m4/eaccess.m4])
-m4_include([m4/eealloc.m4])
 m4_include([m4/environ.m4])
 m4_include([m4/errno_h.m4])
 m4_include([m4/error.m4])
@@ -1846,6 +1847,7 @@ m4_include([m4/getdtablesize.m4])
 m4_include([m4/getprogname.m4])
 m4_include([m4/gnulib-common.m4])
 m4_include([m4/gnulib-comp.m4])
+m4_include([m4/gnulib-i18n.m4])
 m4_include([m4/include_next.m4])
 m4_include([m4/inttypes.m4])
 m4_include([m4/largefile.m4])
@@ -1905,6 +1907,7 @@ m4_include([m4/signalblocking.m4])
 m4_include([m4/socketlib.m4])
 m4_include([m4/sockets.m4])
 m4_include([m4/socklen.m4])
+m4_include([m4/sockpfaf.m4])
 m4_include([m4/spawn-pipe.m4])
 m4_include([m4/spawn_h.m4])
 m4_include([m4/ssize_t.m4])
@@ -1927,6 +1930,7 @@ m4_include([m4/sys_stat_h.m4])
 m4_include([m4/sys_time_h.m4])
 m4_include([m4/sys_types_h.m4])
 m4_include([m4/sys_uio_h.m4])
+m4_include([m4/sys_un_h.m4])
 m4_include([m4/sys_wait_h.m4])
 m4_include([m4/threadlib.m4])
 m4_include([m4/time_h.m4])

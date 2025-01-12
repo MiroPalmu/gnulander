@@ -91,6 +91,10 @@
    whether the gnulib module getcwd shall be considered present. */
 #undef GNULIB_GETCWD
 
+/* Define to the directory where to find the localizations of the translation
+   domain 'gnulib', as a C string. */
+#undef GNULIB_LOCALEDIR
+
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module lock shall be considered present. */
 #undef GNULIB_LOCK
@@ -357,9 +361,6 @@
 /* Define to 1 when the gnulib module reallocarray should be tested. */
 #undef GNULIB_TEST_REALLOCARRAY
 
-/* Define to 1 when the gnulib module realloc-gnu should be tested. */
-#undef GNULIB_TEST_REALLOC_GNU
-
 /* Define to 1 when the gnulib module realloc-posix should be tested. */
 #undef GNULIB_TEST_REALLOC_POSIX
 
@@ -406,12 +407,19 @@
 #undef GNULIB_TEST_WRITE
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
+   whether the gnulib module unistd-safer shall be considered present. */
+#undef GNULIB_UNISTD_SAFER
+
+/* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module xalloc shall be considered present. */
 #undef GNULIB_XALLOC
 
 /* Define to a C preprocessor expression that evaluates to 1 or 0, depending
    whether the gnulib module xalloc-die shall be considered present. */
 #undef GNULIB_XALLOC_DIE
+
+/* Define to 1 if you have the <afunix.h> header file. */
+#undef HAVE_AFUNIX_H
 
 /* Define to 1 if you have 'alloca' after including <alloca.h>, a header that
    may be supplied by this distribution. */
@@ -601,8 +609,15 @@
 /* Define to 1 if you have the 'lstat' function. */
 #undef HAVE_LSTAT
 
+/* Define to 1 if malloc (0) returns nonnull. */
+#undef HAVE_MALLOC_0_NONNULL
+
 /* Define if malloc, realloc, and calloc set errno on allocation failure. */
 #undef HAVE_MALLOC_POSIX
+
+/* Define to 1 if malloc-like functions do not allocate objects larger than
+   PTRDIFF_MAX bytes. */
+#undef HAVE_MALLOC_PTRDIFF
 
 /* Define to 1 if mmap()'s MAP_ANONYMOUS flag is available after including
    config.h and <sys/mman.h>. */
@@ -709,6 +724,9 @@
 
 /* Define to 1 if you have the `reallocarray' function. */
 #undef HAVE_REALLOCARRAY
+
+/* Define to 1 if realloc (..., 0) returns nonnull. */
+#undef HAVE_REALLOC_0_NONNULL
 
 /* Define to 1 if you have the 'realpath' function. */
 #undef HAVE_REALPATH
@@ -881,6 +899,9 @@
 /* Define to 1 if you have the <sys/uio.h> header file. */
 #undef HAVE_SYS_UIO_H
 
+/* Define to 1 if you have the <sys/un.h> header file. */
+#undef HAVE_SYS_UN_H
+
 /* Define to 1 if you have the <sys/wait.h> header file. */
 #undef HAVE_SYS_WAIT_H
 
@@ -892,6 +913,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
+
+/* Define to 1 if <sys/socket.h> defines AF_UNIX. */
+#undef HAVE_UNIXSOCKET
 
 /* Define to 1 if the system has the type 'unsigned long long int'. */
 #undef HAVE_UNSIGNED_LONG_LONG_INT
@@ -1063,9 +1087,6 @@
 /* Define to 1 if 'lstat' dereferences a symlink specified with a trailing
    slash. */
 #undef LSTAT_FOLLOWS_SLASHED_SYMLINK
-
-/* If malloc(0) is != NULL, define this to 1. Otherwise define this to 0. */
-#undef MALLOC_0_IS_NONNULL
 
 /* Define to a substitute value for mmap()'s MAP_ANONYMOUS flag. */
 #undef MAP_ANONYMOUS
@@ -2202,7 +2223,7 @@
 # if __clang_major__ >= 15
 #  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept) \
      __attribute__ ((__capability__ (concept)))
-#else
+# else
 #  define _GL_ATTRIBUTE_CAPABILITY_TYPE(concept)
 # endif
 #endif
@@ -2325,10 +2346,10 @@
 
    References:
    ISO C23 (latest free draft
-   <http://www.open-std.org/jtc1/sc22/wg14/www/docs/n3096.pdf>)
+   <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3096.pdf>)
    sections 6.5.3.4, 6.7.5, 7.15.
    C++11 (latest free draft
-   <http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf>)
+   <https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2011/n3242.pdf>)
    section 18.10. */
 
 /* alignof (TYPE), also known as _Alignof (TYPE), yields the alignment
@@ -2432,7 +2453,13 @@
 # endif
 #endif
 
-#ifndef HAVE_C_BOOL
+#if !(defined __cplusplus \
+      ? 1 \
+      : (defined __clang__ \
+         ? __STDC_VERSION__ >= 202000L && __clang_major__ >= 15 \
+         : (defined __GNUC__ \
+            ? __STDC_VERSION__ >= 202000L && __GNUC__ >= 13 \
+            : defined HAVE_C_BOOL)))
 # if !defined __cplusplus && !defined __bool_true_false_are_defined
 #  if HAVE_STDBOOL_H
 #   include <stdbool.h>
@@ -2449,7 +2476,16 @@
 # endif
 #endif
 
-#if (!defined HAVE_C_STATIC_ASSERT && !defined assert \
+#if (!(defined __clang__ \
+       ? (defined __cplusplus \
+          ? __cplusplus >= 201703L \
+          : __STDC_VERSION__ >= 202000L && __clang_major__ >= 16) \
+       : (defined __GNUC__ \
+          ? (defined __cplusplus \
+             ? __cplusplus >= 201103L && __GNUG__ >= 6 \
+             : __STDC_VERSION__ >= 202000L && __GNUC__ >= 13) \
+          : defined HAVE_C_STATIC_ASSERT)) \
+     && !defined assert \
      && (!defined __cplusplus \
          || (__cpp_static_assert < 201411 \
              && __GNUG__ < 6 && __clang_major__ < 6)))
@@ -2459,8 +2495,9 @@
   #undef/**/__ASSERT_H__
  #endif
  /* Solaris 11.4 <assert.h> defines static_assert as a macro with 2 arguments.
-    We need it also to be invocable with a single argument.  */
- #if defined __sun && (__STDC_VERSION__ - 0 >= 201112L) && !defined __cplusplus
+    We need it also to be invocable with a single argument.
+    Haiku 2022 <assert.h> does not define static_assert at all.  */
+ #if (__STDC_VERSION__ - 0 >= 201112L) && !defined __cplusplus
   #undef/**/static_assert
   #define static_assert _Static_assert
  #endif

@@ -14,7 +14,7 @@
 
 @SET_MAKE@
 
-# Copyright (C) 2002-2024 Free Software Foundation, Inc.
+# Copyright (C) 2002-2025 Free Software Foundation, Inc.
 #
 # This file is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -57,7 +57,8 @@
 #  pipe-filter-gi \
 #  pipe-filter-ii \
 #  pipe2-safer \
-#  socket
+#  socket \
+#  sys_un-h
 
 
 
@@ -189,34 +190,36 @@ host_triplet = @host@
 @GL_COND_OBJ_READ_TRUE@am__append_49 = read.c
 @GL_COND_OBJ_READDIR_TRUE@am__append_50 = readdir.c
 @GL_COND_OBJ_READLINK_TRUE@am__append_51 = readlink.c
-@GL_COND_OBJ_REALLOCARRAY_TRUE@am__append_52 = reallocarray.c
-@GL_COND_OBJ_REWINDDIR_TRUE@am__append_53 = rewinddir.c
-@GL_COND_OBJ_SIGACTION_TRUE@am__append_54 = sigaction.c
-@GL_COND_OBJ_SIGPROCMASK_TRUE@am__append_55 = sigprocmask.c
-@GL_COND_OBJ_SOCKET_TRUE@am__append_56 = socket.c
-@GL_COND_OBJ_OS2_SPAWN_TRUE@am__append_57 = os2-spawn.c
-@GL_COND_OBJ_STAT_TRUE@am__append_58 = stat.c
-@GL_COND_OBJ_STDIO_READ_TRUE@am__append_59 = stdio-read.c
-@GL_COND_OBJ_STDIO_WRITE_TRUE@am__append_60 = stdio-write.c
-@GL_COND_OBJ_STPCPY_TRUE@am__append_61 = stpcpy.c
-@GL_COND_OBJ_STRCHRNUL_TRUE@am__append_62 = strchrnul.c
-@GL_COND_OBJ_STRDUP_TRUE@am__append_63 = strdup.c
-@GL_COND_OBJ_STRERROR_TRUE@am__append_64 = strerror.c
-@GL_COND_OBJ_STRERROR_OVERRIDE_TRUE@am__append_65 = strerror-override.c
-@GL_COND_OBJ_WAITPID_TRUE@am__append_66 = waitpid.c
-@GL_COND_OBJ_WINDOWS_MUTEX_TRUE@am__append_67 = windows-mutex.c
-@GL_COND_OBJ_WINDOWS_ONCE_TRUE@am__append_68 = windows-once.c
-@GL_COND_OBJ_WINDOWS_RECMUTEX_TRUE@am__append_69 = windows-recmutex.c
-@GL_COND_OBJ_WINDOWS_RWLOCK_TRUE@am__append_70 = windows-rwlock.c
-@GL_COND_OBJ_WINDOWS_PATH_TRUE@am__append_71 = windows-path.c
-@GL_COND_OBJ_WINDOWS_SPAWN_TRUE@am__append_72 = windows-spawn.c
-@GL_COND_OBJ_WRITE_TRUE@am__append_73 = write.c
+@GL_COND_OBJ_REALLOC_POSIX_TRUE@am__append_52 = realloc.c
+@GL_COND_OBJ_REALLOCARRAY_TRUE@am__append_53 = reallocarray.c
+@GL_COND_OBJ_REWINDDIR_TRUE@am__append_54 = rewinddir.c
+@GL_COND_OBJ_SIGACTION_TRUE@am__append_55 = sigaction.c
+@GL_COND_OBJ_SIGPROCMASK_TRUE@am__append_56 = sigprocmask.c
+@GL_COND_OBJ_SOCKET_TRUE@am__append_57 = socket.c
+@GL_COND_OBJ_OS2_SPAWN_TRUE@am__append_58 = os2-spawn.c
+@GL_COND_OBJ_STAT_TRUE@am__append_59 = stat.c
+@GL_COND_OBJ_STDIO_READ_TRUE@am__append_60 = stdio-read.c
+@GL_COND_OBJ_STDIO_WRITE_TRUE@am__append_61 = stdio-write.c
+@GL_COND_OBJ_STPCPY_TRUE@am__append_62 = stpcpy.c
+@GL_COND_OBJ_STRCHRNUL_TRUE@am__append_63 = strchrnul.c
+@GL_COND_OBJ_STRDUP_TRUE@am__append_64 = strdup.c
+@GL_COND_OBJ_STRERROR_TRUE@am__append_65 = strerror.c
+@GL_COND_OBJ_STRERROR_OVERRIDE_TRUE@am__append_66 = strerror-override.c
+@GL_COND_OBJ_WAITPID_TRUE@am__append_67 = waitpid.c
+@GL_COND_OBJ_WINDOWS_MUTEX_TRUE@am__append_68 = windows-mutex.c
+@GL_COND_OBJ_WINDOWS_ONCE_TRUE@am__append_69 = windows-once.c
+@GL_COND_OBJ_WINDOWS_RECMUTEX_TRUE@am__append_70 = windows-recmutex.c
+@GL_COND_OBJ_WINDOWS_RWLOCK_TRUE@am__append_71 = windows-rwlock.c
+@GL_COND_OBJ_WINDOWS_PATH_TRUE@am__append_72 = windows-path.c
+@GL_COND_OBJ_WINDOWS_SPAWN_TRUE@am__append_73 = windows-spawn.c
+@GL_COND_OBJ_WRITE_TRUE@am__append_74 = write.c
 subdir = lib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/__inline.m4 \
 	$(top_srcdir)/m4/absolute-header.m4 $(top_srcdir)/m4/access.m4 \
 	$(top_srcdir)/m4/alloca.m4 $(top_srcdir)/m4/assert_h.m4 \
+	$(top_srcdir)/m4/build-to-host.m4 \
 	$(top_srcdir)/m4/builtin-expect.m4 $(top_srcdir)/m4/c-bool.m4 \
 	$(top_srcdir)/m4/calloc.m4 $(top_srcdir)/m4/canonicalize.m4 \
 	$(top_srcdir)/m4/chdir-long.m4 $(top_srcdir)/m4/close.m4 \
@@ -225,9 +228,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/dirfd.m4 \
 	$(top_srcdir)/m4/double-slash-root.m4 $(top_srcdir)/m4/dup.m4 \
 	$(top_srcdir)/m4/dup2.m4 $(top_srcdir)/m4/eaccess.m4 \
-	$(top_srcdir)/m4/eealloc.m4 $(top_srcdir)/m4/environ.m4 \
-	$(top_srcdir)/m4/errno_h.m4 $(top_srcdir)/m4/error.m4 \
-	$(top_srcdir)/m4/error_h.m4 $(top_srcdir)/m4/extensions-aix.m4 \
+	$(top_srcdir)/m4/environ.m4 $(top_srcdir)/m4/errno_h.m4 \
+	$(top_srcdir)/m4/error.m4 $(top_srcdir)/m4/error_h.m4 \
+	$(top_srcdir)/m4/extensions-aix.m4 \
 	$(top_srcdir)/m4/extensions.m4 \
 	$(top_srcdir)/m4/extern-inline.m4 \
 	$(top_srcdir)/m4/fatal-signal.m4 $(top_srcdir)/m4/fchdir.m4 \
@@ -243,6 +246,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/getprogname.m4 \
 	$(top_srcdir)/m4/gnulib-common.m4 \
 	$(top_srcdir)/m4/gnulib-comp.m4 \
+	$(top_srcdir)/m4/gnulib-i18n.m4 \
 	$(top_srcdir)/m4/include_next.m4 $(top_srcdir)/m4/inttypes.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/limits-h.m4 \
 	$(top_srcdir)/m4/locale-en.m4 $(top_srcdir)/m4/lock.m4 \
@@ -276,26 +280,27 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/signal_h.m4 \
 	$(top_srcdir)/m4/signalblocking.m4 \
 	$(top_srcdir)/m4/socketlib.m4 $(top_srcdir)/m4/sockets.m4 \
-	$(top_srcdir)/m4/socklen.m4 $(top_srcdir)/m4/spawn-pipe.m4 \
-	$(top_srcdir)/m4/spawn_h.m4 $(top_srcdir)/m4/ssize_t.m4 \
-	$(top_srcdir)/m4/stat-time.m4 $(top_srcdir)/m4/stat.m4 \
-	$(top_srcdir)/m4/stdalign.m4 $(top_srcdir)/m4/stddef_h.m4 \
-	$(top_srcdir)/m4/stdint.m4 $(top_srcdir)/m4/stdio_h.m4 \
-	$(top_srcdir)/m4/stdlib_h.m4 $(top_srcdir)/m4/stpcpy.m4 \
-	$(top_srcdir)/m4/strchrnul.m4 $(top_srcdir)/m4/strdup.m4 \
-	$(top_srcdir)/m4/strerror.m4 $(top_srcdir)/m4/string_h.m4 \
-	$(top_srcdir)/m4/sys_cdefs_h.m4 \
+	$(top_srcdir)/m4/socklen.m4 $(top_srcdir)/m4/sockpfaf.m4 \
+	$(top_srcdir)/m4/spawn-pipe.m4 $(top_srcdir)/m4/spawn_h.m4 \
+	$(top_srcdir)/m4/ssize_t.m4 $(top_srcdir)/m4/stat-time.m4 \
+	$(top_srcdir)/m4/stat.m4 $(top_srcdir)/m4/stdalign.m4 \
+	$(top_srcdir)/m4/stddef_h.m4 $(top_srcdir)/m4/stdint.m4 \
+	$(top_srcdir)/m4/stdio_h.m4 $(top_srcdir)/m4/stdlib_h.m4 \
+	$(top_srcdir)/m4/stpcpy.m4 $(top_srcdir)/m4/strchrnul.m4 \
+	$(top_srcdir)/m4/strdup.m4 $(top_srcdir)/m4/strerror.m4 \
+	$(top_srcdir)/m4/string_h.m4 $(top_srcdir)/m4/sys_cdefs_h.m4 \
 	$(top_srcdir)/m4/sys_select_h.m4 \
 	$(top_srcdir)/m4/sys_socket_h.m4 \
 	$(top_srcdir)/m4/sys_stat_h.m4 $(top_srcdir)/m4/sys_time_h.m4 \
 	$(top_srcdir)/m4/sys_types_h.m4 $(top_srcdir)/m4/sys_uio_h.m4 \
-	$(top_srcdir)/m4/sys_wait_h.m4 $(top_srcdir)/m4/threadlib.m4 \
-	$(top_srcdir)/m4/time_h.m4 $(top_srcdir)/m4/unistd-safer.m4 \
-	$(top_srcdir)/m4/unistd_h.m4 $(top_srcdir)/m4/wait-process.m4 \
-	$(top_srcdir)/m4/waitpid.m4 $(top_srcdir)/m4/warn-on-use.m4 \
-	$(top_srcdir)/m4/wchar_h.m4 $(top_srcdir)/m4/wint_t.m4 \
-	$(top_srcdir)/m4/write.m4 $(top_srcdir)/m4/xalloc.m4 \
-	$(top_srcdir)/m4/zzgnulib.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/sys_un_h.m4 $(top_srcdir)/m4/sys_wait_h.m4 \
+	$(top_srcdir)/m4/threadlib.m4 $(top_srcdir)/m4/time_h.m4 \
+	$(top_srcdir)/m4/unistd-safer.m4 $(top_srcdir)/m4/unistd_h.m4 \
+	$(top_srcdir)/m4/wait-process.m4 $(top_srcdir)/m4/waitpid.m4 \
+	$(top_srcdir)/m4/warn-on-use.m4 $(top_srcdir)/m4/wchar_h.m4 \
+	$(top_srcdir)/m4/wint_t.m4 $(top_srcdir)/m4/write.m4 \
+	$(top_srcdir)/m4/xalloc.m4 $(top_srcdir)/m4/zzgnulib.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(noinst_HEADERS) \
@@ -338,16 +343,17 @@ am__libgnu_a_SOURCES_DIST = access.c openat-priv.h openat-proc.c \
 	spawnattr_destroy.c spawnattr_init.c spawnattr_setflags.c \
 	spawnattr_setpgroup.c spawnattr_setsigmask.c spawnp.c \
 	pthread-once.c raise.c rawmemchr.c read.c readdir.c readlink.c \
-	reallocarray.c rewinddir.c safe-read.c safe-write.c \
+	realloc.c reallocarray.c rewinddir.c safe-read.c safe-write.c \
 	same-inode.h same-inode.c save-cwd.c sigaction.c sig-handler.c \
 	sigprocmask.c socket.c sockets.h sockets.c spawn-pipe.h \
 	spawn-pipe.c os2-spawn.c stat.c stat-time.c stdio-read.c \
-	stdio-write.c stpcpy.c strchrnul.c strdup.c strerror.c \
-	strerror-override.c sys_socket.c glthread/threadlib.c unistd.c \
-	dup-safer.c fd-safer.c pipe-safer.c wait-process.h \
-	wait-process.c waitpid.c windows-mutex.c windows-once.c \
-	windows-recmutex.c windows-rwlock.c windows-path.c \
-	windows-spawn.c write.c xmalloc.c xalloc-die.c
+	stdio-write.c stdlib.c stpcpy.c strchrnul.c strdup.c \
+	strerror.c strerror-override.c sys_socket.c \
+	glthread/threadlib.c unistd.c dup-safer.c fd-safer.c \
+	pipe-safer.c wait-process.h wait-process.c waitpid.c \
+	windows-mutex.c windows-once.c windows-recmutex.c \
+	windows-rwlock.c windows-path.c windows-spawn.c write.c \
+	xmalloc.c xalloc-die.c
 @GL_COND_OBJ_ACCESS_TRUE@am__objects_1 = libgnu_a-access.$(OBJEXT)
 @GL_COND_OBJ_CHDIR_LONG_TRUE@am__objects_2 =  \
 @GL_COND_OBJ_CHDIR_LONG_TRUE@	libgnu_a-chdir-long.$(OBJEXT)
@@ -409,36 +415,38 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @GL_COND_OBJ_READDIR_TRUE@am__objects_50 = libgnu_a-readdir.$(OBJEXT)
 @GL_COND_OBJ_READLINK_TRUE@am__objects_51 =  \
 @GL_COND_OBJ_READLINK_TRUE@	libgnu_a-readlink.$(OBJEXT)
-@GL_COND_OBJ_REALLOCARRAY_TRUE@am__objects_52 = libgnu_a-reallocarray.$(OBJEXT)
-@GL_COND_OBJ_REWINDDIR_TRUE@am__objects_53 =  \
+@GL_COND_OBJ_REALLOC_POSIX_TRUE@am__objects_52 =  \
+@GL_COND_OBJ_REALLOC_POSIX_TRUE@	libgnu_a-realloc.$(OBJEXT)
+@GL_COND_OBJ_REALLOCARRAY_TRUE@am__objects_53 = libgnu_a-reallocarray.$(OBJEXT)
+@GL_COND_OBJ_REWINDDIR_TRUE@am__objects_54 =  \
 @GL_COND_OBJ_REWINDDIR_TRUE@	libgnu_a-rewinddir.$(OBJEXT)
-@GL_COND_OBJ_SIGACTION_TRUE@am__objects_54 =  \
+@GL_COND_OBJ_SIGACTION_TRUE@am__objects_55 =  \
 @GL_COND_OBJ_SIGACTION_TRUE@	libgnu_a-sigaction.$(OBJEXT)
-@GL_COND_OBJ_SIGPROCMASK_TRUE@am__objects_55 =  \
+@GL_COND_OBJ_SIGPROCMASK_TRUE@am__objects_56 =  \
 @GL_COND_OBJ_SIGPROCMASK_TRUE@	libgnu_a-sigprocmask.$(OBJEXT)
-@GL_COND_OBJ_SOCKET_TRUE@am__objects_56 = libgnu_a-socket.$(OBJEXT)
-@GL_COND_OBJ_OS2_SPAWN_TRUE@am__objects_57 =  \
+@GL_COND_OBJ_SOCKET_TRUE@am__objects_57 = libgnu_a-socket.$(OBJEXT)
+@GL_COND_OBJ_OS2_SPAWN_TRUE@am__objects_58 =  \
 @GL_COND_OBJ_OS2_SPAWN_TRUE@	libgnu_a-os2-spawn.$(OBJEXT)
-@GL_COND_OBJ_STAT_TRUE@am__objects_58 = libgnu_a-stat.$(OBJEXT)
-@GL_COND_OBJ_STDIO_READ_TRUE@am__objects_59 =  \
+@GL_COND_OBJ_STAT_TRUE@am__objects_59 = libgnu_a-stat.$(OBJEXT)
+@GL_COND_OBJ_STDIO_READ_TRUE@am__objects_60 =  \
 @GL_COND_OBJ_STDIO_READ_TRUE@	libgnu_a-stdio-read.$(OBJEXT)
-@GL_COND_OBJ_STDIO_WRITE_TRUE@am__objects_60 =  \
+@GL_COND_OBJ_STDIO_WRITE_TRUE@am__objects_61 =  \
 @GL_COND_OBJ_STDIO_WRITE_TRUE@	libgnu_a-stdio-write.$(OBJEXT)
-@GL_COND_OBJ_STPCPY_TRUE@am__objects_61 = libgnu_a-stpcpy.$(OBJEXT)
-@GL_COND_OBJ_STRCHRNUL_TRUE@am__objects_62 =  \
+@GL_COND_OBJ_STPCPY_TRUE@am__objects_62 = libgnu_a-stpcpy.$(OBJEXT)
+@GL_COND_OBJ_STRCHRNUL_TRUE@am__objects_63 =  \
 @GL_COND_OBJ_STRCHRNUL_TRUE@	libgnu_a-strchrnul.$(OBJEXT)
-@GL_COND_OBJ_STRDUP_TRUE@am__objects_63 = libgnu_a-strdup.$(OBJEXT)
-@GL_COND_OBJ_STRERROR_TRUE@am__objects_64 =  \
+@GL_COND_OBJ_STRDUP_TRUE@am__objects_64 = libgnu_a-strdup.$(OBJEXT)
+@GL_COND_OBJ_STRERROR_TRUE@am__objects_65 =  \
 @GL_COND_OBJ_STRERROR_TRUE@	libgnu_a-strerror.$(OBJEXT)
-@GL_COND_OBJ_STRERROR_OVERRIDE_TRUE@am__objects_65 = libgnu_a-strerror-override.$(OBJEXT)
-@GL_COND_OBJ_WAITPID_TRUE@am__objects_66 = libgnu_a-waitpid.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_MUTEX_TRUE@am__objects_67 = libgnu_a-windows-mutex.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_ONCE_TRUE@am__objects_68 = libgnu_a-windows-once.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_RECMUTEX_TRUE@am__objects_69 = libgnu_a-windows-recmutex.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_RWLOCK_TRUE@am__objects_70 = libgnu_a-windows-rwlock.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_PATH_TRUE@am__objects_71 = libgnu_a-windows-path.$(OBJEXT)
-@GL_COND_OBJ_WINDOWS_SPAWN_TRUE@am__objects_72 = libgnu_a-windows-spawn.$(OBJEXT)
-@GL_COND_OBJ_WRITE_TRUE@am__objects_73 = libgnu_a-write.$(OBJEXT)
+@GL_COND_OBJ_STRERROR_OVERRIDE_TRUE@am__objects_66 = libgnu_a-strerror-override.$(OBJEXT)
+@GL_COND_OBJ_WAITPID_TRUE@am__objects_67 = libgnu_a-waitpid.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_MUTEX_TRUE@am__objects_68 = libgnu_a-windows-mutex.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_ONCE_TRUE@am__objects_69 = libgnu_a-windows-once.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_RECMUTEX_TRUE@am__objects_70 = libgnu_a-windows-recmutex.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_RWLOCK_TRUE@am__objects_71 = libgnu_a-windows-rwlock.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_PATH_TRUE@am__objects_72 = libgnu_a-windows-path.$(OBJEXT)
+@GL_COND_OBJ_WINDOWS_SPAWN_TRUE@am__objects_73 = libgnu_a-windows-spawn.$(OBJEXT)
+@GL_COND_OBJ_WRITE_TRUE@am__objects_74 = libgnu_a-write.$(OBJEXT)
 am_libgnu_a_OBJECTS = $(am__objects_1) libgnu_a-openat-proc.$(OBJEXT) \
 	libgnu_a-basename-lgpl.$(OBJEXT) libgnu_a-binary-io.$(OBJEXT) \
 	libgnu_a-bitrotate.$(OBJEXT) libgnu_a-canonicalize.$(OBJEXT) \
@@ -481,23 +489,24 @@ am_libgnu_a_OBJECTS = $(am__objects_1) libgnu_a-openat-proc.$(OBJEXT) \
 	$(am__objects_44) $(am__objects_45) $(am__objects_46) \
 	$(am__objects_47) $(am__objects_48) $(am__objects_49) \
 	$(am__objects_50) $(am__objects_51) $(am__objects_52) \
-	$(am__objects_53) libgnu_a-safe-read.$(OBJEXT) \
-	libgnu_a-safe-write.$(OBJEXT) libgnu_a-same-inode.$(OBJEXT) \
-	libgnu_a-save-cwd.$(OBJEXT) $(am__objects_54) \
-	libgnu_a-sig-handler.$(OBJEXT) $(am__objects_55) \
-	$(am__objects_56) libgnu_a-sockets.$(OBJEXT) \
-	libgnu_a-spawn-pipe.$(OBJEXT) $(am__objects_57) \
-	$(am__objects_58) libgnu_a-stat-time.$(OBJEXT) \
-	$(am__objects_59) $(am__objects_60) $(am__objects_61) \
+	$(am__objects_53) $(am__objects_54) \
+	libgnu_a-safe-read.$(OBJEXT) libgnu_a-safe-write.$(OBJEXT) \
+	libgnu_a-same-inode.$(OBJEXT) libgnu_a-save-cwd.$(OBJEXT) \
+	$(am__objects_55) libgnu_a-sig-handler.$(OBJEXT) \
+	$(am__objects_56) $(am__objects_57) libgnu_a-sockets.$(OBJEXT) \
+	libgnu_a-spawn-pipe.$(OBJEXT) $(am__objects_58) \
+	$(am__objects_59) libgnu_a-stat-time.$(OBJEXT) \
+	$(am__objects_60) $(am__objects_61) libgnu_a-stdlib.$(OBJEXT) \
 	$(am__objects_62) $(am__objects_63) $(am__objects_64) \
-	$(am__objects_65) libgnu_a-sys_socket.$(OBJEXT) \
+	$(am__objects_65) $(am__objects_66) \
+	libgnu_a-sys_socket.$(OBJEXT) \
 	glthread/libgnu_a-threadlib.$(OBJEXT) \
 	libgnu_a-unistd.$(OBJEXT) libgnu_a-dup-safer.$(OBJEXT) \
 	libgnu_a-fd-safer.$(OBJEXT) libgnu_a-pipe-safer.$(OBJEXT) \
-	libgnu_a-wait-process.$(OBJEXT) $(am__objects_66) \
-	$(am__objects_67) $(am__objects_68) $(am__objects_69) \
-	$(am__objects_70) $(am__objects_71) $(am__objects_72) \
-	$(am__objects_73) libgnu_a-xmalloc.$(OBJEXT) \
+	libgnu_a-wait-process.$(OBJEXT) $(am__objects_67) \
+	$(am__objects_68) $(am__objects_69) $(am__objects_70) \
+	$(am__objects_71) $(am__objects_72) $(am__objects_73) \
+	$(am__objects_74) libgnu_a-xmalloc.$(OBJEXT) \
 	libgnu_a-xalloc-die.$(OBJEXT)
 libgnu_a_OBJECTS = $(am_libgnu_a_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -605,7 +614,7 @@ am__depfiles_remade = ./$(DEPDIR)/libgnu_a-access.Po \
 	./$(DEPDIR)/libgnu_a-stat-w32.Po ./$(DEPDIR)/libgnu_a-stat.Po \
 	./$(DEPDIR)/libgnu_a-stdio-read.Po \
 	./$(DEPDIR)/libgnu_a-stdio-write.Po \
-	./$(DEPDIR)/libgnu_a-stpcpy.Po \
+	./$(DEPDIR)/libgnu_a-stdlib.Po ./$(DEPDIR)/libgnu_a-stpcpy.Po \
 	./$(DEPDIR)/libgnu_a-strchrnul.Po \
 	./$(DEPDIR)/libgnu_a-strdup.Po \
 	./$(DEPDIR)/libgnu_a-strerror-override.Po \
@@ -922,6 +931,8 @@ GL_GNULIB_MBSSTR = @GL_GNULIB_MBSSTR@
 GL_GNULIB_MBSTOK_R = @GL_GNULIB_MBSTOK_R@
 GL_GNULIB_MBSTOWCS = @GL_GNULIB_MBSTOWCS@
 GL_GNULIB_MBSZERO = @GL_GNULIB_MBSZERO@
+GL_GNULIB_MBS_ENDSWITH = @GL_GNULIB_MBS_ENDSWITH@
+GL_GNULIB_MBS_STARTSWITH = @GL_GNULIB_MBS_STARTSWITH@
 GL_GNULIB_MBTOWC = @GL_GNULIB_MBTOWC@
 GL_GNULIB_MDA_ACCESS = @GL_GNULIB_MDA_ACCESS@
 GL_GNULIB_MDA_CHDIR = @GL_GNULIB_MDA_CHDIR@
@@ -1051,7 +1062,6 @@ GL_GNULIB_READDIR = @GL_GNULIB_READDIR@
 GL_GNULIB_READLINK = @GL_GNULIB_READLINK@
 GL_GNULIB_READLINKAT = @GL_GNULIB_READLINKAT@
 GL_GNULIB_REALLOCARRAY = @GL_GNULIB_REALLOCARRAY@
-GL_GNULIB_REALLOC_GNU = @GL_GNULIB_REALLOC_GNU@
 GL_GNULIB_REALLOC_POSIX = @GL_GNULIB_REALLOC_POSIX@
 GL_GNULIB_REALPATH = @GL_GNULIB_REALPATH@
 GL_GNULIB_RECV = @GL_GNULIB_RECV@
@@ -1116,6 +1126,8 @@ GL_GNULIB_STRTOUL = @GL_GNULIB_STRTOUL@
 GL_GNULIB_STRTOULL = @GL_GNULIB_STRTOULL@
 GL_GNULIB_STRTOUMAX = @GL_GNULIB_STRTOUMAX@
 GL_GNULIB_STRVERSCMP = @GL_GNULIB_STRVERSCMP@
+GL_GNULIB_STR_ENDSWITH = @GL_GNULIB_STR_ENDSWITH@
+GL_GNULIB_STR_STARTSWITH = @GL_GNULIB_STR_STARTSWITH@
 GL_GNULIB_SYMLINK = @GL_GNULIB_SYMLINK@
 GL_GNULIB_SYMLINKAT = @GL_GNULIB_SYMLINKAT@
 GL_GNULIB_SYSTEM_POSIX = @GL_GNULIB_SYSTEM_POSIX@
@@ -1198,7 +1210,11 @@ GL_GNULIB_WRITE = @GL_GNULIB_WRITE@
 GL_GNULIB_ZPRINTF = @GL_GNULIB_ZPRINTF@
 GL_GNULIB__EXIT = @GL_GNULIB__EXIT@
 GNULIBHEADERS_OVERRIDE_WINT_T = @GNULIBHEADERS_OVERRIDE_WINT_T@
+GNULIB_LOCALEDIR = @GNULIB_LOCALEDIR@
+GNULIB_LOCALEDIR_c = @GNULIB_LOCALEDIR_c@
+GNULIB_LOCALEDIR_c_make = @GNULIB_LOCALEDIR_c_make@
 HAVE_ACCEPT4 = @HAVE_ACCEPT4@
+HAVE_AFUNIX_H = @HAVE_AFUNIX_H@
 HAVE_ALIGNED_ALLOC = @HAVE_ALIGNED_ALLOC@
 HAVE_ALLOCA_H = @HAVE_ALLOCA_H@
 HAVE_ALPHASORT = @HAVE_ALPHASORT@
@@ -1425,6 +1441,7 @@ HAVE_RENAMEAT = @HAVE_RENAMEAT@
 HAVE_REWINDDIR = @HAVE_REWINDDIR@
 HAVE_RPMATCH = @HAVE_RPMATCH@
 HAVE_SA_FAMILY_T = @HAVE_SA_FAMILY_T@
+HAVE_SA_FAMILY_T_IN_SYS_UN_H = @HAVE_SA_FAMILY_T_IN_SYS_UN_H@
 HAVE_SCANDIR = @HAVE_SCANDIR@
 HAVE_SCHED_H = @HAVE_SCHED_H@
 HAVE_SCHED_YIELD = @HAVE_SCHED_YIELD@
@@ -1480,6 +1497,7 @@ HAVE_SYS_SOCKET_H = @HAVE_SYS_SOCKET_H@
 HAVE_SYS_TIME_H = @HAVE_SYS_TIME_H@
 HAVE_SYS_TYPES_H = @HAVE_SYS_TYPES_H@
 HAVE_SYS_UIO_H = @HAVE_SYS_UIO_H@
+HAVE_SYS_UN_H = @HAVE_SYS_UN_H@
 HAVE_TIMEGM = @HAVE_TIMEGM@
 HAVE_TIMESPEC_GET = @HAVE_TIMESPEC_GET@
 HAVE_TIMESPEC_GETRES = @HAVE_TIMESPEC_GETRES@
@@ -1586,6 +1604,7 @@ NEXT_AS_FIRST_DIRECTIVE_SYS_STAT_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_STAT_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_TIME_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_TIME_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_TYPES_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_TYPES_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_UIO_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_UIO_H@
+NEXT_AS_FIRST_DIRECTIVE_SYS_UN_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_UN_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_WAIT_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_WAIT_H@
 NEXT_AS_FIRST_DIRECTIVE_TIME_H = @NEXT_AS_FIRST_DIRECTIVE_TIME_H@
 NEXT_AS_FIRST_DIRECTIVE_UNISTD_H = @NEXT_AS_FIRST_DIRECTIVE_UNISTD_H@
@@ -1611,6 +1630,7 @@ NEXT_SYS_STAT_H = @NEXT_SYS_STAT_H@
 NEXT_SYS_TIME_H = @NEXT_SYS_TIME_H@
 NEXT_SYS_TYPES_H = @NEXT_SYS_TYPES_H@
 NEXT_SYS_UIO_H = @NEXT_SYS_UIO_H@
+NEXT_SYS_UN_H = @NEXT_SYS_UN_H@
 NEXT_SYS_WAIT_H = @NEXT_SYS_WAIT_H@
 NEXT_TIME_H = @NEXT_TIME_H@
 NEXT_UNISTD_H = @NEXT_UNISTD_H@
@@ -1825,7 +1845,6 @@ REPLACE_READDIR = @REPLACE_READDIR@
 REPLACE_READLINK = @REPLACE_READLINK@
 REPLACE_READLINKAT = @REPLACE_READLINKAT@
 REPLACE_REALLOCARRAY = @REPLACE_REALLOCARRAY@
-REPLACE_REALLOC_FOR_REALLOC_GNU = @REPLACE_REALLOC_FOR_REALLOC_GNU@
 REPLACE_REALLOC_FOR_REALLOC_POSIX = @REPLACE_REALLOC_FOR_REALLOC_POSIX@
 REPLACE_REALPATH = @REPLACE_REALPATH@
 REPLACE_REMOVE = @REPLACE_REMOVE@
@@ -1894,6 +1913,7 @@ REPLACE_VSPRINTF = @REPLACE_VSPRINTF@
 REPLACE_WCRTOMB = @REPLACE_WCRTOMB@
 REPLACE_WCSCMP = @REPLACE_WCSCMP@
 REPLACE_WCSFTIME = @REPLACE_WCSFTIME@
+REPLACE_WCSNCAT = @REPLACE_WCSNCAT@
 REPLACE_WCSNCMP = @REPLACE_WCSNCMP@
 REPLACE_WCSNRTOMBS = @REPLACE_WCSNRTOMBS@
 REPLACE_WCSRTOMBS = @REPLACE_WCSRTOMBS@
@@ -1918,6 +1938,7 @@ STDDEF_NOT_IDEMPOTENT = @STDDEF_NOT_IDEMPOTENT@
 STDINT_H = @STDINT_H@
 STRIP = @STRIP@
 SYS_TIME_H_DEFINES_STRUCT_TIMESPEC = @SYS_TIME_H_DEFINES_STRUCT_TIMESPEC@
+SYS_UN_H = @SYS_UN_H@
 TIME_H_DEFINES_STRUCT_TIMESPEC = @TIME_H_DEFINES_STRUCT_TIMESPEC@
 TIME_H_DEFINES_TIME_UTC = @TIME_H_DEFINES_TIME_UTC@
 UINT32_MAX_LT_UINTMAX_MAX = @UINT32_MAX_LT_UINTMAX_MAX@
@@ -2013,27 +2034,27 @@ EXTRA_DIST = alloca.in.h assert.in.h verify.h assure.h attribute.h \
 	openat.h dirent-private.h passfd.h pathmax.h pipe-filter-aux.h \
 	pipe-filter.h pipe-filter-aux.h pipe-filter.h spawn_int.h \
 	spawn_int.h spawn_int.h spawn_int.h spawn_int.h spawn_int.h \
-	pthread.in.h rawmemchr.valgrind dirent-private.h realloc.c \
-	realloc.c dirent-private.h safe-read.h sys-limits.h \
-	safe-read.c safe-write.h sys-limits.h save-cwd.h sched.in.h \
-	sig-handler.h signal.in.h _Noreturn.h arg-nonnull.h c++defs.h \
-	warn-on-use.h w32sock.h w32sock.h spawn.in.h os2-spawn.h \
-	stat-w32.c stat-w32.h stat-time.h intprops-internal.h \
-	stdckdint.in.h stddef.in.h stdint.in.h stdio.in.h stdlib.in.h \
+	pthread.in.h rawmemchr.valgrind dirent-private.h \
+	dirent-private.h safe-read.h sys-limits.h safe-read.c \
+	safe-write.h sys-limits.h save-cwd.h sched.in.h sig-handler.h \
+	signal.in.h _Noreturn.h arg-nonnull.h c++defs.h warn-on-use.h \
+	w32sock.h w32sock.h spawn.in.h os2-spawn.h stat-w32.c \
+	stat-w32.h stat-time.h intprops-internal.h stdckdint.in.h \
+	stddef.in.h stdint.in.h stdio.in.h stdlib.in.h \
 	strchrnul.valgrind strerror-override.h string.in.h \
 	sys_select.in.h sys_socket.in.h sys_stat.in.h sys_time.in.h \
-	sys_types.in.h sys_uio.in.h sys_wait.in.h thread-optim.h \
-	time.in.h unistd.in.h unistd--.h unistd-safer.h verify.h \
-	wchar.in.h windows-initguard.h windows-mutex.h windows-once.h \
-	windows-initguard.h windows-recmutex.h windows-initguard.h \
-	windows-rwlock.h windows-path.h windows-spawn.h xalloc.h \
-	xalloc.h xalloc-oversized.h
+	sys_types.in.h sys_uio.in.h sys_un.in.h sys_wait.in.h \
+	thread-optim.h time.in.h unistd.in.h unistd--.h unistd-safer.h \
+	verify.h wchar.in.h windows-initguard.h windows-mutex.h \
+	windows-once.h windows-initguard.h windows-recmutex.h \
+	windows-initguard.h windows-rwlock.h windows-path.h \
+	windows-spawn.h xalloc.h xalloc.h xalloc-oversized.h
 BUILT_SOURCES = $(ALLOCA_H) $(ASSERT_H) dirent.h $(ERRNO_H) error.h \
 	fcntl.h malloc/scratch_buffer.gl.h inttypes.h $(LIMITS_H) \
 	pthread.h sched.h signal.h spawn.h $(STDCKDINT_H) $(STDDEF_H) \
 	$(STDINT_H) stdio.h stdlib.h string.h sys/select.h \
 	sys/socket.h sys/stat.h sys/time.h sys/types.h sys/uio.h \
-	sys/wait.h time.h unistd.h wchar.h
+	$(SYS_UN_H) sys/wait.h time.h unistd.h wchar.h
 SUFFIXES = 
 MOSTLYCLEANFILES = core *.stackdump alloca.h alloca.h-t assert.h \
 	assert.h-t dirent.h dirent.h-t errno.h errno.h-t error.h \
@@ -2047,10 +2068,10 @@ MOSTLYCLEANFILES = core *.stackdump alloca.h alloca.h-t assert.h \
 	string.h-t1 string.h-t2 sys/select.h sys/select.h-t \
 	sys/socket.h sys/socket.h-t sys/stat.h sys/stat.h-t sys/time.h \
 	sys/time.h-t sys/types.h sys/types.h-t sys/uio.h sys/uio.h-t \
-	sys/wait.h sys/wait.h-t time.h time.h-t unistd.h unistd.h-t1 \
-	unistd.h-t2 unistd.h-t3 unistd.h-t4 wchar.h wchar.h-t1 \
-	wchar.h-t2 wchar.h-t3
-MOSTLYCLEANDIRS = sys sys sys sys sys sys sys
+	sys/un.h sys/un.h-t sys/wait.h sys/wait.h-t time.h time.h-t \
+	unistd.h unistd.h-t1 unistd.h-t2 unistd.h-t3 unistd.h-t4 \
+	wchar.h wchar.h-t1 wchar.h-t2 wchar.h-t3
+MOSTLYCLEANDIRS = sys sys sys sys sys sys sys sys
 CLEANFILES = 
 DISTCLEANFILES = 
 MAINTAINERCLEANFILES = 
@@ -2086,24 +2107,23 @@ libgnu_a_SOURCES = $(am__append_1) openat-priv.h openat-proc.c \
 	$(am__append_43) $(am__append_44) $(am__append_45) \
 	$(am__append_46) $(am__append_47) $(am__append_48) \
 	$(am__append_49) $(am__append_50) $(am__append_51) \
-	$(am__append_52) $(am__append_53) safe-read.c safe-write.c \
-	same-inode.h same-inode.c save-cwd.c $(am__append_54) \
-	sig-handler.c $(am__append_55) $(am__append_56) sockets.h \
-	sockets.c spawn-pipe.h spawn-pipe.c $(am__append_57) \
-	$(am__append_58) stat-time.c $(am__append_59) $(am__append_60) \
-	$(am__append_61) $(am__append_62) $(am__append_63) \
-	$(am__append_64) $(am__append_65) sys_socket.c \
-	glthread/threadlib.c unistd.c dup-safer.c fd-safer.c \
-	pipe-safer.c wait-process.h wait-process.c $(am__append_66) \
+	$(am__append_52) $(am__append_53) $(am__append_54) safe-read.c \
+	safe-write.c same-inode.h same-inode.c save-cwd.c \
+	$(am__append_55) sig-handler.c $(am__append_56) \
+	$(am__append_57) sockets.h sockets.c spawn-pipe.h spawn-pipe.c \
+	$(am__append_58) $(am__append_59) stat-time.c $(am__append_60) \
+	$(am__append_61) stdlib.c $(am__append_62) $(am__append_63) \
+	$(am__append_64) $(am__append_65) $(am__append_66) \
+	sys_socket.c glthread/threadlib.c unistd.c dup-safer.c \
+	fd-safer.c pipe-safer.c wait-process.h wait-process.c \
 	$(am__append_67) $(am__append_68) $(am__append_69) \
 	$(am__append_70) $(am__append_71) $(am__append_72) \
-	$(am__append_73) xmalloc.c xalloc-die.c
+	$(am__append_73) $(am__append_74) xmalloc.c xalloc-die.c
 libgnu_a_CFLAGS = $(AM_CFLAGS) $(GL_CFLAG_GNULIB_WARNINGS)
 libgnu_a_LIBADD = $(gl_LIBOBJS)
 libgnu_a_DEPENDENCIES = $(gl_LIBOBJS)
 EXTRA_libgnu_a_SOURCES = calloc.c calloc.c stat-w32.c at-func.c \
-	full-write.c malloc.c malloc.c realloc.c realloc.c safe-read.c \
-	stat-w32.c
+	full-write.c malloc.c malloc.c safe-read.c stat-w32.c
 
 # Use this preprocessor expression to decide whether #include_next works.
 # Do not rely on a 'configure'-time test for this, since the expression
@@ -2334,6 +2354,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-stat.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-stdio-read.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-stdio-write.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-stdlib.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-stpcpy.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-strchrnul.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgnu_a-strdup.Po@am__quote@ # am--include-marker
@@ -3571,6 +3592,20 @@ libgnu_a-readlink.obj: readlink.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-readlink.obj `if test -f 'readlink.c'; then $(CYGPATH_W) 'readlink.c'; else $(CYGPATH_W) '$(srcdir)/readlink.c'; fi`
 
+libgnu_a-realloc.o: realloc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-realloc.o -MD -MP -MF $(DEPDIR)/libgnu_a-realloc.Tpo -c -o libgnu_a-realloc.o `test -f 'realloc.c' || echo '$(srcdir)/'`realloc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-realloc.Tpo $(DEPDIR)/libgnu_a-realloc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='realloc.c' object='libgnu_a-realloc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-realloc.o `test -f 'realloc.c' || echo '$(srcdir)/'`realloc.c
+
+libgnu_a-realloc.obj: realloc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-realloc.obj -MD -MP -MF $(DEPDIR)/libgnu_a-realloc.Tpo -c -o libgnu_a-realloc.obj `if test -f 'realloc.c'; then $(CYGPATH_W) 'realloc.c'; else $(CYGPATH_W) '$(srcdir)/realloc.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-realloc.Tpo $(DEPDIR)/libgnu_a-realloc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='realloc.c' object='libgnu_a-realloc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-realloc.obj `if test -f 'realloc.c'; then $(CYGPATH_W) 'realloc.c'; else $(CYGPATH_W) '$(srcdir)/realloc.c'; fi`
+
 libgnu_a-reallocarray.o: reallocarray.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-reallocarray.o -MD -MP -MF $(DEPDIR)/libgnu_a-reallocarray.Tpo -c -o libgnu_a-reallocarray.o `test -f 'reallocarray.c' || echo '$(srcdir)/'`reallocarray.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-reallocarray.Tpo $(DEPDIR)/libgnu_a-reallocarray.Po
@@ -3808,6 +3843,20 @@ libgnu_a-stdio-write.obj: stdio-write.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='stdio-write.c' object='libgnu_a-stdio-write.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-stdio-write.obj `if test -f 'stdio-write.c'; then $(CYGPATH_W) 'stdio-write.c'; else $(CYGPATH_W) '$(srcdir)/stdio-write.c'; fi`
+
+libgnu_a-stdlib.o: stdlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-stdlib.o -MD -MP -MF $(DEPDIR)/libgnu_a-stdlib.Tpo -c -o libgnu_a-stdlib.o `test -f 'stdlib.c' || echo '$(srcdir)/'`stdlib.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-stdlib.Tpo $(DEPDIR)/libgnu_a-stdlib.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='stdlib.c' object='libgnu_a-stdlib.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-stdlib.o `test -f 'stdlib.c' || echo '$(srcdir)/'`stdlib.c
+
+libgnu_a-stdlib.obj: stdlib.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-stdlib.obj -MD -MP -MF $(DEPDIR)/libgnu_a-stdlib.Tpo -c -o libgnu_a-stdlib.obj `if test -f 'stdlib.c'; then $(CYGPATH_W) 'stdlib.c'; else $(CYGPATH_W) '$(srcdir)/stdlib.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-stdlib.Tpo $(DEPDIR)/libgnu_a-stdlib.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='stdlib.c' object='libgnu_a-stdlib.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-stdlib.obj `if test -f 'stdlib.c'; then $(CYGPATH_W) 'stdlib.c'; else $(CYGPATH_W) '$(srcdir)/stdlib.c'; fi`
 
 libgnu_a-stpcpy.o: stpcpy.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-stpcpy.o -MD -MP -MF $(DEPDIR)/libgnu_a-stpcpy.Tpo -c -o libgnu_a-stpcpy.o `test -f 'stpcpy.c' || echo '$(srcdir)/'`stpcpy.c
@@ -4172,20 +4221,6 @@ libgnu_a-malloc.obj: malloc.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='malloc.c' object='libgnu_a-malloc.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-malloc.obj `if test -f 'malloc.c'; then $(CYGPATH_W) 'malloc.c'; else $(CYGPATH_W) '$(srcdir)/malloc.c'; fi`
-
-libgnu_a-realloc.o: realloc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-realloc.o -MD -MP -MF $(DEPDIR)/libgnu_a-realloc.Tpo -c -o libgnu_a-realloc.o `test -f 'realloc.c' || echo '$(srcdir)/'`realloc.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-realloc.Tpo $(DEPDIR)/libgnu_a-realloc.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='realloc.c' object='libgnu_a-realloc.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-realloc.o `test -f 'realloc.c' || echo '$(srcdir)/'`realloc.c
-
-libgnu_a-realloc.obj: realloc.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -MT libgnu_a-realloc.obj -MD -MP -MF $(DEPDIR)/libgnu_a-realloc.Tpo -c -o libgnu_a-realloc.obj `if test -f 'realloc.c'; then $(CYGPATH_W) 'realloc.c'; else $(CYGPATH_W) '$(srcdir)/realloc.c'; fi`
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libgnu_a-realloc.Tpo $(DEPDIR)/libgnu_a-realloc.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='realloc.c' object='libgnu_a-realloc.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgnu_a_CFLAGS) $(CFLAGS) -c -o libgnu_a-realloc.obj `if test -f 'realloc.c'; then $(CYGPATH_W) 'realloc.c'; else $(CYGPATH_W) '$(srcdir)/realloc.c'; fi`
 install-pkgdataDATA: $(pkgdata_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(pkgdata_DATA)'; test -n "$(pkgdatadir)" || list=; \
@@ -4525,6 +4560,7 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/libgnu_a-stat.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stdio-read.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stdio-write.Po
+	-rm -f ./$(DEPDIR)/libgnu_a-stdlib.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stpcpy.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-strchrnul.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-strdup.Po
@@ -4699,6 +4735,7 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/libgnu_a-stat.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stdio-read.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stdio-write.Po
+	-rm -f ./$(DEPDIR)/libgnu_a-stdlib.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-stpcpy.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-strchrnul.Po
 	-rm -f ./$(DEPDIR)/libgnu_a-strdup.Po
@@ -5406,8 +5443,6 @@ stdio.h: stdio.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H) 
 	$(AM_V_at)rm -f $@-t1 $@-t2
 	$(AM_V_at)mv $@-t3 $@
 
-# We need the following in order to create <stdlib.h> when the system
-# doesn't have one that works with the given compiler.
 stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
   $(_NORETURN_H) $(ARG_NONNULL_H) $(WARN_ON_USE_H)
 	$(gl_V_at)$(SED_HEADER_STDOUT) \
@@ -5446,7 +5481,6 @@ stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
 	      -e 's/@''GNULIB_RAND''@/$(GL_GNULIB_RAND)/g' \
 	      -e 's/@''GNULIB_RANDOM''@/$(GL_GNULIB_RANDOM)/g' \
 	      -e 's/@''GNULIB_RANDOM_R''@/$(GL_GNULIB_RANDOM_R)/g' \
-	      -e 's/@''GNULIB_REALLOC_GNU''@/$(GL_GNULIB_REALLOC_GNU)/g' \
 	      -e 's/@''GNULIB_REALLOC_POSIX''@/$(GL_GNULIB_REALLOC_POSIX)/g' \
 	      -e 's/@''GNULIB_REALLOCARRAY''@/$(GL_GNULIB_REALLOCARRAY)/g' \
 	      -e 's/@''GNULIB_REALPATH''@/$(GL_GNULIB_REALPATH)/g' \
@@ -5548,7 +5582,6 @@ stdlib.h: stdlib.in.h $(top_builddir)/config.status $(CXXDEFS_H) \
 	      -e 's|@''REPLACE_RAND''@|$(REPLACE_RAND)|g' \
 	      -e 's|@''REPLACE_RANDOM''@|$(REPLACE_RANDOM)|g' \
 	      -e 's|@''REPLACE_RANDOM_R''@|$(REPLACE_RANDOM_R)|g' \
-	      -e 's|@''REPLACE_REALLOC_FOR_REALLOC_GNU''@|$(REPLACE_REALLOC_FOR_REALLOC_GNU)|g' \
 	      -e 's|@''REPLACE_REALLOC_FOR_REALLOC_POSIX''@|$(REPLACE_REALLOC_FOR_REALLOC_POSIX)|g' \
 	      -e 's|@''REPLACE_REALLOCARRAY''@|$(REPLACE_REALLOCARRAY)|g' \
 	      -e 's|@''REPLACE_REALPATH''@|$(REPLACE_REALPATH)|g' \
@@ -5598,6 +5631,8 @@ string.h: string.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H
 	      -e 's/@''GNULIB_MBSSPN''@/$(GL_GNULIB_MBSSPN)/g' \
 	      -e 's/@''GNULIB_MBSSEP''@/$(GL_GNULIB_MBSSEP)/g' \
 	      -e 's/@''GNULIB_MBSTOK_R''@/$(GL_GNULIB_MBSTOK_R)/g' \
+	      -e 's/@''GNULIB_MBS_ENDSWITH''@/$(GL_GNULIB_MBS_ENDSWITH)/g' \
+	      -e 's/@''GNULIB_MBS_STARTSWITH''@/$(GL_GNULIB_MBS_STARTSWITH)/g' \
 	      -e 's/@''GNULIB_MEMCHR''@/$(GL_GNULIB_MEMCHR)/g' \
 	      -e 's/@''GNULIB_MEMMEM''@/$(GL_GNULIB_MEMMEM)/g' \
 	      -e 's/@''GNULIB_MEMPCPY''@/$(GL_GNULIB_MEMPCPY)/g' \
@@ -5616,6 +5651,8 @@ string.h: string.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H
 	      -e 's/@''GNULIB_STRSTR''@/$(GL_GNULIB_STRSTR)/g' \
 	      -e 's/@''GNULIB_STRCASESTR''@/$(GL_GNULIB_STRCASESTR)/g' \
 	      -e 's/@''GNULIB_STRTOK_R''@/$(GL_GNULIB_STRTOK_R)/g' \
+	      -e 's/@''GNULIB_STR_ENDSWITH''@/$(GL_GNULIB_STR_ENDSWITH)/g' \
+	      -e 's/@''GNULIB_STR_STARTSWITH''@/$(GL_GNULIB_STR_STARTSWITH)/g' \
 	      -e 's/@''GNULIB_STRERROR''@/$(GL_GNULIB_STRERROR)/g' \
 	      -e 's/@''GNULIB_STRERROR_R''@/$(GL_GNULIB_STRERROR_R)/g' \
 	      -e 's/@''GNULIB_STRERRORNAME_NP''@/$(GL_GNULIB_STRERRORNAME_NP)/g' \
@@ -5858,6 +5895,25 @@ sys/uio.h: sys_uio.in.h $(top_builddir)/config.status
 	      -e 's|@''HAVE_SYS_UIO_H''@|$(HAVE_SYS_UIO_H)|g' \
 	      $(srcdir)/sys_uio.in.h > $@-t
 	$(AM_V_at)mv $@-t $@
+
+# We need the following in order to create <sys/un.h> when the system
+# doesn't have one.
+@GL_GENERATE_SYS_UN_H_TRUE@sys/un.h: sys_un.in.h $(top_builddir)/config.status
+@GL_GENERATE_SYS_UN_H_TRUE@	$(gl_V_at)$(SED_HEADER_STDOUT) \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''GUARD_PREFIX''@|GL|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''INCLUDE_NEXT''@|$(INCLUDE_NEXT)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''PRAGMA_SYSTEM_HEADER''@|@PRAGMA_SYSTEM_HEADER@|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''PRAGMA_COLUMNS''@|@PRAGMA_COLUMNS@|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''NEXT_SYS_UN_H''@|$(NEXT_SYS_UN_H)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''HAVE_SYS_UN_H''@|$(HAVE_SYS_UN_H)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''HAVE_WINSOCK2_H''@|$(HAVE_WINSOCK2_H)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''HAVE_AFUNIX_H''@|$(HAVE_AFUNIX_H)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''HAVE_SA_FAMILY_T''@|$(HAVE_SA_FAMILY_T)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      -e 's|@''HAVE_SA_FAMILY_T_IN_SYS_UN_H''@|$(HAVE_SA_FAMILY_T_IN_SYS_UN_H)|g' \
+@GL_GENERATE_SYS_UN_H_TRUE@	      $(srcdir)/sys_un.in.h > $@-t
+@GL_GENERATE_SYS_UN_H_TRUE@	$(AM_V_at)mv $@-t $@
+@GL_GENERATE_SYS_UN_H_FALSE@sys/un.h: $(top_builddir)/config.status
+@GL_GENERATE_SYS_UN_H_FALSE@	rm -f $@
 
 # We need the following in order to create <sys/wait.h> when the system
 # has one that is incomplete.
@@ -6262,6 +6318,7 @@ wchar.h: wchar.in.h $(top_builddir)/config.status $(CXXDEFS_H) $(ARG_NONNULL_H) 
 	      -e 's|@''REPLACE_WCSWIDTH''@|$(REPLACE_WCSWIDTH)|g' \
 	      -e 's|@''REPLACE_WCSFTIME''@|$(REPLACE_WCSFTIME)|g' \
 	      -e 's|@''REPLACE_WCSCMP''@|$(REPLACE_WCSCMP)|g' \
+	      -e 's|@''REPLACE_WCSNCAT''@|$(REPLACE_WCSNCAT)|g' \
 	      -e 's|@''REPLACE_WCSNCMP''@|$(REPLACE_WCSNCMP)|g' \
 	      -e 's|@''REPLACE_WCSSTR''@|$(REPLACE_WCSSTR)|g' \
 	      -e 's|@''REPLACE_WCSTOK''@|$(REPLACE_WCSTOK)|g' \

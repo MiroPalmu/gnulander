@@ -112,6 +112,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/__inline.m4 \
 	$(top_srcdir)/m4/absolute-header.m4 $(top_srcdir)/m4/access.m4 \
 	$(top_srcdir)/m4/alloca.m4 $(top_srcdir)/m4/assert_h.m4 \
+	$(top_srcdir)/m4/build-to-host.m4 \
 	$(top_srcdir)/m4/builtin-expect.m4 $(top_srcdir)/m4/c-bool.m4 \
 	$(top_srcdir)/m4/calloc.m4 $(top_srcdir)/m4/canonicalize.m4 \
 	$(top_srcdir)/m4/chdir-long.m4 $(top_srcdir)/m4/close.m4 \
@@ -120,9 +121,9 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/dirfd.m4 \
 	$(top_srcdir)/m4/double-slash-root.m4 $(top_srcdir)/m4/dup.m4 \
 	$(top_srcdir)/m4/dup2.m4 $(top_srcdir)/m4/eaccess.m4 \
-	$(top_srcdir)/m4/eealloc.m4 $(top_srcdir)/m4/environ.m4 \
-	$(top_srcdir)/m4/errno_h.m4 $(top_srcdir)/m4/error.m4 \
-	$(top_srcdir)/m4/error_h.m4 $(top_srcdir)/m4/extensions-aix.m4 \
+	$(top_srcdir)/m4/environ.m4 $(top_srcdir)/m4/errno_h.m4 \
+	$(top_srcdir)/m4/error.m4 $(top_srcdir)/m4/error_h.m4 \
+	$(top_srcdir)/m4/extensions-aix.m4 \
 	$(top_srcdir)/m4/extensions.m4 \
 	$(top_srcdir)/m4/extern-inline.m4 \
 	$(top_srcdir)/m4/fatal-signal.m4 $(top_srcdir)/m4/fchdir.m4 \
@@ -138,6 +139,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/getprogname.m4 \
 	$(top_srcdir)/m4/gnulib-common.m4 \
 	$(top_srcdir)/m4/gnulib-comp.m4 \
+	$(top_srcdir)/m4/gnulib-i18n.m4 \
 	$(top_srcdir)/m4/include_next.m4 $(top_srcdir)/m4/inttypes.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/limits-h.m4 \
 	$(top_srcdir)/m4/locale-en.m4 $(top_srcdir)/m4/lock.m4 \
@@ -171,26 +173,27 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/00gnulib.m4 \
 	$(top_srcdir)/m4/signal_h.m4 \
 	$(top_srcdir)/m4/signalblocking.m4 \
 	$(top_srcdir)/m4/socketlib.m4 $(top_srcdir)/m4/sockets.m4 \
-	$(top_srcdir)/m4/socklen.m4 $(top_srcdir)/m4/spawn-pipe.m4 \
-	$(top_srcdir)/m4/spawn_h.m4 $(top_srcdir)/m4/ssize_t.m4 \
-	$(top_srcdir)/m4/stat-time.m4 $(top_srcdir)/m4/stat.m4 \
-	$(top_srcdir)/m4/stdalign.m4 $(top_srcdir)/m4/stddef_h.m4 \
-	$(top_srcdir)/m4/stdint.m4 $(top_srcdir)/m4/stdio_h.m4 \
-	$(top_srcdir)/m4/stdlib_h.m4 $(top_srcdir)/m4/stpcpy.m4 \
-	$(top_srcdir)/m4/strchrnul.m4 $(top_srcdir)/m4/strdup.m4 \
-	$(top_srcdir)/m4/strerror.m4 $(top_srcdir)/m4/string_h.m4 \
-	$(top_srcdir)/m4/sys_cdefs_h.m4 \
+	$(top_srcdir)/m4/socklen.m4 $(top_srcdir)/m4/sockpfaf.m4 \
+	$(top_srcdir)/m4/spawn-pipe.m4 $(top_srcdir)/m4/spawn_h.m4 \
+	$(top_srcdir)/m4/ssize_t.m4 $(top_srcdir)/m4/stat-time.m4 \
+	$(top_srcdir)/m4/stat.m4 $(top_srcdir)/m4/stdalign.m4 \
+	$(top_srcdir)/m4/stddef_h.m4 $(top_srcdir)/m4/stdint.m4 \
+	$(top_srcdir)/m4/stdio_h.m4 $(top_srcdir)/m4/stdlib_h.m4 \
+	$(top_srcdir)/m4/stpcpy.m4 $(top_srcdir)/m4/strchrnul.m4 \
+	$(top_srcdir)/m4/strdup.m4 $(top_srcdir)/m4/strerror.m4 \
+	$(top_srcdir)/m4/string_h.m4 $(top_srcdir)/m4/sys_cdefs_h.m4 \
 	$(top_srcdir)/m4/sys_select_h.m4 \
 	$(top_srcdir)/m4/sys_socket_h.m4 \
 	$(top_srcdir)/m4/sys_stat_h.m4 $(top_srcdir)/m4/sys_time_h.m4 \
 	$(top_srcdir)/m4/sys_types_h.m4 $(top_srcdir)/m4/sys_uio_h.m4 \
-	$(top_srcdir)/m4/sys_wait_h.m4 $(top_srcdir)/m4/threadlib.m4 \
-	$(top_srcdir)/m4/time_h.m4 $(top_srcdir)/m4/unistd-safer.m4 \
-	$(top_srcdir)/m4/unistd_h.m4 $(top_srcdir)/m4/wait-process.m4 \
-	$(top_srcdir)/m4/waitpid.m4 $(top_srcdir)/m4/warn-on-use.m4 \
-	$(top_srcdir)/m4/wchar_h.m4 $(top_srcdir)/m4/wint_t.m4 \
-	$(top_srcdir)/m4/write.m4 $(top_srcdir)/m4/xalloc.m4 \
-	$(top_srcdir)/m4/zzgnulib.m4 $(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/sys_un_h.m4 $(top_srcdir)/m4/sys_wait_h.m4 \
+	$(top_srcdir)/m4/threadlib.m4 $(top_srcdir)/m4/time_h.m4 \
+	$(top_srcdir)/m4/unistd-safer.m4 $(top_srcdir)/m4/unistd_h.m4 \
+	$(top_srcdir)/m4/wait-process.m4 $(top_srcdir)/m4/waitpid.m4 \
+	$(top_srcdir)/m4/warn-on-use.m4 $(top_srcdir)/m4/wchar_h.m4 \
+	$(top_srcdir)/m4/wint_t.m4 $(top_srcdir)/m4/write.m4 \
+	$(top_srcdir)/m4/xalloc.m4 $(top_srcdir)/m4/zzgnulib.m4 \
+	$(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
@@ -510,6 +513,8 @@ GL_GNULIB_MBSSTR = @GL_GNULIB_MBSSTR@
 GL_GNULIB_MBSTOK_R = @GL_GNULIB_MBSTOK_R@
 GL_GNULIB_MBSTOWCS = @GL_GNULIB_MBSTOWCS@
 GL_GNULIB_MBSZERO = @GL_GNULIB_MBSZERO@
+GL_GNULIB_MBS_ENDSWITH = @GL_GNULIB_MBS_ENDSWITH@
+GL_GNULIB_MBS_STARTSWITH = @GL_GNULIB_MBS_STARTSWITH@
 GL_GNULIB_MBTOWC = @GL_GNULIB_MBTOWC@
 GL_GNULIB_MDA_ACCESS = @GL_GNULIB_MDA_ACCESS@
 GL_GNULIB_MDA_CHDIR = @GL_GNULIB_MDA_CHDIR@
@@ -639,7 +644,6 @@ GL_GNULIB_READDIR = @GL_GNULIB_READDIR@
 GL_GNULIB_READLINK = @GL_GNULIB_READLINK@
 GL_GNULIB_READLINKAT = @GL_GNULIB_READLINKAT@
 GL_GNULIB_REALLOCARRAY = @GL_GNULIB_REALLOCARRAY@
-GL_GNULIB_REALLOC_GNU = @GL_GNULIB_REALLOC_GNU@
 GL_GNULIB_REALLOC_POSIX = @GL_GNULIB_REALLOC_POSIX@
 GL_GNULIB_REALPATH = @GL_GNULIB_REALPATH@
 GL_GNULIB_RECV = @GL_GNULIB_RECV@
@@ -704,6 +708,8 @@ GL_GNULIB_STRTOUL = @GL_GNULIB_STRTOUL@
 GL_GNULIB_STRTOULL = @GL_GNULIB_STRTOULL@
 GL_GNULIB_STRTOUMAX = @GL_GNULIB_STRTOUMAX@
 GL_GNULIB_STRVERSCMP = @GL_GNULIB_STRVERSCMP@
+GL_GNULIB_STR_ENDSWITH = @GL_GNULIB_STR_ENDSWITH@
+GL_GNULIB_STR_STARTSWITH = @GL_GNULIB_STR_STARTSWITH@
 GL_GNULIB_SYMLINK = @GL_GNULIB_SYMLINK@
 GL_GNULIB_SYMLINKAT = @GL_GNULIB_SYMLINKAT@
 GL_GNULIB_SYSTEM_POSIX = @GL_GNULIB_SYSTEM_POSIX@
@@ -786,7 +792,11 @@ GL_GNULIB_WRITE = @GL_GNULIB_WRITE@
 GL_GNULIB_ZPRINTF = @GL_GNULIB_ZPRINTF@
 GL_GNULIB__EXIT = @GL_GNULIB__EXIT@
 GNULIBHEADERS_OVERRIDE_WINT_T = @GNULIBHEADERS_OVERRIDE_WINT_T@
+GNULIB_LOCALEDIR = @GNULIB_LOCALEDIR@
+GNULIB_LOCALEDIR_c = @GNULIB_LOCALEDIR_c@
+GNULIB_LOCALEDIR_c_make = @GNULIB_LOCALEDIR_c_make@
 HAVE_ACCEPT4 = @HAVE_ACCEPT4@
+HAVE_AFUNIX_H = @HAVE_AFUNIX_H@
 HAVE_ALIGNED_ALLOC = @HAVE_ALIGNED_ALLOC@
 HAVE_ALLOCA_H = @HAVE_ALLOCA_H@
 HAVE_ALPHASORT = @HAVE_ALPHASORT@
@@ -1013,6 +1023,7 @@ HAVE_RENAMEAT = @HAVE_RENAMEAT@
 HAVE_REWINDDIR = @HAVE_REWINDDIR@
 HAVE_RPMATCH = @HAVE_RPMATCH@
 HAVE_SA_FAMILY_T = @HAVE_SA_FAMILY_T@
+HAVE_SA_FAMILY_T_IN_SYS_UN_H = @HAVE_SA_FAMILY_T_IN_SYS_UN_H@
 HAVE_SCANDIR = @HAVE_SCANDIR@
 HAVE_SCHED_H = @HAVE_SCHED_H@
 HAVE_SCHED_YIELD = @HAVE_SCHED_YIELD@
@@ -1068,6 +1079,7 @@ HAVE_SYS_SOCKET_H = @HAVE_SYS_SOCKET_H@
 HAVE_SYS_TIME_H = @HAVE_SYS_TIME_H@
 HAVE_SYS_TYPES_H = @HAVE_SYS_TYPES_H@
 HAVE_SYS_UIO_H = @HAVE_SYS_UIO_H@
+HAVE_SYS_UN_H = @HAVE_SYS_UN_H@
 HAVE_TIMEGM = @HAVE_TIMEGM@
 HAVE_TIMESPEC_GET = @HAVE_TIMESPEC_GET@
 HAVE_TIMESPEC_GETRES = @HAVE_TIMESPEC_GETRES@
@@ -1174,6 +1186,7 @@ NEXT_AS_FIRST_DIRECTIVE_SYS_STAT_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_STAT_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_TIME_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_TIME_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_TYPES_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_TYPES_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_UIO_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_UIO_H@
+NEXT_AS_FIRST_DIRECTIVE_SYS_UN_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_UN_H@
 NEXT_AS_FIRST_DIRECTIVE_SYS_WAIT_H = @NEXT_AS_FIRST_DIRECTIVE_SYS_WAIT_H@
 NEXT_AS_FIRST_DIRECTIVE_TIME_H = @NEXT_AS_FIRST_DIRECTIVE_TIME_H@
 NEXT_AS_FIRST_DIRECTIVE_UNISTD_H = @NEXT_AS_FIRST_DIRECTIVE_UNISTD_H@
@@ -1199,6 +1212,7 @@ NEXT_SYS_STAT_H = @NEXT_SYS_STAT_H@
 NEXT_SYS_TIME_H = @NEXT_SYS_TIME_H@
 NEXT_SYS_TYPES_H = @NEXT_SYS_TYPES_H@
 NEXT_SYS_UIO_H = @NEXT_SYS_UIO_H@
+NEXT_SYS_UN_H = @NEXT_SYS_UN_H@
 NEXT_SYS_WAIT_H = @NEXT_SYS_WAIT_H@
 NEXT_TIME_H = @NEXT_TIME_H@
 NEXT_UNISTD_H = @NEXT_UNISTD_H@
@@ -1413,7 +1427,6 @@ REPLACE_READDIR = @REPLACE_READDIR@
 REPLACE_READLINK = @REPLACE_READLINK@
 REPLACE_READLINKAT = @REPLACE_READLINKAT@
 REPLACE_REALLOCARRAY = @REPLACE_REALLOCARRAY@
-REPLACE_REALLOC_FOR_REALLOC_GNU = @REPLACE_REALLOC_FOR_REALLOC_GNU@
 REPLACE_REALLOC_FOR_REALLOC_POSIX = @REPLACE_REALLOC_FOR_REALLOC_POSIX@
 REPLACE_REALPATH = @REPLACE_REALPATH@
 REPLACE_REMOVE = @REPLACE_REMOVE@
@@ -1482,6 +1495,7 @@ REPLACE_VSPRINTF = @REPLACE_VSPRINTF@
 REPLACE_WCRTOMB = @REPLACE_WCRTOMB@
 REPLACE_WCSCMP = @REPLACE_WCSCMP@
 REPLACE_WCSFTIME = @REPLACE_WCSFTIME@
+REPLACE_WCSNCAT = @REPLACE_WCSNCAT@
 REPLACE_WCSNCMP = @REPLACE_WCSNCMP@
 REPLACE_WCSNRTOMBS = @REPLACE_WCSNRTOMBS@
 REPLACE_WCSRTOMBS = @REPLACE_WCSRTOMBS@
@@ -1506,6 +1520,7 @@ STDDEF_NOT_IDEMPOTENT = @STDDEF_NOT_IDEMPOTENT@
 STDINT_H = @STDINT_H@
 STRIP = @STRIP@
 SYS_TIME_H_DEFINES_STRUCT_TIMESPEC = @SYS_TIME_H_DEFINES_STRUCT_TIMESPEC@
+SYS_UN_H = @SYS_UN_H@
 TIME_H_DEFINES_STRUCT_TIMESPEC = @TIME_H_DEFINES_STRUCT_TIMESPEC@
 TIME_H_DEFINES_TIME_UTC = @TIME_H_DEFINES_TIME_UTC@
 UINT32_MAX_LT_UINTMAX_MAX = @UINT32_MAX_LT_UINTMAX_MAX@
