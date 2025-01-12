@@ -101,10 +101,6 @@ Note that some modules uses :code:`*-safer` modules indirectly.
 gnulander user POV requirements
 -------------------------------
 
-.. note::
-
-    Put this requirement to hold until C++ modules can implement it cleanly.
-
 .. #) creates ordered list.
 
 #) gnulander headers do not define any C preprocessor macros.
