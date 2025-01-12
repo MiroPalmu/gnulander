@@ -13,8 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
-#include <config.h>
-
 #include <boost/ut.hpp> // import boost.ut;
 
 /// @file
@@ -27,8 +25,14 @@
 ///         ...
 ///     )
 
+// Include before potential config.h, as it should error out (gnulib feature)
+// if gnulib stddef.h is found and config.h is not include.
 #include <stddef.h>
+#if __has_include(<config.h>)
+#    include <config.h>
+#endif
 #include <string_view>
+#include <format>
 
 #include "gnulander/pipe.hpp"
 
@@ -36,26 +40,28 @@ int main() {
     using namespace boost::ut;
     cfg<override> = { .tag = { "meson" } };
 
-    tag("meson") / "depending on gnulander_dep makes gnulib config.h to be found"_test = [] {
+    // Compilation of this translation unit should fail if the wrapped headrs are found,
+    // as stddef.h is included before config.h (see above).
+    tag("meson")
+        / "depending on gnulander_dep does not 'wrap' libc headers"_test = [] { expect(true); };
+
+
+    tag("meson") / "depending on gnulander_dep does not maek gnulib config.h to be found"_test = [] {
         using namespace std::literals;
 #ifdef PACKAGE
-        expect(PACKAGE == "gnulib-modules-to-meson"sv);
+        expect(false) << std::format("PACKAGE cpp macro defined to be: {}", PACKAGE);
 #else
-        expect(false);
+        expect(true);
 #endif
     };
 
-    tag("meson") / "depending on gnulander_dep makes gnulib headers to be found"_test = [] {
+    tag("meson") / "depending on gnulander_dep does not make gnulib headers to be found"_test = [] {
 #if __has_include("full-read.h")
-        expect(true);
+      expect(false) << "full-read.h found";
+#elif __has_include("full-write.h")
+      expect(false) << "full-write.h found";
 #else
-        expect(false) << "Did not have full-read.h.";
-#endif
-
-#if __has_include("full-write.h")
-        expect(true);
-#else
-        expect(false) << "Did not have full-write.h.";
+      expect(true);
 #endif
     };
 }

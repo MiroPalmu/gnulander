@@ -45,7 +45,6 @@ gnulander_lib = static_library(
 
 gnulander_dep = declare_dependency(
     include_directories : include_directories('include'),
-    dependencies : gnulib_dep,
     link_with : gnulander_lib,
 )
 

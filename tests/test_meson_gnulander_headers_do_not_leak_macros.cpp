@@ -13,8 +13,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this file.  If not, see <https://www.gnu.org/licenses/>.
 
-#include <config.h>
-
 #include <boost/ut.hpp> // import boost.ut;
 
 /// @file
@@ -33,7 +31,7 @@ int main() {
     using namespace boost::ut;
     cfg<override> = { .tag = { "meson" } };
 
-    /// Heuristic for tests that gnulander headers do not leak some of gnulib macros.
+    /// Heuristic that tests if gnulander headers leak Gnulib macros.
     tag("meson") / "gnulander/pipe.hpp does not define write or read macros"_test = [] {
 #ifdef write
         expect(false);
