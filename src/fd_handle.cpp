@@ -81,7 +81,7 @@ void fd_handle::close() {
         case 0: return;
         case -1: sstd::throw_generic_system_error();
     }
-    std::unreachable();
+    throw std::logic_error{ "Unregonized error code from gnulib::close(fd)." };
 }
 
 auto fd_handle::get_PIPE_BUF() const -> unsigned long {

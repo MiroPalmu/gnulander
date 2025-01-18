@@ -38,7 +38,7 @@ namespace gnulander {
         case 0: return { fd_handle{ raw_pipe_fd.front() }, fd_handle{ raw_pipe_fd.back() } };
         case -1: sstd::throw_generic_system_error();
     }
-    std::unreachable();
+    throw std::logic_error{ "Unregonized error code from ::pipe2_safer(fd, O_CLOEXEC)." };
 }
 
 } // namespace gnulander

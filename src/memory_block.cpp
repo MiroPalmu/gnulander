@@ -79,7 +79,7 @@ namespace {
             }
             return fd;
         }
-        std::unreachable();
+        throw std::logic_error{ "Unhandeled state from fd_safer_flag(fd, O_CLOEXEC)." };
     }
     throw std::runtime_error{
         std::format("Could not create POSIX shm object with unique name after {} times.", max_tries)
